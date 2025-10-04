@@ -1,0 +1,638 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Skills for Younger People - Digital Skills for All</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1A365D;
+            background: #FEFEFE;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1A365D 0%, #2D5A8C 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                transition: opacity 0.3s;
+            }
+
+                .nav-links a:hover {
+                    opacity: 0.8;
+                }
+
+        .section-hero {
+            background: linear-gradient(135deg, #4ECDC4 0%, #3DB8B0 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+            .section-hero h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-hero p {
+                font-size: 1.3rem;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 3rem auto;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-align: center;
+        }
+
+            .topic-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            }
+
+        .topic-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .topic-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1A365D;
+        }
+
+        .topic-content {
+            display: none;
+        }
+
+            .topic-content.active {
+                display: block;
+            }
+
+        .content-box {
+            background: #F7FAFC;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 4px solid #4ECDC4;
+        }
+
+            .content-box h3 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+                color: #1A365D;
+            }
+
+            .content-box h4 {
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+                color: #1A365D;
+            }
+
+        .checklist {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+            .checklist li {
+                padding: 0.75rem;
+                margin: 0.5rem 0;
+                background: white;
+                border-radius: 8px;
+                padding-left: 3rem;
+                position: relative;
+            }
+
+                .checklist li:before {
+                    content: "✓";
+                    position: absolute;
+                    left: 0.75rem;
+                    width: 24px;
+                    height: 24px;
+                    background: #95C98E;
+                    color: white;
+                    border-radius: 50%;
+                    text-align: center;
+                    line-height: 24px;
+                }
+
+        .warning-box {
+            background: #FFF5F5;
+            border-left: 4px solid #FF6B6B;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+            .warning-box h4 {
+                color: #C53030;
+                margin: 0 0 0.5rem 0;
+            }
+
+        .tip-box {
+            background: #FFFBEB;
+            border-left: 4px solid #FFE66D;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+            .tip-box h4 {
+                color: #B7791F;
+                margin: 0 0 0.5rem 0;
+            }
+
+        .step-by-step {
+            counter-reset: step;
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+            .step-by-step li {
+                counter-increment: step;
+                padding: 1.5rem;
+                margin: 1rem 0;
+                background: white;
+                border-radius: 8px;
+                padding-left: 4rem;
+                position: relative;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            }
+
+                .step-by-step li:before {
+                    content: counter(step);
+                    position: absolute;
+                    left: 1rem;
+                    top: 1.5rem;
+                    width: 36px;
+                    height: 36px;
+                    background: #4ECDC4;
+                    color: white;
+                    border-radius: 50%;
+                    text-align: center;
+                    line-height: 36px;
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                }
+
+        .back-to-topics {
+            display: inline-block;
+            margin: 2rem 0;
+            padding: 0.75rem 1.5rem;
+            background: #4ECDC4;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+            .back-to-topics:hover {
+                background: #3DB8B0;
+                transform: translateX(-5px);
+            }
+
+        footer {
+            background: #1A365D;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #B8D4E8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+            .footer-section a:hover {
+                color: white;
+            }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #2D5A8C;
+            color: #B8D4E8;
+        }
+
+        @media (max-width: 768px) {
+            .section-hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🛡️💡 Digital Skills for All</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="#">Glossary</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="section-hero">
+        <h1>Stay Smart, Stay Safe Online</h1>
+        <p>Master the skills you need to protect your privacy, spot fake news, and use tech in healthy ways</p>
+    </section>
+
+    <div class="content-section">
+        <!-- Topic Selection Grid -->
+        <div id="topics-grid" class="topics-grid">
+            <div class="topic-card" onclick="showTopic('misinformation')">
+                <div class="topic-icon">🔍</div>
+                <h3>Spotting Misinformation</h3>
+                <p>Learn to separate facts from fiction</p>
+            </div>
+            <div class="topic-card" onclick="showTopic('safety')">
+                <div class="topic-icon">🔒</div>
+                <h3>Digital Safety & Privacy</h3>
+                <p>Protect your personal information</p>
+            </div>
+            <div class="topic-card" onclick="showTopic('privacy-tools')">
+                <div class="topic-icon">⚙️</div>
+                <h3>Privacy Tools</h3>
+                <p>Take control of what you share</p>
+            </div>
+            <div class="topic-card" onclick="showTopic('tech-habits')">
+                <div class="topic-icon">⚖️</div>
+                <h3>Healthy Tech Habits</h3>
+                <p>Build a balanced relationship with technology</p>
+            </div>
+        </div>
+
+        <!-- Misinformation Content -->
+        <div id="misinformation" class="topic-content">
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+
+            <div class="content-box">
+                <h3>🔍 Spotting Misinformation</h3>
+                <p>Not everything you see online is true. Learning to spot misinformation helps you make better decisions and avoid spreading false information to others.</p>
+
+                <h4>Red Flags to Watch For:</h4>
+                <ul class="checklist">
+                    <li>Emotional headlines designed to make you angry or scared</li>
+                    <li>No author name or source listed</li>
+                    <li>Lots of spelling or grammar errors</li>
+                    <li>Claims that seem too extreme to be true</li>
+                    <li>No other credible sources reporting the same thing</li>
+                </ul>
+
+                <div class="tip-box">
+                    <h4>💡 The STOP Method</h4>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li><strong>S</strong>top: Don't share immediately</li>
+                        <li><strong>T</strong>race: Check the original source</li>
+                        <li><strong>O</strong>pen: Search for other coverage</li>
+                        <li><strong>P</strong>ause: Ask yourself if it's designed to manipulate your emotions</li>
+                    </ul>
+                </div>
+
+                <h4>Your Fact-Checking Toolkit:</h4>
+                <ul>
+                    <li><strong>Snopes.com</strong> - Checks viral claims and rumors</li>
+                    <li><strong>FactCheck.org</strong> - Verifies political claims</li>
+                    <li><strong>Reverse Image Search</strong> - Check if images are real or edited</li>
+                    <li><strong>Check Multiple Sources</strong> - Look for the same story on at least 3 credible news sites</li>
+                </ul>
+            </div>
+
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+        </div>
+
+        <!-- Safety Content -->
+        <div id="safety" class="topic-content">
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+
+            <div class="content-box">
+                <h3>🔒 Digital Safety & Privacy</h3>
+                <p>Your digital footprint—everything you post, like, comment, or sign up for—spreads further than you might think. Here's how to protect yourself.</p>
+
+                <h4>Strong Password Basics:</h4>
+                <div class="warning-box">
+                    <h4>⚠️ Never Use These:</h4>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Your name, birthday, or address</li>
+                        <li>Common words like "password" or "123456"</li>
+                        <li>The same password for multiple accounts</li>
+                    </ul>
+                </div>
+
+                <div class="tip-box">
+                    <h4>💡 Create Strong Passwords:</h4>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Use at least 12 characters</li>
+                        <li>Mix uppercase, lowercase, numbers, and symbols</li>
+                        <li>Try a passphrase: "MyDog!LovesTreats@Park"</li>
+                        <li>Consider using a password manager</li>
+                    </ul>
+                </div>
+
+                <h4>Two-Factor Authentication (2FA):</h4>
+                <p>Think of 2FA as having two locks on your door. Even if someone gets your password, they still can't get in without the second key (usually a code sent to your phone).</p>
+
+                <ol class="step-by-step">
+                    <li>Go to your account security settings</li>
+                    <li>Find "Two-Factor Authentication" or "2FA"</li>
+                    <li>Choose your method (text message or authenticator app)</li>
+                    <li>Follow the setup instructions</li>
+                    <li>Save backup codes in a safe place</li>
+                </ol>
+
+                <h4>Social Media Privacy Checklist:</h4>
+                <ul class="checklist">
+                    <li>Review privacy settings on all platforms</li>
+                    <li>Make your accounts private (especially Instagram, TikTok)</li>
+                    <li>Control who can see your posts and stories</li>
+                    <li>Limit location sharing</li>
+                    <li>Review and remove old posts that share too much</li>
+                    <li>Be careful about accepting friend/follow requests from strangers</li>
+                </ul>
+            </div>
+
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+        </div>
+
+        <!-- Privacy Tools Content -->
+        <div id="privacy-tools" class="topic-content">
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+
+            <div class="content-box">
+                <h3>⚙️ Privacy Tools & Settings</h3>
+                <p>Taking control of your online privacy doesn't have to be complicated. Here are practical tools and steps you can take right now.</p>
+
+                <h4>Social Media Privacy Settings:</h4>
+
+                <h4 style="font-size: 1.3rem;">Instagram:</h4>
+                <ol class="step-by-step">
+                    <li>Go to Settings → Privacy</li>
+                    <li>Set account to Private</li>
+                    <li>Turn off "Allow Sharing" for posts</li>
+                    <li>Limit who can see your story</li>
+                    <li>Turn off location services</li>
+                </ol>
+
+                <h4 style="font-size: 1.3rem;">TikTok:</h4>
+                <ol class="step-by-step">
+                    <li>Go to Settings → Privacy</li>
+                    <li>Set account to Private</li>
+                    <li>Turn off "Suggest your account to others"</li>
+                    <li>Disable location services</li>
+                    <li>Review who can comment and duet</li>
+                </ol>
+
+                <h4>Browser Privacy:</h4>
+                <div class="tip-box">
+                    <h4>💡 Private Browsing Mode</h4>
+                    <ul style="margin-top: 0.5rem;">
+                        <li><strong>Chrome:</strong> Press Ctrl+Shift+N (Cmd+Shift+N on Mac)</li>
+                        <li><strong>Safari:</strong> Press Cmd+Shift+N</li>
+                        <li><strong>Firefox:</strong> Press Ctrl+Shift+P (Cmd+Shift+P on Mac)</li>
+                    </ul>
+                    <p style="margin-top: 0.5rem;">Note: This doesn't make you invisible, but it doesn't save your browsing history locally.</p>
+                </div>
+
+                <h4>Helpful Browser Extensions:</h4>
+                <ul>
+                    <li><strong>uBlock Origin</strong> - Blocks ads and trackers</li>
+                    <li><strong>Privacy Badger</strong> - Stops invisible trackers</li>
+                    <li><strong>HTTPS Everywhere</strong> - Forces secure connections</li>
+                </ul>
+
+                <h4>Password Managers:</h4>
+                <ul>
+                    <li><strong>Bitwarden</strong> - Free and open source</li>
+                    <li><strong>1Password</strong> - User-friendly, paid</li>
+                    <li><strong>LastPass</strong> - Free version available</li>
+                </ul>
+
+                <div class="tip-box">
+                    <h4>💡 Why Use a Password Manager?</h4>
+                    <p style="margin-top: 0.5rem;">You only need to remember ONE strong password, and it remembers all the others for you. It can also generate super strong random passwords for each site.</p>
+                </div>
+            </div>
+
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+        </div>
+
+        <!-- Tech Habits Content -->
+        <div id="tech-habits" class="topic-content">
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+
+            <div class="content-box">
+                <h3>⚖️ Healthy Tech Habits</h3>
+                <p>Technology is designed to keep you engaged—sometimes too engaged. Building healthy habits helps you stay in control.</p>
+
+                <h4>Recognize the Signs:</h4>
+                <ul>
+                    <li><strong>Constant checking</strong> - Reaching for your phone every few minutes</li>
+                    <li><strong>FOMO</strong> - Fear of missing out when you're not online</li>
+                    <li><strong>Comparing yourself</strong> - Feeling bad after scrolling social media</li>
+                    <li><strong>Sleep issues</strong> - Using devices right before bed</li>
+                    <li><strong>Ignoring real life</strong> - Choosing screen time over face-to-face interactions</li>
+                </ul>
+
+                <h4>Build Better Balance:</h4>
+
+                <div class="tip-box">
+                    <h4>💡 Try These Strategies:</h4>
+                    <ul style="margin-top: 0.5rem;">
+                        <li><strong>Set boundaries:</strong> No phones 1 hour before bed</li>
+                        <li><strong>Turn off notifications:</strong> Keep only the essential ones</li>
+                        <li><strong>Schedule screen-free time:</strong> During meals, hangouts with friends</li>
+                        <li><strong>Use screen time tools:</strong> Set daily limits on apps</li>
+                        <li><strong>Curate your feed:</strong> Unfollow accounts that make you feel bad</li>
+                        <li><strong>Take breaks:</strong> Delete apps temporarily if needed</li>
+                    </ul>
+                </div>
+
+                <h4>Using Built-in Screen Time Tools:</h4>
+
+                <h4 style="font-size: 1.3rem;">iPhone:</h4>
+                <ol class="step-by-step">
+                    <li>Go to Settings → Screen Time</li>
+                    <li>Turn on Screen Time</li>
+                    <li>Set "Downtime" (times when only certain apps work)</li>
+                    <li>Set "App Limits" for specific apps or categories</li>
+                    <li>Review your weekly report</li>
+                </ol>
+
+                <h4 style="font-size: 1.3rem;">Android:</h4>
+                <ol class="step-by-step">
+                    <li>Go to Settings → Digital Wellbeing</li>
+                    <li>View your dashboard</li>
+                    <li>Set app timers</li>
+                    <li>Enable "Focus mode" to pause distracting apps</li>
+                    <li>Set "Bedtime mode" for better sleep</li>
+                </ol>
+
+                <h4>Things to Do Instead:</h4>
+                <ul>
+                    <li>Read a book or magazine</li>
+                    <li>Go for a walk or exercise</li>
+                    <li>Call or meet a friend in person</li>
+                    <li>Try a creative hobby (art, music, cooking)</li>
+                    <li>Play board games or cards</li>
+                    <li>Spend time outdoors</li>
+                </ul>
+
+                <div class="warning-box">
+                    <h4>⚠️ When to Get Help</h4>
+                    <p style="margin-top: 0.5rem;">If your tech use is seriously affecting your sleep, relationships, school, or mental health, talk to someone you trust—a parent, counselor, or doctor. There's no shame in asking for help.</p>
+                </div>
+            </div>
+
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#">Our Mission</a></li>
+                    <li><a href="#">Our Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Glossary</a></li>
+                    <li><a href="#">Video Library</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Digital Skills for All. Empowering digital confidence for everyone.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showTopic(topicId) {
+            // Hide topics grid
+            document.getElementById('topics-grid').style.display = 'none';
+
+            // Hide all topic content
+            document.querySelectorAll('.topic-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Show selected topic
+            document.getElementById(topicId).classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function showTopics() {
+            // Show topics grid
+            document.getElementById('topics-grid').style.display = 'grid';
+
+            // Hide all topic content
+            document.querySelectorAll('.topic-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

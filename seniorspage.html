@@ -1,0 +1,751 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Skills for Seniors - Digital Skills for All</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1A365D;
+            background: #FEFEFE;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1A365D 0%, #2D5A8C 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                transition: opacity 0.3s;
+            }
+
+                .nav-links a:hover {
+                    opacity: 0.8;
+                }
+
+        .back-btn {
+            display: inline-block;
+            margin: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #1A365D;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+            .back-btn:hover {
+                transform: translateX(-5px);
+            }
+
+        .section-hero {
+            background: linear-gradient(135deg, #FF6B6B 0%, #E85A5A 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+            .section-hero h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-hero p {
+                font-size: 1.3rem;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 3rem auto;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-align: center;
+        }
+
+            .topic-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            }
+
+        .topic-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .topic-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 1rem;
+            color: #1A365D;
+        }
+
+        .topic-content {
+            display: none;
+        }
+
+            .topic-content.active {
+                display: block;
+            }
+
+        .content-box {
+            background: #F7FAFC;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 4px solid #FF6B6B;
+        }
+
+            .content-box h3 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                color: #1A365D;
+            }
+
+            .content-box h4 {
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+                color: #1A365D;
+                font-size: 1.6rem;
+            }
+
+        .checklist {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+            .checklist li {
+                padding: 0.75rem;
+                margin: 0.5rem 0;
+                background: white;
+                border-radius: 8px;
+                padding-left: 3rem;
+                position: relative;
+            }
+
+                .checklist li:before {
+                    content: "✓";
+                    position: absolute;
+                    left: 0.75rem;
+                    width: 24px;
+                    height: 24px;
+                    background: #95C98E;
+                    color: white;
+                    border-radius: 50%;
+                    text-align: center;
+                    line-height: 24px;
+                }
+
+        .warning-box {
+            background: #FFF5F5;
+            border-left: 4px solid #FF6B6B;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+            .warning-box h4 {
+                color: #C53030;
+                margin: 0 0 0.5rem 0;
+            }
+
+        .tip-box {
+            background: #FFFBEB;
+            border-left: 4px solid #FFE66D;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+            .tip-box h4 {
+                color: #B7791F;
+                margin: 0 0 0.5rem 0;
+            }
+
+        .step-by-step {
+            counter-reset: step;
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+            .step-by-step li {
+                counter-increment: step;
+                padding: 1.5rem;
+                margin: 1rem 0;
+                background: white;
+                border-radius: 8px;
+                padding-left: 4rem;
+                position: relative;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            }
+
+                .step-by-step li:before {
+                    content: counter(step);
+                    position: absolute;
+                    left: 1rem;
+                    top: 1.5rem;
+                    width: 36px;
+                    height: 36px;
+                    background: #FF6B6B;
+                    color: white;
+                    border-radius: 50%;
+                    text-align: center;
+                    line-height: 36px;
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                }
+
+        .back-to-topics {
+            display: inline-block;
+            margin: 2rem 0;
+            padding: 0.75rem 1.5rem;
+            background: #FF6B6B;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+            .back-to-topics:hover {
+                background: #E85A5A;
+                transform: translateX(-5px);
+            }
+
+        footer {
+            background: #1A365D;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #B8D4E8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+            .footer-section a:hover {
+                color: white;
+            }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #2D5A8C;
+            color: #B8D4E8;
+        }
+
+        @media (max-width: 768px) {
+            .section-hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .content-box h4 {
+                font-size: 1.4rem;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🛡️💡 Digital Skills for All</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="#">Glossary</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="section-hero">
+        <h1>You've Got This</h1>
+        <p>Step-by-step guides to help you bank online, connect with loved ones, and stay safe from scams</p>
+    </section>
+
+    <div class="content-section">
+        <!-- Topic Selection Grid -->
+        <div id="topics-grid" class="topics-grid">
+            <div class="topic-card" onclick="showTopic('scam-awareness')">
+                <div class="topic-icon">⚠️</div>
+                <h3>Scam Awareness</h3>
+                <p>Learn to recognize and avoid online scams</p>
+            </div>
+            <div class="topic-card" onclick="showTopic('online-banking')">
+                <div class="topic-icon">🏦</div>
+                <h3>Online Banking</h3>
+                <p>Safe ways to manage your money</p>
+            </div>
+            <div class="topic-card" onclick="showTopic('video-calls')">
+                <div class="topic-icon">📹</div>
+                <h3>Video Calls</h3>
+                <p>Connect with family and friends</p>
+            </div>
+            <div class="topic-card" onclick="showTopic('password-security')">
+                <div class="topic-icon">🔑</div>
+                <h3>Password Security</h3>
+                <p>Keep your accounts safe</p>
+            </div>
+        </div>
+
+        <!-- Scam Awareness Content -->
+        <div id="scam-awareness" class="topic-content">
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+
+            <div class="content-box">
+                <h3>⚠️ Scam Awareness</h3>
+                <p>Scammers are getting more sophisticated, but you can protect yourself. Learning the warning signs helps keep you and your money safe.</p>
+
+                <h4>Common Phone Scams:</h4>
+
+                <div class="warning-box">
+                    <h4>⚠️ Real-Life Example:</h4>
+                    <p style="margin-top: 0.5rem;">Margaret received a call from someone claiming to be from her bank. They said there was suspicious activity and asked for her PIN. <strong>This was a scam.</strong></p>
+                </div>
+
+                <h4>Warning Signs:</h4>
+                <ul class="checklist">
+                    <li>Unexpected calls asking for personal information</li>
+                    <li>Pressure to act immediately</li>
+                    <li>Requests for passwords or PINs</li>
+                    <li>Threats that your account will be closed</li>
+                    <li>Claims you've won something you didn't enter</li>
+                </ul>
+
+                <h4>What to Do:</h4>
+                <ol class="step-by-step">
+                    <li><strong>Hang up immediately</strong> - Don't engage</li>
+                    <li><strong>Call your bank directly</strong> - Use the number on your card</li>
+                    <li><strong>Never give out personal information</strong> - Banks never ask for PINs</li>
+                    <li><strong>Report the scam</strong> - Contact consumer protection</li>
+                </ol>
+
+                <h4>Email Scams (Phishing):</h4>
+
+                <div class="tip-box">
+                    <h4>💡 How to Spot Fake Emails:</h4>
+                    <ul style="margin-top: 0.5rem;">
+                        <li><strong>Generic greeting:</strong> "Dear Customer" not your name</li>
+                        <li><strong>Spelling errors:</strong> Poor grammar</li>
+                        <li><strong>Suspicious sender:</strong> Email doesn't match company</li>
+                        <li><strong>Urgent language:</strong> "Act now!"</li>
+                        <li><strong>Strange links:</strong> Hover to see where they go</li>
+                    </ul>
+                </div>
+
+                <h4>Other Common Scams:</h4>
+                <ul>
+                    <li><strong>Romance scams:</strong> Online contact asks for money</li>
+                    <li><strong>Fake tech support:</strong> Pop-ups about viruses</li>
+                    <li><strong>Grandparent scams:</strong> Someone claims to be family in trouble</li>
+                    <li><strong>Prize scams:</strong> Won a prize but must pay fees first</li>
+                </ul>
+            </div>
+
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+        </div>
+
+        <!-- Online Banking Content -->
+        <div id="online-banking" class="topic-content">
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+
+            <div class="content-box">
+                <h3>🏦 Online Banking Made Simple</h3>
+                <p>Online banking is safe and convenient when you follow these steps. Your bank uses strong security to protect your money.</p>
+
+                <div class="tip-box">
+                    <h4>💡 Is Online Banking Safe?</h4>
+                    <p style="margin-top: 0.5rem;">Yes! Banks use encryption to protect your information and monitor accounts for suspicious activity.</p>
+                </div>
+
+                <h4>Before You Begin:</h4>
+                <ul class="checklist">
+                    <li>Have your account number handy</li>
+                    <li>Have your debit card ready</li>
+                    <li>Choose a quiet time</li>
+                    <li>Have paper and pen ready</li>
+                    <li>Use your home WiFi only</li>
+                </ul>
+
+                <h4>Getting Started:</h4>
+
+                <ol class="step-by-step">
+                    <li><strong>Go to your bank's website</strong> - Type carefully</li>
+                    <li><strong>Look for "Register"</strong> - Usually top right</li>
+                    <li><strong>Enter account information</strong> - Follow prompts</li>
+                    <li><strong>Create a username</strong> - Write it down</li>
+                    <li><strong>Create a strong password</strong> - Write it down securely</li>
+                    <li><strong>Set up security questions</strong> - Choose memorable ones</li>
+                </ol>
+
+                <h4>Checking Your Balance:</h4>
+                <ol class="step-by-step">
+                    <li>Log into online banking</li>
+                    <li>Look for "Accounts"</li>
+                    <li>Click on your account</li>
+                    <li>View your balance</li>
+                    <li>Always log out when finished</li>
+                </ol>
+
+                <div class="warning-box">
+                    <h4>⚠️ Important Security Tips:</h4>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Always log out when finished</li>
+                        <li>Never share your password</li>
+                        <li>Check statements regularly</li>
+                        <li>Only use private WiFi</li>
+                    </ul>
+                </div>
+
+                <div class="tip-box">
+                    <h4>💡 Practice Exercise:</h4>
+                    <p style="margin-top: 0.5rem;"><strong>Your first task:</strong> Log in and view your balance. That's it! Get comfortable before trying other tasks.</p>
+                </div>
+            </div>
+
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+        </div>
+
+        <!-- Video Calls Content -->
+        <div id="video-calls" class="topic-content">
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+
+            <div class="content-box">
+                <h3>📹 Video Calls & Staying Connected</h3>
+                <p>Seeing loved ones' faces when apart is wonderful. We'll show you exactly how.</p>
+
+                <h4>Popular Options:</h4>
+                <ul style="list-style: none;">
+                    <li style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 8px;">
+                        <strong>Zoom</strong><br>
+                        Best for: Group calls, classes<br>
+                        You need: Computer, tablet, or smartphone
+                    </li>
+                    <li style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 8px;">
+                        <strong>FaceTime</strong><br>
+                        Best for: iPhone/iPad users<br>
+                        You need: iPhone, iPad, or Mac
+                    </li>
+                    <li style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 8px;">
+                        <strong>WhatsApp</strong><br>
+                        Best for: Simple one-on-one calls<br>
+                        You need: Smartphone
+                    </li>
+                </ul>
+
+                <h4>Getting Started with Zoom:</h4>
+
+                <h4 style="font-size: 1.4rem;">What You Need:</h4>
+                <ul class="checklist">
+                    <li>A device with a camera</li>
+                    <li>Internet connection</li>
+                    <li>The Zoom app</li>
+                </ul>
+
+                <h4 style="font-size: 1.4rem;">Installing Zoom on Computer:</h4>
+                <ol class="step-by-step">
+                    <li><strong>Open your web browser</strong></li>
+                    <li><strong>Type:</strong> zoom.us/download</li>
+                    <li><strong>Click "Download"</strong></li>
+                    <li><strong>Wait for download</strong></li>
+                    <li><strong>Click the downloaded file</strong></li>
+                    <li><strong>Follow the prompts</strong></li>
+                </ol>
+
+                <h4 style="font-size: 1.4rem;">Joining Your First Call:</h4>
+
+                <div class="tip-box">
+                    <h4>💡 When Someone Sends a Zoom Link:</h4>
+                    <p style="margin-top: 0.5rem;">It looks like: https://zoom.us/j/123456789</p>
+                </div>
+
+                <ol class="step-by-step">
+                    <li><strong>Click the Zoom link</strong></li>
+                    <li><strong>Zoom opens automatically</strong></li>
+                    <li><strong>Type your name</strong></li>
+                    <li><strong>Click "Join"</strong></li>
+                    <li><strong>Click "Join with Computer Audio"</strong></li>
+                    <li><strong>Your call starts!</strong></li>
+                </ol>
+
+                <h4>Understanding the Buttons:</h4>
+                <ul>
+                    <li><strong>🎤 Microphone:</strong> Click to mute/unmute (red line = muted)</li>
+                    <li><strong>📹 Video:</strong> Turn camera on/off</li>
+                    <li><strong>👋 Reactions:</strong> Wave or thumbs up</li>
+                    <li><strong>💬 Chat:</strong> Send messages</li>
+                    <li><strong>❌ Leave:</strong> End the call</li>
+                </ul>
+
+                <h4>Troubleshooting:</h4>
+
+                <div class="warning-box">
+                    <h4>⚠️ "They can't hear me"</h4>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Check if microphone is muted</li>
+                        <li>Make sure you clicked "Join with Computer Audio"</li>
+                        <li>Check volume settings</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ "They can't see me"</h4>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Click video button to turn on camera</li>
+                        <li>Make sure nothing covers camera</li>
+                        <li>Check camera permissions</li>
+                    </ul>
+                </div>
+
+                <div class="tip-box">
+                    <h4>💡 Want to Practice?</h4>
+                    <p style="margin-top: 0.5rem;">Zoom offers test calls. Visit: <strong>zoom.us/test</strong></p>
+                </div>
+            </div>
+
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+        </div>
+
+        <!-- Password Security Content -->
+        <div id="password-security" class="topic-content">
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+
+            <div class="content-box">
+                <h3>🔑 Password Security</h3>
+                <p>Passwords protect your money, personal information, and identity. Creating strong passwords is crucial for staying safe.</p>
+
+                <h4>What Makes a Strong Password?</h4>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
+                    <div class="tip-box" style="margin: 0;">
+                        <h4>✅ DO Use:</h4>
+                        <ul style="margin-top: 0.5rem;">
+                            <li>At least 12 characters</li>
+                            <li>Mix uppercase/lowercase</li>
+                            <li>Numbers</li>
+                            <li>Symbols (!, @, #, $)</li>
+                            <li>Unique for each account</li>
+                            <li>A phrase you'll remember</li>
+                        </ul>
+                    </div>
+                    <div class="warning-box" style="margin: 0;">
+                        <h4>❌ DON'T Use:</h4>
+                        <ul style="margin-top: 0.5rem;">
+                            <li>Your name or birthday</li>
+                            <li>Common words</li>
+                            <li>Simple sequences (123456)</li>
+                            <li>Same password everywhere</li>
+                            <li>Dictionary words</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4>The Passphrase Method:</h4>
+
+                <div class="tip-box">
+                    <h4>💡 Example:</h4>
+                    <p style="margin-top: 0.5rem;">Think: <strong>"I love to garden on sunny days"</strong></p>
+                    <p>Make it: <strong>ILove2Garden@Sunny!</strong></p>
+                    <p style="margin-top: 0.5rem;">Strong, unique, and easier to remember!</p>
+                </div>
+
+                <h4>Keeping Track - The Notebook Method:</h4>
+                <p>If you prefer writing them down:</p>
+                <ol class="step-by-step">
+                    <li>Use a dedicated notebook</li>
+                    <li>Keep it in a secure place (locked drawer)</li>
+                    <li>Never leave it out</li>
+                    <li>Don't bring it traveling</li>
+                    <li>Write hints instead of full passwords</li>
+                </ol>
+
+                <div class="tip-box">
+                    <h4>💡 Writing Hints:</h4>
+                    <p style="margin-top: 0.5rem;">Instead of: <strong>MyDog!LovesTreats@Park</strong></p>
+                    <p>Write: <strong>"Dog + favorite activity + place (with symbols)"</strong></p>
+                </div>
+
+                <h4>When to Change Passwords:</h4>
+                <ul class="checklist">
+                    <li>Every 3-6 months for important accounts</li>
+                    <li>Immediately if you think it's compromised</li>
+                    <li>After using public computer</li>
+                    <li>If company reports data breach</li>
+                </ul>
+
+                <h4>Two-Factor Authentication:</h4>
+
+                <div class="tip-box">
+                    <h4>💡 What is 2FA?</h4>
+                    <p style="margin-top: 0.5rem;">Like two locks on your door. Even if someone gets your password, they need the second key (code sent to your phone).</p>
+                </div>
+
+                <h4 style="font-size: 1.4rem;">How It Works:</h4>
+                <ol class="step-by-step">
+                    <li>Enter your password (first lock)</li>
+                    <li>Receive code on phone (second lock)</li>
+                    <li>Enter the code</li>
+                    <li>You're logged in!</li>
+                </ol>
+
+                <h4 style="font-size: 1.4rem;">Setting Up 2FA:</h4>
+                <ol class="step-by-step">
+                    <li>Log into your account</li>
+                    <li>Go to "Settings" or "Security"</li>
+                    <li>Look for "Two-Factor Authentication"</li>
+                    <li>Follow instructions to connect phone</li>
+                    <li>Save backup codes</li>
+                </ol>
+            </div>
+
+            <button onclick="showTopics()" class="back-to-topics">← Back to Topics</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#">Our Mission</a></li>
+                    <li><a href="#">Our Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Glossary</a></li>
+                    <li><a href="#">Video Library</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Digital Skills for All. Empowering digital confidence for everyone.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showTopic(topicId) {
+            // Hide topics grid
+            document.getElementById('topics-grid').style.display = 'none';
+
+            // Hide all topic content
+            document.querySelectorAll('.topic-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Show selected topic
+            document.getElementById(topicId).classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function showTopics() {
+            // Show topics grid
+            document.getElementById('topics-grid').style.display = 'grid';
+
+            // Hide all topic content
+            document.querySelectorAll('.topic-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
+
