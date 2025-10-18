@@ -1,0 +1,479 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Tutorials - Digital Skills for All</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1A365D;
+            background: #FEFEFE;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1A365D 0%, #2D5A8C 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                transition: opacity 0.3s;
+            }
+
+                .nav-links a:hover {
+                    opacity: 0.8;
+                }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(to bottom, #FAF9F6 0%, #FFFFFF 100%);
+            border-bottom: 2px solid #E2E8F0;
+        }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+                color: #1A365D;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                color: #4A5568;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Section Headers */
+        .section-title {
+            font-size: 1.8rem;
+            color: #1A365D;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #4ECDC4;
+            display: inline-block;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            border-top: 4px solid #4ECDC4;
+        }
+
+            .video-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            }
+
+            .video-card.featured {
+                border-top-color: #667eea;
+            }
+
+        .video-container {
+            width: 100%;
+            padding-bottom: 56.25%;
+            position: relative;
+            background: #000;
+        }
+
+            .video-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+
+        .video-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #1A365D;
+            line-height: 1.4;
+        }
+
+        .video-card p {
+            color: #4A5568;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .video-source {
+            font-size: 0.85rem;
+            color: #A0AEC0;
+            margin-bottom: 1rem;
+        }
+
+        .video-link {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #4ECDC4;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
+            align-self: flex-start;
+        }
+
+        .video-card.featured .video-link {
+            background: #667eea;
+        }
+
+            .video-card.featured .video-link:hover {
+                background: #5568d3;
+            }
+
+        .video-link:hover {
+            background: #3DB8B0;
+        }
+
+        /* Empty State */
+        .empty-state {
+            background: #F7FAFC;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            color: #4A5568;
+        }
+
+            .empty-state p {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+        .add-video-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+            .add-video-btn:hover {
+                background: #5568d3;
+            }
+
+        /* Footer */
+        footer {
+            background: #1A365D;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #B8D4E8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+            .footer-section a:hover {
+                color: white;
+            }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #2D5A8C;
+            color: #B8D4E8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                🛡️💡 Digital Skills for All
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="glossary.html">Glossary</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Video Tutorials</h1>
+        <p>Learn digital skills through easy-to-follow video guides from trusted creators</p>
+    </section>
+
+    <div class="container">
+        <!-- Our Videos Section -->
+        <div class="section">
+            <h2 class="section-title">Our Videos</h2>
+            <div class="video-grid" id="ourVideos">
+                <div class="empty-state" style="grid-column: 1/-1;">
+                    <p>Videos coming soon! Check back for our latest tutorials.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended Videos Section -->
+        <div class="section">
+            <h2 class="section-title">Recommended Videos</h2>
+            <p style="color: #4A5568; margin-bottom: 2rem;">High-quality cybersecurity and digital safety videos from trusted creators and organizations</p>
+            <div class="video-grid" id="recommendedVideos">
+                <div class="video-card featured">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/3f0u-vw58A0" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>How to Make Passwords</h3>
+                        <p>Learn how to create strong passwords and protect your accounts from unauthorized access.</p>
+                        <div class="video-source">YouTube</div>
+                        <a href="https://youtu.be/3f0u-vw58A0" target="_blank" class="video-link">Watch on YouTube</a>
+                    </div>
+                </div>
+
+                <div class="video-card featured">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/o0btqyGWIQw" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>Spot Phishing Scams</h3>
+                        <p>Discover the warning signs of phishing emails and protect yourself from cyber criminals.</p>
+                        <div class="video-source">YouTube</div>
+                        <a href="https://youtu.be/o0btqyGWIQw" target="_blank" class="video-link">Watch on YouTube</a>
+                    </div>
+                </div>
+
+                <div class="video-card featured">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/0mvCeNsTa1g" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>Two Factor Authentication</h3>
+                        <p>Understand why 2FA is important and how to enable it on your accounts for extra security.</p>
+                        <div class="video-source">YouTube</div>
+                        <a href="https://youtu.be/0mvCeNsTa1g" target="_blank" class="video-link">Watch on YouTube</a>
+                    </div>
+                </div>
+
+                <div class="video-card featured">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/F5l2BucBfKY" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>Online Banking Safety</h3>
+                        <p>Secure your banking accounts and learn how to recognize fake banking websites.</p>
+                        <div class="video-source">YouTube</div>
+                        <a href="https://youtu.be/F5l2BucBfKY" target="_blank" class="video-link">Watch on YouTube</a>
+                    </div>
+                </div>
+
+                <div class="video-card featured">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/JO55V34EnK8" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>Protect Privacy Online</h3>
+                        <p>Learn privacy settings, data permissions, and how to control your personal information online.</p>
+                        <div class="video-source">YouTube</div>
+                        <a href="https://youtu.be/JO55V34EnK8" target="_blank" class="video-link">Watch on YouTube</a>
+                    </div>
+                </div>
+
+                <div class="video-card featured">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/AkwWcHekMdo" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>Spot Misinformation</h3>
+                        <p>Learn how to verify information, check sources, and identify false or misleading content.</p>
+                        <div class="video-source">YouTube</div>
+                        <a href="https://youtu.be/AkwWcHekMdo" target="_blank" class="video-link">Watch on YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#about">Our Mission</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#partners">Partners</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="glossary.html">Glossary</a></li>
+                    <li><a href="#guides">Downloadable Guides</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#accessibility">Accessibility</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Digital Skills for All. Empowering digital confidence for everyone.</p>
+        </div>
+    </footer>
+
+    <script>
+        // YOUR VIDEOS - Add your YouTube videos here
+        // Format: { title: "...", description: "...", youtubeId: "...", url: "..." }
+        const ourVideos = [
+            // Add your videos like this:
+            // {
+            //     title: "How to Stay Safe Online",
+            //     description: "A beginner's guide to staying safe and secure online.",
+            //     youtubeId: "YOUR_VIDEO_ID", // Get this from the YouTube URL
+            //     url: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
+            // }
+        ];
+
+        // Render our videos
+        function renderOurVideos() {
+            const container = document.getElementById('ourVideos');
+            if (ourVideos.length === 0) {
+                container.innerHTML = '<div class="empty-state" style="grid-column: 1/-1;"><p>Videos coming soon! Check back for our latest tutorials.</p></div>';
+                return;
+            }
+            container.innerHTML = ourVideos.map(video => `
+                    <div class="video-card">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/${video.youtubeId}" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                        <div class="video-content">
+                            <h3>${video.title}</h3>
+                            <p>${video.description}</p>
+                            <div class="video-source">Digital Skills for All</div>
+                            <a href="${video.url}" target="_blank" class="video-link">Watch on YouTube</a>
+                        </div>
+                    </div>
+                `).join('');
+        }
+
+        renderOurVideos();
+    </script>
+</body>
+</html>
