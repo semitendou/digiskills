@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://cdn.counter.dev/script.js" data-id="126eaade-a6e1-494b-aef8-950f4aad6d9b" data-utcoffset="13"></script>
+    <script data-goatcounter="https://digitalskillsforallnz.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Skills for All - Digital Confidence for Every Generation</title>
@@ -123,6 +124,10 @@
             border-top: 4px solid #FF6B6B;
         }
 
+        .card.game {
+            border-top: 4px solid #667eea;
+        }
+
         .card h2 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
@@ -158,6 +163,15 @@
 
             .btn-seniors:hover {
                 background: #E85A5A;
+            }
+
+        .btn-game {
+            background: #667eea;
+            color: white;
+        }
+
+            .btn-game:hover {
+                background: #5568d3;
             }
 
         /* Mission Section */
@@ -209,10 +223,18 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             text-align: center;
             transition: transform 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
             .link-item:hover {
                 transform: translateY(-3px);
+            }
+
+            .link-item a {
+                text-decoration: none;
+                color: inherit;
             }
 
         .link-item-icon {
@@ -290,10 +312,10 @@
                 🛡️💡 Digital Skills for All
             </div>
             <ul class="nav-links">
-                <li><a href="landing page.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#resources">Resources</a></li>
-                <li><a href="#glossary">Glossary</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="glossary.html">Glossary</a></li>
                 <li><a href="contactpage.html">Contact Us</a></li>
             </ul>
         </nav>
@@ -317,6 +339,13 @@
                 <p>Step-by-step guides for online banking, video calls, scam awareness, and staying safe</p>
                 <span class="btn btn-seniors">Get Started →</span>
             </a>
+
+            <a href="gamemenu.html" class="card game">
+                <div class="card-icon">🔍</div>
+                <h2>Digital Detective Game</h2>
+                <p>Test your skills with interactive scenarios and learn to spot misinformation in real-time</p>
+                <span class="btn btn-game">Play Now →</span>
+            </a>
         </div>
     </section>
 
@@ -328,26 +357,26 @@
     <section class="quick-links">
         <h2>Quick Access</h2>
         <div class="links-grid">
-            <div class="link-item">
+            <a href="glossary.html" class="link-item">
                 <div class="link-item-icon">📚</div>
                 <h3>Glossary</h3>
                 <p>Digital terms explained simply</p>
-            </div>
+            </a>
             <div class="link-item">
                 <div class="link-item-icon">🎥</div>
                 <h3>Video Tutorials</h3>
                 <p>Watch and learn step-by-step</p>
             </div>
-            <div class="link-item">
+            <a href="resources.html" class="link-item">
                 <div class="link-item-icon">🔗</div>
                 <h3>Resources</h3>
                 <p>Helpful tools and links</p>
-            </div>
-            <div class="link-item">
+</div>
+            <a href="reportscam.html" class="link-item">
                 <div class="link-item-icon">⚠️</div>
                 <h3>Report a Scam</h3>
                 <p>Get help immediately</p>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -364,7 +393,7 @@
             <div class="footer-section">
                 <h3>Resources</h3>
                 <ul>
-                    <li><a href="#glossary">Glossary</a></li>
+                    <li><a href="glossary.html">Glossary</a></li>
                     <li><a href="#videos">Video Library</a></li>
                     <li><a href="#guides">Downloadable Guides</a></li>
                 </ul>
@@ -372,7 +401,7 @@
             <div class="footer-section">
                 <h3>Support</h3>
                 <ul>
-                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="contactpage.html">Contact Us</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="#accessibility">Accessibility</a></li>
                 </ul>
