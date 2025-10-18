@@ -1,0 +1,748 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Detective: Water Contamination Investigation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .phone-container {
+            max-width: 375px;
+            margin: 20px auto;
+            background: #000;
+            border-radius: 25px;
+            padding: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .phone-screen {
+            background: #fff;
+            border-radius: 17px;
+            overflow: hidden;
+            min-height: 80vh;
+            position: relative;
+        }
+
+        .status-bar {
+            background: #f8f9fa;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 600;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .app-header {
+            background: linear-gradient(45deg, #1da1f2, #0d8bd9);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stats-container {
+            background: #f8f9fa;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .stat {
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+
+        .credibility {
+            color: #28a745;
+        }
+
+        .trust {
+            color: #007bff;
+        }
+
+        .time {
+            color: #ffc107;
+        }
+
+        .content {
+            padding: 20px;
+            min-height: 400px;
+        }
+
+        .social-post {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid #dc3545;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .post-info h4 {
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .post-info small {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .post-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #4a6741, #8FBC8F);
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #fff;
+        }
+
+        .post-text {
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .post-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .choices {
+            display: grid;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .choice-btn {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .choice-btn:hover {
+                background: #f8f9fa;
+                border-color: #007bff;
+                transform: translateY(-2px);
+            }
+
+            .choice-btn.investigation {
+                border-color: #17a2b8;
+                background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
+            }
+
+            .choice-btn.risky {
+                border-color: #dc3545;
+                background: linear-gradient(135deg, #ffebee, #fff3e0);
+            }
+
+            .choice-btn.safe {
+                border-color: #28a745;
+                background: linear-gradient(135deg, #f1f8e9, #e8f5e8);
+            }
+
+        .choice-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .choice-desc {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .investigation-panel {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #17a2b8;
+        }
+
+        .investigation-title {
+            font-weight: bold;
+            color: #17a2b8;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .investigation-result {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 10px 0;
+            border-left: 4px solid #28a745;
+        }
+
+            .investigation-result.warning {
+                border-left-color: #ffc107;
+                background: #fff8e1;
+            }
+
+            .investigation-result.danger {
+                border-left-color: #dc3545;
+                background: #ffebee;
+            }
+
+        .story-text {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .final-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .final-score {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 12px;
+        }
+
+        .learning-point {
+            background: #e3f2fd;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .restart-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .viral-indicator {
+            animation: pulse 2s infinite;
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="phone-screen">
+            <div class="status-bar">
+                <span>9:41</span>
+                <span>📶 📶 📶</span>
+            </div>
+
+            <div class="app-header">
+                <span style="font-size: 20px;">📱</span>
+                <h2>SocialFeed</h2>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat">
+                    <div class="stat-value credibility" id="credibility">75</div>
+                    <div>Credibility</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value trust" id="trust">80</div>
+                    <div>Trust</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value time" id="time">60</div>
+                    <div>Time Left</div>
+                </div>
+            </div>
+
+            <div class="content" id="game-content">
+                <div class="story-text">
+                    <h3>🔍 Digital Detective</h3>
+                    <p>You're scrolling through your social media feed during lunch break when you notice something alarming...</p>
+                </div>
+
+                <div class="social-post">
+                    <div class="post-header">
+                        <div class="avatar">FL</div>
+                        <div class="post-info">
+                            <h4>FreedomLeaks.com <span class="viral-indicator">🔥 VIRAL</span></h4>
+                            <small>15 minutes ago • Shared 23.7K times</small>
+                        </div>
+                    </div>
+
+                    <div class="post-text">
+                        <strong>🚨 BREAKING: Local Water Supply Contaminated by Government Experiment!</strong>
+                        Secret testing of dangerous chemical "Chem-X" causing nausea, hair loss, and genetic mutations! Government trying to cover this up! Share before they delete this! #ChemX #WaterContamination #GovernmentCoverUp
+                    </div>
+
+                    <div class="post-image">
+                        [Image: Greenish river water with "TOXIC CONTAMINATION" text overlay]
+                    </div>
+
+                    <div class="post-stats">
+                        <span>❤️ 18.3K likes</span>
+                        <span>🔄 23.7K shares</span>
+                        <span>💬 5.2K comments</span>
+                    </div>
+                </div>
+
+                <div class="story-text">
+                    <p>This post is spreading like wildfire. Your neighbors are starting to panic-buy bottled water. What's your first instinct?</p>
+                </div>
+
+                <div class="choices">
+                    <div class="choice-btn" onclick="startGame()">
+                        <div class="choice-title">🤔 Think about it first</div>
+                        <div class="choice-desc">This sounds scary but also suspicious. Let me consider my options.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let stats = { credibility: 75, trust: 80, time: 60 };
+        let investigationSteps = [];
+        let userPath = '';
+
+        function updateStats() {
+            document.getElementById('credibility').textContent = stats.credibility;
+            document.getElementById('trust').textContent = stats.trust;
+            document.getElementById('time').textContent = stats.time;
+        }
+
+        function modifyStats(credibility = 0, trust = 0, time = 0) {
+            stats.credibility = Math.max(0, Math.min(100, stats.credibility + credibility));
+            stats.trust = Math.max(0, Math.min(100, stats.trust + trust));
+            stats.time = Math.max(0, stats.time + time);
+            updateStats();
+        }
+
+        function startGame() {
+            document.getElementById('game-content').innerHTML = `
+                    <div class="story-text">
+                        <p>Smart thinking! You pause before reacting. The post is gaining momentum - now at 31.2K shares. Local stores are running out of bottled water. What do you do?</p>
+                    </div>
+
+                    <div class="choices">
+                        <div class="choice-btn investigation" onclick="investigate()">
+                            <div class="choice-title">🔍 Investigate this claim</div>
+                            <div class="choice-desc">Something feels off about this. Let me fact-check before forming an opinion.</div>
+                        </div>
+
+                        <div class="choice-btn risky" onclick="sharePost()">
+                            <div class="choice-title">📤 Share it immediately</div>
+                            <div class="choice-desc">People need to know about this danger! Better warn everyone quickly.</div>
+                        </div>
+
+                        <div class="choice-btn safe" onclick="ignorePost()">
+                            <div class="choice-title">👀 Keep scrolling</div>
+                            <div class="choice-desc">This seems too crazy to be real. I'll just ignore it and move on.</div>
+                        </div>
+
+                        <div class="choice-btn risky" onclick="believePost()">
+                            <div class="choice-title">✅ Switch to bottled water</div>
+                            <div class="choice-desc">This has thousands of shares - it must be real! I'm buying bottled water.</div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        function investigate() {
+            modifyStats(10, 15, -10);
+            userPath = 'investigated';
+            document.getElementById('game-content').innerHTML = `
+                    <div class="story-text">
+                        <p><strong>Great choice!</strong> You decided to investigate instead of panicking. Now you're thinking like a digital detective!</p>
+                    </div>
+
+                    <div class="investigation-panel">
+                        <div class="investigation-title">🔍 Investigation Toolkit</div>
+                        <p>Choose your investigation method:</p>
+                    </div>
+
+                    <div class="choices">
+                        <div class="choice-btn investigation" onclick="reverseImage()">
+                            <div class="choice-title">🖼️ Reverse image search</div>
+                            <div class="choice-desc">Check if this contaminated water image has been used before</div>
+                        </div>
+
+                        <div class="choice-btn investigation" onclick="factCheck()">
+                            <div class="choice-title">✅ Check fact-checking sites</div>
+                            <div class="choice-desc">See if reputable fact-checkers have investigated "Chem-X"</div>
+                        </div>
+
+                        <div class="choice-btn investigation" onclick="sourceCheck()">
+                            <div class="choice-title">📰 Verify the source</div>
+                            <div class="choice-desc">Research who "FreedomLeaks.com" really is</div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        function reverseImage() {
+            modifyStats(15, 10, -15);
+            investigationSteps.push('reverse-image');
+            document.getElementById('game-content').innerHTML = `
+                    <div class="investigation-result danger">
+                        <div class="investigation-title">🖼️ Reverse Image Search Results</div>
+                        <p><strong>FOUND:</strong> This exact image appears on a stock photo website from 2019, titled "Algae bloom in polluted lake - Brazil." It's been used in dozens of unrelated articles about everything from industrial pollution to climate change.</p>
+                        <p><strong>Red flag:</strong> Legitimate contamination news would have original photos from the actual local water source, not recycled images from another country.</p>
+                    </div>
+
+                    <div class="story-text">
+                        <p>Excellent detective work! The image is fake and from Brazil, not your local area. Do you want to investigate further or take action?</p>
+                    </div>
+
+                    <div class="choices">
+                        <div class="choice-btn investigation" onclick="factCheck()">
+                            <div class="choice-title">✅ Check fact-checking sites</div>
+                            <div class="choice-desc">Verify if "Chem-X" claims have been debunked</div>
+                        </div>
+
+                        <div class="choice-btn investigation" onclick="sourceCheck()">
+                            <div class="choice-title">📰 Check the source</div>
+                            <div class="choice-desc">Research the credibility of FreedomLeaks.com</div>
+                        </div>
+
+                        <div class="choice-btn safe" onclick="investigateEnding()">
+                            <div class="choice-title">📝 Report findings</div>
+                            <div class="choice-desc">I've seen enough evidence. Time to report this misinformation.</div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        function factCheck() {
+            if (investigationSteps.includes('fact-check')) return;
+            modifyStats(15, 10, -15);
+            investigationSteps.push('fact-check');
+            document.getElementById('game-content').innerHTML = `
+                    <div class="investigation-result danger">
+                        <div class="investigation-title">✅ Fact-Check Results</div>
+                        <p><strong>PolitiFact.com verdict: PANTS ON FIRE FALSE</strong></p>
+                        <p>No chemical called "Chem-X" exists in any government database or scientific literature. Water authorities confirm regular testing shows no contamination. This exact hoax has circulated multiple times since 2020 targeting different cities.</p>
+                        <p><strong>Expert quote:</strong> "Municipal water supplies are tested daily for hundreds of contaminants. Any real contamination would trigger immediate public health alerts through official channels, not social media."</p>
+                    </div>
+
+                    <div class="story-text">
+                        <p>The fact-checkers confirm this is completely false! Continue investigating or take action?</p>
+                    </div>
+
+                    <div class="choices">
+                        <div class="choice-btn investigation" onclick="reverseImage()">
+                            <div class="choice-title">🖼️ Reverse image search</div>
+                            <div class="choice-desc">Check if the contamination image is legitimate</div>
+                        </div>
+
+                        <div class="choice-btn investigation" onclick="sourceCheck()">
+                            <div class="choice-title">📰 Check the source</div>
+                            <div class="choice-desc">Research FreedomLeaks.com's credibility</div>
+                        </div>
+
+                        <div class="choice-btn safe" onclick="investigateEnding()">
+                            <div class="choice-title">📝 Report findings</div>
+                            <div class="choice-desc">The fact-checkers confirm "Chem-X" doesn't exist!</div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        function sourceCheck() {
+            if (investigationSteps.includes('source-check')) return;
+            modifyStats(15, 10, -15);
+            investigationSteps.push('source-check');
+            document.getElementById('game-content').innerHTML = `
+                    <div class="investigation-result danger">
+                        <div class="investigation-title">📰 Source Investigation Results</div>
+                        <p><strong>FreedomLeaks.com Profile:</strong></p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Domain registered 8 months ago</li>
+                            <li>No verified journalists or contact information</li>
+                            <li>Posts conspiracy theories and fear-mongering content daily</li>
+                            <li>Monetized with ads for expensive water filters and "detox" products</li>
+                            <li>No original reporting - only reposts unverified claims</li>
+                        </ul>
+                        <p><strong>Pattern detected:</strong> This site regularly spreads water contamination hoaxes to sell overpriced filtration products.</p>
+                    </div>
+
+                    <div class="story-text">
+                        <p>The source is completely unreliable and has financial motives! Continue investigating or conclude your research?</p>
+                    </div>
+
+                    <div class="choices">
+                        <div class="choice-btn investigation" onclick="reverseImage()">
+                            <div class="choice-title">🖼️ Reverse image search</div>
+                            <div class="choice-desc">Check if the contamination image is legitimate</div>
+                        </div>
+
+                        <div class="choice-btn investigation" onclick="factCheck()">
+                            <div class="choice-title">✅ Check fact-checking sites</div>
+                            <div class="choice-desc">See if this "Chem-X" claim has been debunked</div>
+                        </div>
+
+                        <div class="choice-btn safe" onclick="investigateEnding()">
+                            <div class="choice-title">📝 Report findings</div>
+                            <div class="choice-desc">I have enough evidence to conclude this is a scam.</div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        function sharePost() {
+            modifyStats(-30, -25, -5);
+            userPath = 'shared';
+            document.getElementById('game-content').innerHTML = `
+                    <div class="story-text">
+                        <p><strong>Oh no!</strong> You shared water contamination misinformation without checking. Within hours, your post contributed to community panic, empty store shelves, and unnecessary fear.</p>
+                        <p>Later, you discovered this was completely fake - the image was from Brazil, "Chem-X" doesn't exist, and the source was selling water filters.</p>
+                    </div>
+
+                    <div class="investigation-result danger">
+                        <h4>Consequences of sharing misinformation:</h4>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Caused unnecessary panic and anxiety in your community</li>
+                            <li>Helped scammers profit from selling overpriced water products</li>
+                            <li>Reduced your credibility with friends and neighbors</li>
+                            <li>Wasted public resources responding to false claims</li>
+                        </ul>
+                    </div>
+
+                    <div class="choices">
+                        <div class="choice-btn" onclick="finalResults()">
+                            <div class="choice-title">📚 See final results</div>
+                            <div class="choice-desc">Learn what you could have done differently</div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        function ignorePost() {
+            modifyStats(5, 0, -5);
+            userPath = 'ignored';
+            document.getElementById('game-content').innerHTML = `
+                    <div class="story-text">
+                        <p>You decided to keep scrolling. While you didn't spread misinformation, you also missed an opportunity to help others avoid panic and financial scams.</p>
+                        <p>Over the next few hours, you see neighbors posting about buying expensive water filters and some even organizing protests at the water treatment plant.</p>
+                    </div>
+
+                    <div class="investigation-result warning">
+                        <h4>The neutral approach:</h4>
+                        <p>Ignoring suspicious content protects you but doesn't help your community. Sometimes taking action to fact-check and inform others prevents unnecessary panic and financial exploitation.</p>
+                    </div>
+
+                    <div class="choices">
+                        <div class="choice-btn investigation" onclick="investigate()">
+                            <div class="choice-title">🔍 Actually, let me investigate</div>
+                            <div class="choice-desc">I should check this out to help my neighbors</div>
+                        </div>
+
+                        <div class="choice-btn" onclick="finalResults()">
+                            <div class="choice-title">📚 See final results</div>
+                            <div class="choice-desc">Learn what happened and what you could have done</div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        function believePost() {
+            modifyStats(-25, -20, -5);
+            userPath = 'believed';
+            document.getElementById('game-content').innerHTML = `
+                    <div class="story-text">
+                        <p><strong>Unfortunately,</strong> you fell for a water contamination hoax! You switched to bottled water and may have even bought expensive filtration products without verifying the claims first.</p>
+                        <p>Later, when the hoax was debunked, you realized you wasted money and contributed to unnecessary community panic.</p>
+                    </div>
+
+                    <div class="investigation-result danger">
+                        <h4>Why believing without verification is dangerous:</h4>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Environmental contamination hoaxes can cause mass hysteria</li>
+                            <li>You may waste money on unnecessary products or services</li>
+                            <li>Spreads fear and distrust in legitimate public health systems</li>
+                            <li>Makes you vulnerable to future scams and misinformation</li>
+                        </ul>
+                    </div>
+
+                    <div class="choices">
+                        <div class="choice-btn" onclick="finalResults()">
+                            <div class="choice-title">📚 See final results</div>
+                            <div class="choice-desc">Understand how to spot contamination hoaxes next time</div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        function investigateEnding() {
+            let grade = "B Information Consumer";
+            let description = "You chose to investigate, which shows good judgment.";
+
+            if (investigationSteps.length >= 2) {
+                grade = "A+ Digital Detective";
+                description = "Excellent! You thoroughly investigated and exposed the water hoax.";
+            } else if (investigationSteps.length === 1) {
+                grade = "B+ Junior Detective";
+                description = "Good work investigating! You found evidence but could dig deeper.";
+            }
+
+            showFinalResults(grade, description);
+        }
+
+        function finalResults() {
+            let grade = "C Neutral Observer";
+            let description = "You showed some caution.";
+
+            if (userPath === 'shared') {
+                grade = "F Panic Spreader";
+                description = "You shared contamination misinformation without checking!";
+            } else if (userPath === 'believed') {
+                grade = "D Hoax Victim";
+                description = "You believed false contamination claims without verification.";
+            } else if (userPath === 'ignored') {
+                grade = "C+ Passive Observer";
+                description = "You avoided the hoax but didn't help others learn the truth.";
+            }
+
+            showFinalResults(grade, description);
+        }
+
+        function showFinalResults(grade, description) {
+            let gradeColor = "#28a745";
+            if (grade.startsWith("F")) gradeColor = "#dc3545";
+            else if (grade.startsWith("D")) gradeColor = "#fd7e14";
+            else if (grade.startsWith("C")) gradeColor = "#ffc107";
+            else if (grade.startsWith("B")) gradeColor = "#17a2b8";
+
+            document.getElementById('game-content').innerHTML = `
+                    <div class="final-screen">
+                        <h2>🎯 Final Results</h2>
+                        <div class="final-score" style="background: ${gradeColor};">
+                            ${grade}<br>
+                            <small>${description}</small><br>
+                            <small>Credibility: ${stats.credibility}/100 | Trust: ${stats.trust}/100 | Investigations: ${investigationSteps.length}</small>
+                        </div>
+
+                        <div class="learning-point">
+                            <h4>🧠 What You Learned:</h4>
+                            <p><strong>The STOP Method:</strong></p>
+                            <ul style="text-align: left; margin-top: 10px;">
+                                <li><strong>S</strong>top - Don't react immediately to alarming posts</li>
+                                <li><strong>T</strong>hink - Consider if water contamination claims seem credible</li>
+                                <li><strong>O</strong>rganize - Gather evidence from multiple sources</li>
+                                <li><strong>P</strong>roceed - Make informed decisions based on facts</li>
+                            </ul>
+                        </div>
+
+                        <div class="learning-point">
+                            <h4>🔍 Investigation Techniques:</h4>
+                            <ul style="text-align: left;">
+                                <li><strong>Reverse image search</strong> - Check if images are stolen from other sources</li>
+                                <li><strong>Source verification</strong> - Research the publisher's credibility and motives</li>
+                                <li><strong>Fact-checking sites</strong> - Use PolitiFact, Snopes, etc. for verification</li>
+                                <li><strong>Cross-reference</strong> - Look for official health authority statements</li>
+                            </ul>
+                        </div>
+
+                        <div class="learning-point">
+                            <h4>⚠️ Red Flags for Water Contamination Hoaxes:</h4>
+                            <ul style="text-align: left;">
+                                <li>Fear-based language ("TOXIC!", "Government cover-up!")</li>
+                                <li>Pressure to share quickly before "deletion"</li>
+                                <li>Generic stock photos instead of local evidence</li>
+                                <li>Made-up chemicals with no scientific basis</li>
+                                <li>Sources selling water filters or "detox" products</li>
+                            </ul>
+                        </div>
+
+                        <button class="restart-btn" onclick="restart()">
+                            🔄 Play Again
+                        </button>
+                    </div>
+                `;
+        }
+
+        function restart() {
+            stats = { credibility: 75, trust: 80, time: 60 };
+            investigationSteps = [];
+            userPath = '';
+            updateStats();
+            location.reload();
+        }
+
+        // Initialize the game
+        updateStats();
+    </script>
+</body>
+</html>

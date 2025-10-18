@@ -1,0 +1,920 @@
+﻿﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Detective: The Viral Post Investigation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .phone-container {
+            max-width: 375px;
+            margin: 20px auto;
+            background: #000;
+            border-radius: 25px;
+            padding: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .phone-screen {
+            background: #fff;
+            border-radius: 17px;
+            overflow: hidden;
+            min-height: 80vh;
+            position: relative;
+        }
+
+        .status-bar {
+            background: #f8f9fa;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 600;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .app-header {
+            background: linear-gradient(45deg, #1da1f2, #0d8bd9);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stats-container {
+            background: #f8f9fa;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .stat {
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+
+        .credibility {
+            color: #28a745;
+        }
+
+        .trust {
+            color: #007bff;
+        }
+
+        .time {
+            color: #ffc107;
+        }
+
+        .content {
+            padding: 20px;
+            min-height: 400px;
+        }
+
+        .social-post {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid #dc3545;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .post-info h4 {
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .post-info small {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .post-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #666;
+            overflow: hidden;
+        }
+
+            .post-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+
+        }
+
+        .post-text {
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .post-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .choices {
+            display: grid;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .choice-btn {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .choice-btn:hover {
+                background: #f8f9fa;
+                border-color: #007bff;
+                transform: translateY(-2px);
+            }
+
+            .choice-btn.investigation {
+                border-color: #17a2b8;
+                background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
+            }
+
+            .choice-btn.risky {
+                border-color: #dc3545;
+                background: linear-gradient(135deg, #ffebee, #fff3e0);
+            }
+
+            .choice-btn.safe {
+                border-color: #28a745;
+                background: linear-gradient(135deg, #f1f8e9, #e8f5e8);
+            }
+
+        .choice-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .choice-desc {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .investigation-panel {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #17a2b8;
+        }
+
+        .investigation-title {
+            font-weight: bold;
+            color: #17a2b8;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .investigation-result {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 10px 0;
+            border-left: 4px solid #28a745;
+        }
+
+            .investigation-result.warning {
+                border-left-color: #ffc107;
+                background: #fff8e1;
+            }
+
+            .investigation-result.danger {
+                border-left-color: #dc3545;
+                background: #ffebee;
+            }
+
+        .story-text {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .final-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .final-score {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 12px;
+        }
+
+        .learning-point {
+            background: #e3f2fd;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .restart-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .viral-indicator {
+            animation: pulse 2s infinite;
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="phone-screen">
+            <div class="status-bar">
+                <span>9:41</span>
+                <span>📶 📶 📶</span>
+            </div>
+
+            <div class="app-header">
+                <span style="font-size: 20px;">📱</span>
+                <h2>SocialFeed</h2>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat">
+                    <div class="stat-value credibility" id="credibility">75</div>
+                    <div>Credibility</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value trust" id="trust">80</div>
+                    <div>Trust</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value time" id="time">60</div>
+                    <div>Time Left</div>
+                </div>
+            </div>
+
+            <div class="content" id="game-content">
+                <!-- Game content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class DisinformationGame {
+            constructor() {
+                this.stats = {
+                    credibility: 75,
+                    trust: 80,
+                    time: 60
+                };
+                this.currentScene = 'intro';
+                this.investigationSteps = [];
+                this.userPath = ''; // Track what path the user took
+                this.init();
+            }
+
+            init() {
+                this.updateStats();
+                this.showScene('intro');
+            }
+
+            updateStats() {
+                document.getElementById('credibility').textContent = this.stats.credibility;
+                document.getElementById('trust').textContent = this.stats.trust;
+                document.getElementById('time').textContent = this.stats.time;
+            }
+
+            modifyStats(credibility = 0, trust = 0, time = 0) {
+                this.stats.credibility = Math.max(0, Math.min(100, this.stats.credibility + credibility));
+                this.stats.trust = Math.max(0, Math.min(100, this.stats.trust + trust));
+                this.stats.time = Math.max(0, this.stats.time + time);
+                this.updateStats();
+            }
+
+            showScene(sceneName) {
+                const content = document.getElementById('game-content');
+                const scenes = {
+                    intro: this.getIntroScene(),
+                    firstChoice: this.getFirstChoiceScene(),
+                    investigate: this.getInvestigateScene(),
+                    sharePost: this.getShareScene(),
+                    ignorePost: this.getIgnoreScene(),
+                    believePost: this.getBelieveScene(),
+                    reverseImage: this.getReverseImageScene(),
+                    factCheck: this.getFactCheckScene(),
+                    sourceCheck: this.getSourceCheckScene(),
+                    shareEnding: this.getShareEndingScene(),
+                    ignoreEnding: this.getIgnoreEndingScene(),
+                    believeEnding: this.getBelieveEndingScene(),
+                    investigateEnding: this.getInvestigateEndingScene(),
+                    finalResults: this.getFinalScene()
+                };
+                content.innerHTML = scenes[sceneName] || scenes.intro;
+            }
+
+            getIntroScene() {
+                return `
+                        <div class="story-text">
+                            <h3>🔍 Digital Detective</h3>
+                            <p>You're scrolling through your social media feed during lunch break when you notice something unusual...</p>
+                        </div>
+
+                        <div class="social-post">
+                            <div class="post-header">
+                                <div class="avatar">NB</div>
+                                <div class="post-info">
+                                    <h4>NewsBreaker247 <span class="viral-indicator">🔥 VIRAL</span></h4>
+                                    <small>2 minutes ago • Shared 12.5K times</small>
+                                </div>
+                            </div>
+
+                            <div class="post-text">
+                                <strong>🚨 BREAKING: Scientists discover cure for common cold! </strong>
+                                Local laboratory creates revolutionary treatment that eliminates cold symptoms in 24 hours. Big pharma trying to hide this! Share before they take it down! #ColdCure #BigPharmaLies #HealthFreedom
+                            </div>
+
+                            <div class="post-image">
+                                <img src="https://cdn.pixabay.com/photo/2023/10/01/14/40/medicine-8287535_1280.jpg"/>
+                            </div>
+
+
+                            <div class="post-stats">
+                                <span>❤️ 15.2K likes</span>
+                                <span>🔄 12.5K shares</span>
+                                <span>💬 3.1K comments</span>
+                            </div>
+                        </div>
+
+                        <div class="story-text">
+                            <p>This post is spreading incredibly fast. Your friends are starting to share it. What's your first instinct?</p>
+                        </div>
+
+                        <div class="choices">
+                            <div class="choice-btn" onclick="game.makeChoice('firstChoice')">
+                                <div class="choice-title">🤔 Think about it first</div>
+                                <div class="choice-desc">This seems too good to be true. Let me consider my options.</div>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            getFirstChoiceScene() {
+                return `
+                        <div class="story-text">
+                            <p>Smart thinking! You pause before reacting. The post is gaining momentum - now at 18.7K shares. What do you do?</p>
+                        </div>
+
+                        <div class="choices">
+                            <div class="choice-btn investigation" onclick="game.makeChoice('investigate')">
+                                <div class="choice-title">🔍 Investigate this claim</div>
+                                <div class="choice-desc">Something feels off. Let me fact-check this before forming an opinion.</div>
+                            </div>
+
+                            <div class="choice-btn risky" onclick="game.makeChoice('sharePost')">
+                                <div class="choice-title">📤 Share it immediately</div>
+                                <div class="choice-desc">This could help people! Better share it quickly before it gets taken down.</div>
+                            </div>
+
+                            <div class="choice-btn safe" onclick="game.makeChoice('ignorePost')">
+                                <div class="choice-title">👀 Keep scrolling</div>
+                                <div class="choice-desc">Not my problem. I'll just ignore it and move on with my day.</div>
+                            </div>
+
+                            <div class="choice-btn risky" onclick="game.makeChoice('believePost')">
+                                <div class="choice-title">✅ Believe and tell friends</div>
+                                <div class="choice-desc">This has thousands of shares - it must be real! I'll tell my friends about it.</div>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            getInvestigateScene() {
+                this.modifyStats(10, 15, -10);
+                this.userPath = 'investigated'; // Track that they investigated
+                return `
+                        <div class="story-text">
+                            <p><strong>Great choice!</strong> You decided to investigate instead of reacting emotionally. Now you're thinking like a digital detective!</p>
+                        </div>
+
+                        <div class="investigation-panel">
+                            <div class="investigation-title">🔍 Investigation Toolkit</div>
+                            <p>Choose your investigation method:</p>
+                        </div>
+
+                        <div class="choices">
+                            <div class="choice-btn investigation" onclick="game.makeChoice('reverseImage')">
+                                <div class="choice-title">🖼️ Reverse image search</div>
+                                <div class="choice-desc">Check if this laboratory image has been used before</div>
+                            </div>
+
+                            <div class="choice-btn investigation" onclick="game.makeChoice('factCheck')">
+                                <div class="choice-title">✅ Check fact-checking sites</div>
+                                <div class="choice-desc">See if reputable fact-checkers have investigated this claim</div>
+                            </div>
+
+                            <div class="choice-btn investigation" onclick="game.makeChoice('sourceCheck')">
+                                <div class="choice-title">📰 Verify the source</div>
+                                <div class="choice-desc">Research who "NewsBreaker247" really is</div>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            getReverseImageScene() {
+                this.modifyStats(15, 10, -15);
+                this.investigationSteps.push('reverse-image');
+                return `
+                        <div class="investigation-result danger">
+                            <div class="investigation-title">🖼️ Reverse Image Search Results</div>
+                            <p><strong>FOUND:</strong> This exact image appears on a stock photo website from 2018, titled "Generic laboratory scene." It's been used in dozens of unrelated articles about everything from skincare to COVID-19 cures.</p>
+                            <p><strong>Red flag:</strong> Legitimate breakthrough news would have original photos from the actual research facility.</p>
+                        </div>
+
+                        <div class="story-text">
+                            <p>Excellent detective work! The image is fake. Do you want to investigate further or take action?</p>
+                        </div>
+
+                        <div class="choices">
+                            <div class="choice-btn investigation" onclick="game.makeChoice('factCheck')" ${this.investigationSteps.includes('fact-check') ? 'style="opacity:0.5;pointer-events:none;"' : ''}>
+                                <div class="choice-title">✅ Check fact-checking sites</div>
+                                <div class="choice-desc">Verify if this claim has been debunked</div>
+                            </div>
+
+                            <div class="choice-btn investigation" onclick="game.makeChoice('sourceCheck')" ${this.investigationSteps.includes('source-check') ? 'style="opacity:0.5;pointer-events:none;"' : ''}>
+                                <div class="choice-title">📰 Check the source</div>
+                                <div class="choice-desc">Research the credibility of NewsBreaker247</div>
+                            </div>
+
+                            <div class="choice-btn safe" onclick="game.makeChoice('investigateEnding')">
+                                <div class="choice-title">📝 Report findings</div>
+                                <div class="choice-desc">I've seen enough evidence. Time to report this misinformation.</div>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            getFactCheckScene() {
+                this.modifyStats(15, 10, -15);
+                this.investigationSteps.push('fact-check');
+                return `
+                        <div class="investigation-result danger">
+                            <div class="investigation-title">✅ Fact-Check Results</div>
+                            <p><strong>Snopes.com verdict: FALSE</strong></p>
+                            <p>This claim has circulated multiple times since 2019. Medical experts confirm no such breakthrough has occurred. The common cold is caused by over 200 different viruses, making a universal "cure" extremely unlikely with current technology.</p>
+                            <p><strong>Expert quote:</strong> "Any legitimate medical breakthrough would be published in peer-reviewed journals and announced by major health organizations, not social media."</p>
+                        </div>
+
+                        <div class="story-text">
+                            <p>The fact-checkers confirm this is false! Continue investigating or take action?</p>
+                        </div>
+
+                        <div class="choices">
+                            <div class="choice-btn investigation" onclick="game.makeChoice('reverseImage')" ${this.investigationSteps.includes('reverse-image') ? 'style="opacity:0.5;pointer-events:none;"' : ''}>
+                                <div class="choice-title">🖼️ Reverse image search</div>
+                                <div class="choice-desc">Check if the image is legitimate</div>
+                            </div>
+
+                            <div class="choice-btn investigation" onclick="game.makeChoice('sourceCheck')" ${this.investigationSteps.includes('source-check') ? 'style="opacity:0.5;pointer-events:none;"' : ''}>
+                                <div class="choice-title">📰 Check the source</div>
+                                <div class="choice-desc">Research NewsBreaker247's credibility</div>
+                            </div>
+
+                            <div class="choice-btn safe" onclick="game.makeChoice('investigateEnding')">
+                                <div class="choice-title">📝 Report findings</div>
+                                <div class="choice-desc">The fact-checkers confirm this is false!</div>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            getSourceCheckScene() {
+                this.modifyStats(15, 10, -15);
+                this.investigationSteps.push('source-check');
+                return `
+                        <div class="investigation-result danger">
+                            <div class="investigation-title">📰 Source Investigation Results</div>
+                            <p><strong>NewsBreaker247 Profile:</strong></p>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li>Account created 3 months ago</li>
+                                <li>No verified credentials or contact information</li>
+                                <li>Posts sensational health claims daily</li>
+                                <li>Uses emotional language and conspiracy theories</li>
+                                <li>No original reporting - only reposts unverified claims</li>
+                            </ul>
+                            <p><strong>Pattern detected:</strong> This account regularly spreads health misinformation to gain followers and engagement.</p>
+                        </div>
+
+                        <div class="story-text">
+                            <p>The source is completely unreliable! Continue investigating or conclude your research?</p>
+                        </div>
+
+                        <div class="choices">
+                            <div class="choice-btn investigation" onclick="game.makeChoice('reverseImage')" ${this.investigationSteps.includes('reverse-image') ? 'style="opacity:0.5;pointer-events:none;"' : ''}>
+                                <div class="choice-title">🖼️ Reverse image search</div>
+                                <div class="choice-desc">Check if the image is legitimate</div>
+                            </div>
+
+                            <div class="choice-btn investigation" onclick="game.makeChoice('factCheck')" ${this.investigationSteps.includes('fact-check') ? 'style="opacity:0.5;pointer-events:none;"' : ''}>
+                                <div class="choice-title">✅ Check fact-checking sites</div>
+                                <div class="choice-desc">See if this has been debunked</div>
+                            </div>
+
+                            <div class="choice-btn safe" onclick="game.makeChoice('investigateEnding')">
+                                <div class="choice-title">📝 Report findings</div>
+                                <div class="choice-desc">I have enough evidence to conclude this is false.</div>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            getShareScene() {
+                this.modifyStats(-30, -25, -5);
+                this.investigationSteps = []; // Clear any investigation bonus
+                this.userPath = 'shared'; // Track that they shared
+                return `
+                        <div class="story-text">
+                            <p><strong>Oh no!</strong> You shared misinformation without checking. Within hours, several of your friends shared it too, spreading false hope about a non-existent cure.</p>
+                            <p>Later, you discovered this was completely fake - the image was stolen, the source unreliable, and fact-checkers had already debunked it.</p>
+                        </div>
+
+                        <div class="investigation-result danger">
+                            <h4>Consequences of sharing misinformation:</h4>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li>Spread false hope to vulnerable people</li>
+                                <li>Reduced your credibility with friends</li>
+                                <li>Contributed to medical misinformation</li>
+                                <li>Helped the fake account gain more followers</li>
+                            </ul>
+                        </div>
+
+                        <div class="choices">
+                            <div class="choice-btn" onclick="game.makeChoice('shareEnding')">
+                                <div class="choice-title">📚 Learn from this experience</div>
+                                <div class="choice-desc">See what you could have done differently</div>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            getIgnoreScene() {
+                this.modifyStats(5, 0, -5);
+                this.userPath = 'ignored'; // Track that they ignored
+                return `
+                        <div class="story-text">
+                            <p>You decided to keep scrolling. While you didn't spread misinformation, you also missed an opportunity to help others avoid being deceived.</p>
+                            <p>Over the next few hours, you see several friends sharing the post. Some even comment about how excited they are about this "breakthrough."</p>
+                        </div>
+
+                        <div class="investigation-result warning">
+                            <h4>The neutral approach:</h4>
+                            <p>Ignoring suspicious content protects you but doesn't help your community. Sometimes taking action to fact-check and inform others is the responsible thing to do.</p>
+                        </div>
+
+                        <div class="choices">
+                            <div class="choice-btn investigation" onclick="game.makeChoice('investigate')">
+                                <div class="choice-title">🔍 Actually, let me investigate</div>
+                                <div class="choice-desc">I should check this out to help my friends</div>
+                            </div>
+
+                            <div class="choice-btn" onclick="game.makeChoice('ignoreEnding')">
+                                <div class="choice-title">📚 See final results</div>
+                                <div class="choice-desc">Learn what happened and what you could have done</div>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            getBelieveScene() {
+                this.modifyStats(-25, -20, -5);
+                this.investigationSteps = []; // Clear any investigation bonus
+                this.userPath = 'believed'; // Track that they believed
+                return `
+                        <div class="story-text">
+                            <p><strong>Unfortunately,</strong> you fell for misinformation! You told your friends about this "amazing breakthrough" without verifying it first.</p>
+                            <p>Later, when they found out it was fake, they questioned your judgment. Some even shared the false information with their families.</p>
+                        </div>
+
+                        <div class="investigation-result danger">
+                            <h4>Why believing without verification is dangerous:</h4>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li>Health misinformation can be life-threatening</li>
+                                <li>Your reputation for accuracy suffers</li>
+                                <li>You become part of the misinformation chain</li>
+                                <li>Critical thinking skills weaken over time</li>
+                            </ul>
+                        </div>
+
+                        <div class="choices">
+                            <div class="choice-btn" onclick="game.makeChoice('believeEnding')">
+                                <div class="choice-title">📚 Learn what you missed</div>
+                                <div class="choice-desc">Understand how to spot misinformation next time</div>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            getShareEndingScene() {
+                return this.createEndingScene(
+                    "F Disinformation Spreader",
+                    "You shared misinformation without checking! This can harm others.",
+                    "sharing"
+                );
+            }
+
+            getIgnoreEndingScene() {
+                return this.createEndingScene(
+                    "C+ Passive Observer",
+                    "You avoided misinformation but didn't help others learn the truth.",
+                    "ignoring"
+                );
+            }
+
+            getBelieveEndingScene() {
+                return this.createEndingScene(
+                    "D Misinformation Victim",
+                    "You believed false information without verification.",
+                    "believing"
+                );
+            }
+
+            getInvestigateEndingScene() {
+                let grade = "B Information Consumer";
+                let description = "You chose to investigate, which shows good judgment.";
+
+                if (this.investigationSteps.length >= 2) {
+                    grade = "A+ Digital Detective";
+                    description = "Excellent! You thoroughly investigated and made evidence-based decisions.";
+                } else if (this.investigationSteps.length === 1) {
+                    grade = "B+ Junior Detective";
+                    description = "Good work investigating! You found evidence but could dig deeper.";
+                }
+
+                return this.createEndingScene(grade, description, "investigating");
+            }
+
+            createEndingScene(grade, description, pathType) {
+                let gradeColor = "#28a745";
+                if (grade.startsWith("F")) gradeColor = "#dc3545";
+                else if (grade.startsWith("D")) gradeColor = "#fd7e14";
+                else if (grade.startsWith("C")) gradeColor = "#ffc107";
+                else if (grade.startsWith("B")) gradeColor = "#17a2b8";
+
+                return `
+                        <div class="final-screen">
+                            <h2>🎯 Final Results</h2>
+                            <div class="final-score" style="background: ${gradeColor};">
+                                ${grade}<br>
+                                <small>${description}</small><br>
+                                <small>Credibility: ${this.stats.credibility}/100 | Trust: ${this.stats.trust}/100 | Investigations: ${this.investigationSteps.length}</small>
+                            </div>
+
+                            ${this.getLearningContent(pathType)}
+
+                            <button class="restart-btn" onclick="game.restart()">
+                                🔄 Play Again
+                            </button>
+                        </div>
+                    `;
+            }
+
+            getLearningContent(pathType) {
+                if (pathType === "sharing") {
+                    return `
+                            <div class="learning-point">
+                                <h4>⚠️ Consequences of Sharing Misinformation:</h4>
+                                <ul style="text-align: left;">
+                                    <li>Spreads false hope about non-existent treatments</li>
+                                    <li>Damages your credibility with friends and family</li>
+                                    <li>Helps malicious accounts gain followers and influence</li>
+                                    <li>Can lead people to ignore real medical advice</li>
+                                </ul>
+                            </div>`;
+                } else if (pathType === "believing") {
+                    return `
+                            <div class="learning-point">
+                                <h4>🧠 Why Verification Matters:</h4>
+                                <ul style="text-align: left;">
+                                    <li>Health misinformation can be dangerous or life-threatening</li>
+                                    <li>High engagement doesn't mean information is accurate</li>
+                                    <li>Emotional language is often a red flag for false claims</li>
+                                    <li>Always check multiple reliable sources before believing</li>
+                                </ul>
+                            </div>`;
+                } else if (pathType === "ignoring") {
+                    return `
+                            <div class="learning-point">
+                                <h4>🤔 The Power of Taking Action:</h4>
+                                <ul style="text-align: left;">
+                                    <li>Staying neutral protects you but doesn't help others</li>
+                                    <li>You could have fact-checked and informed friends</li>
+                                    <li>Sometimes the responsible thing is to investigate and share truth</li>
+                                    <li>Being an active critical thinker benefits your whole community</li>
+                                </ul>
+                            </div>`;
+                } else {
+                    return `
+                            <div class="learning-point">
+                                <h4>🔍 Investigation Techniques You Used:</h4>
+                                <ul style="text-align: left;">
+                                    <li><strong>Reverse image search</strong> - Revealed stolen stock photos</li>
+                                    <li><strong>Fact-checking sites</strong> - Confirmed claims were debunked</li>
+                                    <li><strong>Source verification</strong> - Showed unreliable publisher</li>
+                                    <li><strong>Critical thinking</strong> - Asked "does this seem credible?"</li>
+                                </ul>
+                            </div>`;
+                }
+            }
+
+            getFinalScene() {
+                let scoreText = "";
+                let grade = "";
+
+                // Debug info
+                console.log(`Current path: ${this.currentScene}`);
+                console.log(`Credibility: ${this.stats.credibility}, Trust: ${this.stats.trust}, Investigation Steps: ${this.investigationSteps.length}`);
+                console.log(`Investigation steps taken: ${this.investigationSteps.join(', ')}`);
+
+                // Now check the actual path they took
+                console.log(`User path: ${this.userPath}`);
+                console.log(`Investigation steps: ${this.investigationSteps.length}: [${this.investigationSteps.join(', ')}]`);
+
+                if (this.userPath === 'shared') {
+                    grade = "F Disinformation Spreader";
+                    scoreText = "You shared misinformation without checking! This can harm others.";
+                } else if (this.userPath === 'believed') {
+                    grade = "D Misinformation Victim";
+                    scoreText = "You believed false information without verification.";
+                } else if (this.userPath === 'ignored') {
+                    grade = "C+ Passive Observer";
+                    scoreText = "You avoided misinformation but didn't help others learn the truth.";
+                } else if (this.userPath === 'investigated' && this.investigationSteps.length >= 2) {
+                    grade = "A+ Digital Detective";
+                    scoreText = "Excellent! You thoroughly investigated and made evidence-based decisions.";
+                } else if (this.userPath === 'investigated' && this.investigationSteps.length === 1) {
+                    grade = "B+ Junior Detective";
+                    scoreText = "Good work investigating! You found evidence but could dig deeper.";
+                } else if (this.userPath === 'investigated') {
+                    grade = "B Information Consumer";
+                    scoreText = "You chose to investigate, which shows good judgment.";
+                } else {
+                    grade = "C Neutral Observer";
+                    scoreText = "You showed some caution.";
+                }
+
+                return `
+                        <div class="final-screen">
+                            <h2>🎯 Final Results</h2>
+                            <div class="final-score">
+                                ${grade}<br>
+                                <small>${scoreText}</small><br>
+                                <small>Credibility: ${this.stats.credibility}/100 | Trust: ${this.stats.trust}/100 | Investigations: ${this.investigationSteps.length}</small>
+                            </div>
+
+                            <div class="learning-point">
+                                <h4>🧠 What You Learned:</h4>
+                                <p><strong>The STOP Method:</strong></p>
+                                <ul style="text-align: left; margin-top: 10px;">
+                                    <li><strong>S</strong>top - Don't react immediately</li>
+                                    <li><strong>T</strong>hink - Consider if this seems credible</li>
+                                    <li><strong>O</strong>rganize - Gather evidence systematically</li>
+                                    <li><strong>P</strong>roceed - Make informed decisions</li>
+                                </ul>
+                            </div>
+
+                            <div class="learning-point">
+                                <h4>🔍 Investigation Techniques:</h4>
+                                <ul style="text-align: left;">
+                                    <li><strong>Reverse image search</strong> - Check if images are stolen</li>
+                                    <li><strong>Source verification</strong> - Research the publisher's credibility</li>
+                                    <li><strong>Fact-checking sites</strong> - Use Snopes, PolitiFact, etc.</li>
+                                    <li><strong>Cross-reference</strong> - Look for the same story from reliable sources</li>
+                                </ul>
+                            </div>
+
+                            <div class="learning-point">
+                                <h4>⚠️ Red Flags to Watch For:</h4>
+                                <ul style="text-align: left;">
+                                    <li>Emotional language ("SHOCKING!", "They don't want you to know!")</li>
+                                    <li>Pressure to share quickly</li>
+                                    <li>No credible sources cited</li>
+                                    <li>Claims that seem too good/bad to be true</li>
+                                    <li>Anonymous or suspicious account posting</li>
+                                </ul>
+                            </div>
+
+                            <button class="restart-btn" onclick="game.restart()">
+                                🔄 Play Again
+                            </button>
+                        </div>
+                    `;
+            }
+
+            makeChoice(choice) {
+                this.currentScene = choice;
+                this.showScene(choice);
+            }
+
+            restart() {
+                this.stats = { credibility: 75, trust: 80, time: 60 };
+                this.investigationSteps = [];
+                this.userPath = ''; // Reset path tracking
+                this.init();
+            }
+        }
+
+        // Initialize the game
+        const game = new DisinformationGame();
+    </script>
+</body>
+</html>

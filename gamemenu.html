@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Detective: Choose Your Investigation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .menu-container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 64px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .scenario-grid {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .scenario-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+            .scenario-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                transform: scaleX(0);
+                transition: transform 0.3s ease;
+            }
+
+            .scenario-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+                border-color: #667eea;
+            }
+
+                .scenario-card:hover::before {
+                    transform: scaleX(1);
+                }
+
+        .scenario-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .scenario-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .scenario-description {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .scenario-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .feature-tag {
+            background: #f0f2ff;
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .health-scenario {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+        }
+
+        .water-scenario {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+        }
+
+        .health-scenario .feature-tag {
+            background: #fff5f5;
+            color: #e74c3c;
+        }
+
+        .water-scenario .feature-tag {
+            background: #f0f8ff;
+            color: #0984e3;
+        }
+
+        .info-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .info-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+
+            .info-list li {
+                padding: 5px 0;
+                color: #666;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+
+            .scenario-title {
+                font-size: 20px;
+            }
+
+            .logo {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="logo">🔍</div>
+        <h1 class="title">Digital Detective</h1>
+        <p class="subtitle">
+            Master the art of spotting misinformation and become a digital detective!
+            Choose your investigation scenario and test your critical thinking skills.
+        </p>
+
+        <div class="scenario-grid">
+            <a href="game_cold.html" class="scenario-card health-scenario">
+                <span class="scenario-icon">🩺</span>
+                <h2 class="scenario-title">The Viral Health Cure</h2>
+                <p class="scenario-description">
+                    A "revolutionary cold cure" is spreading rapidly across social media. Scientists claim they've discovered a 24-hour treatment, but something seems suspicious...
+                </p>
+                <div class="scenario-features">
+                    <span class="feature-tag">Health Misinformation</span>
+                    <span class="feature-tag">Fact-Checking</span>
+                    <span class="feature-tag">Source Verification</span>
+                </div>
+            </a>
+
+            <a href="game_water.html" class="scenario-card water-scenario">
+                <span class="scenario-icon">💧</span>
+                <h2 class="scenario-title">The Water Contamination Scare</h2>
+                <p class="scenario-description">
+                    Panic spreads as claims of government water contamination with "Chem-X" go viral. Your neighbors are buying bottled water in bulk, but is this real or a hoax?
+                </p>
+                <div class="scenario-features">
+                    <span class="feature-tag">Environmental Hoax</span>
+                    <span class="feature-tag">Image Verification</span>
+                    <span class="feature-tag">Panic Prevention</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="info-section">
+            <div class="info-title">
+                🎯 What You'll Learn:
+            </div>
+            <ul class="info-list">
+                <li>🔍 How to reverse image search suspicious photos</li>
+                <li>✅ Using fact-checking websites effectively</li>
+                <li>📰 Evaluating source credibility and motives</li>
+                <li>🧠 The STOP method for critical thinking</li>
+                <li>⚠️ Recognizing red flags in viral content</li>
+                <li>📱 Responsible social media behavior</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <strong>Digital Detective</strong> - An interactive game to build media literacy skills and combat misinformation
+        </div>
+    </div>
+</body>
+</html>

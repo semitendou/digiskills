@@ -1,0 +1,517 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Digital Skills for All</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1A365D;
+            background: #FEFEFE;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1A365D 0%, #2D5A8C 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                transition: opacity 0.3s;
+            }
+
+                .nav-links a:hover {
+                    opacity: 0.8;
+                }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(to bottom, #FAF9F6 0%, #FFFFFF 100%);
+            border-bottom: 2px solid #E2E8F0;
+        }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+                color: #1A365D;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                color: #4A5568;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Resource Categories */
+        .resource-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #1A365D;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #4ECDC4;
+            display: inline-block;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #4ECDC4;
+        }
+
+            .resource-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            }
+
+            .resource-card.seniors {
+                border-left-color: #FF6B6B;
+            }
+
+            .resource-card.youth {
+                border-left-color: #667eea;
+            }
+
+            .resource-card.general {
+                border-left-color: #FDB750;
+            }
+
+        .resource-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #1A365D;
+        }
+
+        .resource-card p {
+            color: #4A5568;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .resource-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2D5A8C;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+            .resource-link:hover {
+                color: #4ECDC4;
+            }
+
+        /* NZ Specific Section */
+        .nz-resources {
+            background: #F0F8FF;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            border: 2px solid #2D5A8C;
+        }
+
+            .nz-resources h3 {
+                color: #1A365D;
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+            }
+
+            .nz-resources ul {
+                list-style: none;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .nz-resources li {
+                background: white;
+                padding: 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            }
+
+            .nz-resources a {
+                color: #2D5A8C;
+                text-decoration: none;
+                font-weight: 600;
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+
+                .nz-resources a:hover {
+                    color: #4ECDC4;
+                }
+
+            .nz-resources p {
+                color: #4A5568;
+                font-size: 0.9rem;
+            }
+
+        /* Footer */
+        footer {
+            background: #1A365D;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #B8D4E8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+            .footer-section a:hover {
+                color: white;
+            }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #2D5A8C;
+            color: #B8D4E8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                🛡️💡 Digital Skills for All
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="glossary.html">Glossary</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Resources & Tools</h1>
+        <p>Helpful guides, links, and tools to keep you safe and confident online</p>
+    </section>
+
+    <div class="container">
+        <!-- NZ-Specific Resources -->
+        <div class="nz-resources">
+            <h3>🇳🇿 New Zealand Resources</h3>
+            <ul>
+                <li>
+                    <a href="https://www.netsafe.org.nz/">Netsafe NZ</a>
+                    <p>New Zealand's approved internet safety organization. Report scams, get advice on online safety, and learn about digital wellbeing.</p>
+                </li>
+                <li>
+                    <a href="https://www.commissionerforchildren.govt.nz/">Office of the Children's Commissioner</a>
+                    <p>Resources for young people's online safety and digital rights in Aotearoa.</p>
+                </li>
+                <li>
+                    <a href="https://www.dia.govt.nz/Services/Online-safety">Department of Internal Affairs</a>
+                    <p>Official government resources on online safety and digital security.</p>
+                </li>
+                <li>
+                    <a href="https://www.police.govt.nz/advice-services/personal-safety/online-safety">NZ Police Online Safety</a>
+                    <p>Report cybercrime and get advice from New Zealand Police.</p>
+                </li>
+                <li>
+                    <a href="https://www.consumer.org.nz/">Consumer NZ</a>
+                    <p>Information on scams, complaints, and consumer rights online.</p>
+                </li>
+                <li>
+                    <a href="https://www.beehive.govt.nz/">Beehive.govt.nz</a>
+                    <p>Official New Zealand government information and services.</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- General Digital Safety -->
+        <div class="resource-section">
+            <h2 class="section-title">🔒 Digital Safety Basics</h2>
+            <div class="resources-grid">
+                <div class="resource-card general">
+                    <div class="resource-icon">🔐</div>
+                    <h3>Password Security</h3>
+                    <p>Learn how to create strong passwords, use password managers, and protect your accounts from hackers.</p>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link">→ Password Guide</a>
+                        <a href="#" class="resource-link">→ Password Manager Review</a>
+                    </div>
+                </div>
+
+                <div class="resource-card general">
+                    <div class="resource-icon">⚠️</div>
+                    <h3>Scam Recognition</h3>
+                    <p>Identify common scams, phishing emails, fake websites, and learn how to protect yourself.</p>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link">→ Common Scams Guide</a>
+                        <a href="#" class="resource-link">→ Phishing Detection</a>
+                    </div>
+                </div>
+
+                <div class="resource-card general">
+                    <div class="resource-icon">🛡️</div>
+                    <h3>Malware & Viruses</h3>
+                    <p>Understand what malware is, how to prevent infections, and what to do if your device is compromised.</p>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link">→ Malware Prevention</a>
+                        <a href="#" class="resource-link">→ What to Do If Infected</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- For Seniors -->
+        <div class="resource-section">
+            <h2 class="section-title">💻 Resources for Seniors</h2>
+            <div class="resources-grid">
+                <div class="resource-card seniors">
+                    <div class="resource-icon">📱</div>
+                    <h3>Getting Started Online</h3>
+                    <p>Step-by-step beginner guides for using computers, tablets, and smartphones safely.</p>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link">→ Computer Basics</a>
+                        <a href="#" class="resource-link">→ Tablet Guide</a>
+                    </div>
+                </div>
+
+                <div class="resource-card seniors">
+                    <div class="resource-icon">💰</div>
+                    <h3>Online Banking</h3>
+                    <p>Safe online banking tips, recognizing banking scams, and managing your finances digitally.</p>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link">→ Banking Safety Guide</a>
+                        <a href="#" class="resource-link">→ Avoiding Financial Scams</a>
+                    </div>
+                </div>
+
+                <div class="resource-card seniors">
+                    <div class="resource-icon">📞</div>
+                    <h3>Video Calls & Social Media</h3>
+                    <p>Learn to video call family, use email safely, and connect on social media securely.</p>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link">→ Video Call Setup</a>
+                        <a href="#" class="resource-link">→ Email Safety</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- For Younger People -->
+        <div class="resource-section">
+            <h2 class="section-title">📱 Resources for Younger People</h2>
+            <div class="resources-grid">
+                <div class="resource-card youth">
+                    <div class="resource-icon">🧠</div>
+                    <h3>Spotting Misinformation</h3>
+                    <p>Learn to identify fake news, check sources, verify information, and think critically online.</p>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link">→ Fact-Checking Guide</a>
+                        <a href="#" class="resource-link">→ Media Literacy</a>
+                    </div>
+                </div>
+
+                <div class="resource-card youth">
+                    <div class="resource-icon">🎯</div>
+                    <h3>Privacy & Social Media</h3>
+                    <p>Protect your personal information, manage privacy settings, and stay safe on social platforms.</p>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link">→ Privacy Settings Guide</a>
+                        <a href="#" class="resource-link">→ Social Media Safety</a>
+                    </div>
+                </div>
+
+                <div class="resource-card youth">
+                    <div class="resource-icon">⚖️</div>
+                    <h3>Digital Rights & Citizenship</h3>
+                    <p>Understand your rights online, cyberbullying laws, and how to be a responsible digital citizen.</p>
+                    <div class="resource-links">
+                        <a href="#" class="resource-link">→ Digital Rights Explained</a>
+                        <a href="#" class="resource-link">→ Cyberbullying Resources</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- External Tools -->
+        <div class="resource-section">
+            <h2 class="section-title">🛠️ Helpful Online Tools</h2>
+            <div class="resources-grid">
+                <div class="resource-card general">
+                    <div class="resource-icon">🔍</div>
+                    <h3>Security Check Tools</h3>
+                    <p>Free online tools to check if your email has been in a data breach.</p>
+                    <div class="resource-links">
+                        <a href="https://haveibeenpwned.com/" class="resource-link" target="_blank">→ Have I Been Pwned?</a>
+                    </div>
+                </div>
+
+                <div class="resource-card general">
+                    <div class="resource-icon">📊</div>
+                    <h3>Website Safety Checkers</h3>
+                    <p>Check if a website is legitimate or potentially dangerous before visiting.</p>
+                    <div class="resource-links">
+                        <a href="https://www.virustotal.com/" class="resource-link" target="_blank">→ VirusTotal</a>
+                    </div>
+                </div>
+
+                <div class="resource-card general">
+                    <div class="resource-icon">🔑</div>
+                    <h3>Password Managers</h3>
+                    <p>Securely store and manage your passwords across all your accounts.</p>
+                    <div class="resource-links">
+                        <a href="https://www.lastpass.com/" class="resource-link" target="_blank">→ LastPass</a>
+                        <a href="https://www.1password.com/" class="resource-link" target="_blank">→ 1Password</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#about">Our Mission</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#partners">Partners</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="glossary.html">Glossary</a></li>
+                    <li><a href="#guides">Downloadable Guides</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#accessibility">Accessibility</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Digital Skills for All. Empowering digital confidence for everyone.</p>
+        </div>
+    </footer>
+</body>
+</html>

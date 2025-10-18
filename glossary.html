@@ -1,0 +1,525 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glossary - Digital Skills for All</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1A365D;
+            background: #FEFEFE;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1A365D 0%, #2D5A8C 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                transition: opacity 0.3s;
+            }
+
+                .nav-links a:hover {
+                    opacity: 0.8;
+                }
+
+        .section-hero {
+            background: linear-gradient(135deg, #2D5A8C 0%, #1A365D 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+            .section-hero h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-hero p {
+                font-size: 1.3rem;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .search-box {
+            background: white;
+            border: 2px solid #2D5A8C;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+            .search-box input {
+                width: 100%;
+                padding: 0.75rem;
+                border: none;
+                font-size: 1rem;
+                outline: none;
+            }
+
+        .alphabet-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+            .alphabet-nav a {
+                display: inline-block;
+                padding: 0.5rem 1rem;
+                background: #F7FAFC;
+                border: 2px solid #2D5A8C;
+                border-radius: 8px;
+                text-decoration: none;
+                color: #2D5A8C;
+                font-weight: bold;
+                transition: all 0.3s;
+            }
+
+                .alphabet-nav a:hover {
+                    background: #2D5A8C;
+                    color: white;
+                }
+
+        .glossary-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .glossary-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-left: 4px solid #2D5A8C;
+            transition: all 0.3s;
+        }
+
+            .glossary-item:hover {
+                box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            }
+
+        .glossary-term {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2D5A8C;
+            margin-bottom: 0.5rem;
+        }
+
+        .glossary-definition {
+            color: #4A5568;
+            line-height: 1.8;
+            margin-bottom: 0.75rem;
+        }
+
+        .glossary-example {
+            background: #F7FAFC;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 0.75rem;
+            border-left: 3px solid #4ECDC4;
+            color: #1A365D;
+            font-size: 0.95rem;
+        }
+
+            .glossary-example strong {
+                color: #2D5A8C;
+            }
+
+        .category-header {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2D5A8C;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #2D5A8C;
+        }
+
+        footer {
+            background: #1A365D;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #B8D4E8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+            .footer-section a:hover {
+                color: white;
+            }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #2D5A8C;
+            color: #B8D4E8;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .section-hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .alphabet-nav {
+                gap: 0.3rem;
+            }
+
+                .alphabet-nav a {
+                    padding: 0.4rem 0.7rem;
+                    font-size: 0.9rem;
+                }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🛡️💡 Digital Skills for All</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="glossary.html">Glossary</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="section-hero">
+        <h1>Digital Glossary</h1>
+        <p>Learn digital and tech terms explained in simple, easy-to-understand language</p>
+    </section>
+
+    <div class="content-section">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search for a term...">
+        </div>
+
+        <div class="alphabet-nav">
+            <a href="#" onclick="filterByLetter('A')">A</a>
+            <a href="#" onclick="filterByLetter('B')">B</a>
+            <a href="#" onclick="filterByLetter('C')">C</a>
+            <a href="#" onclick="filterByLetter('D')">D</a>
+            <a href="#" onclick="filterByLetter('E')">E</a>
+            <a href="#" onclick="filterByLetter('F')">F</a>
+            <a href="#" onclick="filterByLetter('P')">P</a>
+            <a href="#" onclick="filterByLetter('S')">S</a>
+            <a href="#" onclick="filterByLetter('V')">V</a>
+            <a href="#" onclick="filterByLetter('All')">All</a>
+        </div>
+
+        <div class="glossary-list" id="glossaryList">
+            <!-- Security & Privacy -->
+            <div class="category-header">Security & Privacy</div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Password</div>
+                <div class="glossary-definition">A secret combination of characters (letters, numbers, symbols) that protects your online accounts. Only you should know your password.</div>
+                <div class="glossary-example"><strong>Example:</strong> Your email password keeps others from accessing your private messages and accounts.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Two-Factor Authentication (2FA)</div>
+                <div class="glossary-definition">An extra security layer that requires two forms of verification to log into an account. Usually your password plus a code sent to your phone.</div>
+                <div class="glossary-example"><strong>Example:</strong> Logging into your bank account requires both your password and a code texted to your phone.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Phishing</div>
+                <div class="glossary-definition">A scam where criminals trick you into giving away personal information by pretending to be a legitimate company through fake emails or websites.</div>
+                <div class="glossary-example"><strong>Example:</strong> A fake email "from your bank" asking you to click a link and verify your account details.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Encryption</div>
+                <div class="glossary-definition">Converting information into a secret code so only authorized people can read it. Keeps your data safe while traveling online.</div>
+                <div class="glossary-example"><strong>Example:</strong> Your bank uses encryption to protect your account number and balance from hackers.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Privacy Settings</div>
+                <div class="glossary-definition">Controls that let you decide who can see your information, posts, and activity on social media or other platforms.</div>
+                <div class="glossary-example"><strong>Example:</strong> Changing your Instagram privacy settings to "Private" so only approved followers can see your posts.</div>
+            </div>
+
+            <!-- Scams & Fraud -->
+            <div class="category-header">Scams & Fraud</div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Scam</div>
+                <div class="glossary-definition">A dishonest scheme designed to trick people into giving away money, personal information, or passwords.</div>
+                <div class="glossary-example"><strong>Example:</strong> A call claiming you've won a prize, but you need to pay a fee to claim it—the prize doesn't exist.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Malware</div>
+                <div class="glossary-definition">Malicious software designed to damage, disable, or gain unauthorized access to your device or data.</div>
+                <div class="glossary-example"><strong>Example:</strong> Clicking on a suspicious link that installs software that steals your passwords.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Catfishing</div>
+                <div class="glossary-definition">When someone creates a fake online identity to trick or deceive another person, often for romance or money.</div>
+                <div class="glossary-example"><strong>Example:</strong> Someone claiming to be a model online but asking for money for "travel costs" to meet you.</div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="category-header">Social Media</div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Algorithm</div>
+                <div class="glossary-definition">A set of instructions that computer programs follow. Social media algorithms decide which posts you see based on your activity.</div>
+                <div class="glossary-example"><strong>Example:</strong> Instagram's algorithm shows you more posts from accounts you interact with frequently.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Misinformation</div>
+                <div class="glossary-definition">False or inaccurate information spread online, whether intentionally or unintentionally.</div>
+                <div class="glossary-example"><strong>Example:</strong> A viral post claiming a fake cure for a disease that isn't proven to work.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Disinformation</div>
+                <div class="glossary-definition">False information deliberately created and spread to deceive people or manipulate opinions.</div>
+                <div class="glossary-example"><strong>Example:</strong> A fake news article created specifically to influence an election.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Deepfake</div>
+                <div class="glossary-definition">Manipulated video or audio created using artificial intelligence to make someone appear to say or do something they didn't.</div>
+                <div class="glossary-example"><strong>Example:</strong> A fake video of a politician saying something they never actually said.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Viral</div>
+                <div class="glossary-definition">Content that spreads rapidly across social media and the internet through sharing.</div>
+                <div class="glossary-example"><strong>Example:</strong> A funny video shared so many times that millions of people see it within days.</div>
+            </div>
+
+            <!-- Communication -->
+            <div class="category-header">Communication</div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Cyberbullying</div>
+                <div class="glossary-definition">Harassment or bullying that happens online through messages, comments, or social media.</div>
+                <div class="glossary-example"><strong>Example:</strong> Sending mean messages to someone or posting hurtful comments on their photos.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Digital Footprint</div>
+                <div class="glossary-definition">The trail of information you leave behind online—posts, likes, comments, photos, and data collected about you.</div>
+                <div class="glossary-example"><strong>Example:</strong> Everything you post on social media creates a permanent digital footprint.</div>
+            </div>
+
+            <!-- Technical Terms -->
+            <div class="category-header">Technical Terms</div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Browser</div>
+                <div class="glossary-definition">An application used to access and view websites on the internet. Examples: Chrome, Safari, Firefox, Edge.</div>
+                <div class="glossary-example"><strong>Example:</strong> You open Chrome (a browser) to visit Google.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Cache</div>
+                <div class="glossary-definition">Temporary storage of data on your device to help websites load faster when you revisit them.</div>
+                <div class="glossary-example"><strong>Example:</strong> Clearing your browser cache removes stored website data and can free up space.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Cookies</div>
+                <div class="glossary-definition">Small files websites store on your device to remember information about you, like login details or preferences.</div>
+                <div class="glossary-example"><strong>Example:</strong> A website remembers your language preference because it stored that in a cookie.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">VPN (Virtual Private Network)</div>
+                <div class="glossary-definition">A tool that encrypts your internet connection and hides your location, making your online activity more private and secure.</div>
+                <div class="glossary-example"><strong>Example:</strong> Using a VPN when on public WiFi to prevent hackers from seeing your passwords.</div>
+            </div>
+
+            <div class="glossary-item">
+                <div class="glossary-term">Screenshot</div>
+                <div class="glossary-definition">A digital image of whatever is displayed on your device's screen at that moment.</div>
+                <div class="glossary-example"><strong>Example:</strong> Taking a screenshot of a funny text conversation to share with friends.</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#">Our Mission</a></li>
+                    <li><a href="#">Our Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="glossary.html">Glossary</a></li>
+                    <li><a href="#">Video Library</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Digital Skills for All. Empowering digital confidence for everyone.</p>
+        </div>
+    </footer>
+
+    <script>
+        const glossaryData = [
+            { term: 'Password', letter: 'P', category: 'Security & Privacy' },
+            { term: 'Two-Factor Authentication (2FA)', letter: 'T', category: 'Security & Privacy' },
+            { term: 'Phishing', letter: 'P', category: 'Scams & Fraud' },
+            { term: 'Encryption', letter: 'E', category: 'Security & Privacy' },
+            { term: 'Privacy Settings', letter: 'P', category: 'Security & Privacy' },
+            { term: 'Scam', letter: 'S', category: 'Scams & Fraud' },
+            { term: 'Malware', letter: 'M', category: 'Scams & Fraud' },
+            { term: 'Catfishing', letter: 'C', category: 'Scams & Fraud' },
+            { term: 'Algorithm', letter: 'A', category: 'Social Media' },
+            { term: 'Misinformation', letter: 'M', category: 'Social Media' },
+            { term: 'Disinformation', letter: 'D', category: 'Social Media' },
+            { term: 'Deepfake', letter: 'D', category: 'Social Media' },
+            { term: 'Viral', letter: 'V', category: 'Social Media' },
+            { term: 'Cyberbullying', letter: 'C', category: 'Communication' },
+            { term: 'Digital Footprint', letter: 'D', category: 'Communication' },
+            { term: 'Browser', letter: 'B', category: 'Technical Terms' },
+            { term: 'Cache', letter: 'C', category: 'Technical Terms' },
+            { term: 'Cookies', letter: 'C', category: 'Technical Terms' },
+            { term: 'VPN (Virtual Private Network)', letter: 'V', category: 'Technical Terms' },
+            { term: 'Screenshot', letter: 'S', category: 'Technical Terms' }
+        ];
+
+        let currentFilter = 'All';
+
+        document.getElementById('searchInput').addEventListener('keyup', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.glossary-item');
+
+            items.forEach(item => {
+                const term = item.querySelector('.glossary-term').textContent.toLowerCase();
+                if (term.includes(searchTerm)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        });
+
+        function filterByLetter(letter) {
+            currentFilter = letter;
+            const items = document.querySelectorAll('.glossary-item');
+            const headers = document.querySelectorAll('.category-header');
+
+            items.forEach(item => {
+                const term = item.querySelector('.glossary-term').textContent;
+                const firstLetter = term.charAt(0).toUpperCase();
+
+                if (letter === 'All' || firstLetter === letter) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            // Show/hide category headers based on content
+            headers.forEach(header => {
+                const nextItems = [];
+                let sibling = header.nextElementSibling;
+                while (sibling && !sibling.classList.contains('category-header')) {
+                    if (sibling.classList.contains('glossary-item')) {
+                        nextItems.push(sibling);
+                    }
+                    sibling = sibling.nextElementSibling;
+                }
+
+                const hasVisibleItems = nextItems.some(item => !item.classList.contains('hidden'));
+                header.classList.toggle('hidden', !hasVisibleItems);
+            });
+        }
+    </script>
+</body>
+</html>
