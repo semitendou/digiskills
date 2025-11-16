@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility - Digital Skills for All</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1A365D;
+            background: #FEFEFE;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1A365D 0%, #2D5A8C 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                transition: opacity 0.3s;
+            }
+
+                .nav-links a:hover {
+                    opacity: 0.8;
+                }
+
+        .section-hero {
+            background: linear-gradient(135deg, #2D5A8C 0%, #1A365D 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+            .section-hero h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-hero p {
+                font-size: 1.3rem;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+        .content-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .accessibility-statement {
+            background: #F7FAFC;
+            padding: 3rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            border-left: 4px solid #2D5A8C;
+        }
+
+            .accessibility-statement h2 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+                color: #1A365D;
+            }
+
+            .accessibility-statement p {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                margin-bottom: 1.5rem;
+                color: #4A5568;
+            }
+
+        .commitment-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+            .commitment-section h2 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .commitment-section p {
+                font-size: 1.2rem;
+                line-height: 1.8;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-top: 4px solid #2D5A8C;
+            transition: transform 0.3s;
+        }
+
+            .feature-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .feature-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: #1A365D;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .feature-card p {
+                color: #4A5568;
+                line-height: 1.6;
+            }
+
+            .feature-card ul {
+                margin: 1rem 0;
+                padding-left: 1.5rem;
+            }
+
+            .feature-card li {
+                color: #4A5568;
+                margin-bottom: 0.5rem;
+            }
+
+        .standards-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin: 3rem 0;
+        }
+
+            .standards-section h2 {
+                font-size: 2rem;
+                text-align: center;
+                margin-bottom: 2rem;
+                color: #1A365D;
+            }
+
+        .standards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .standard-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: #F7FAFC;
+            border-radius: 8px;
+        }
+
+            .standard-item .icon {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .standard-item h4 {
+                color: #1A365D;
+                margin-bottom: 0.5rem;
+            }
+
+            .standard-item p {
+                color: #4A5568;
+                font-size: 0.95rem;
+            }
+
+        .feedback-section {
+            background: #F7FAFC;
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+            .feedback-section h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                color: #1A365D;
+            }
+
+            .feedback-section p {
+                font-size: 1.1rem;
+                line-height: 1.7;
+                color: #4A5568;
+                margin-bottom: 2rem;
+            }
+
+        .contact-btn {
+            background: #2D5A8C;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .contact-btn:hover {
+                background: #1A365D;
+                transform: translateY(-2px);
+            }
+
+        .tips-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin: 3rem 0;
+        }
+
+            .tips-section h2 {
+                font-size: 2rem;
+                text-align: center;
+                margin-bottom: 2rem;
+                color: #1A365D;
+            }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tip-item {
+            background: #F7FAFC;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #2D5A8C;
+        }
+
+            .tip-item h4 {
+                color: #1A365D;
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .tip-item p {
+                color: #4A5568;
+                line-height: 1.6;
+            }
+
+        footer {
+            background: #1A365D;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #B8D4E8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+            .footer-section a:hover {
+                color: white;
+            }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #2D5A8C;
+            color: #B8D4E8;
+        }
+
+        @media (max-width: 768px) {
+            .section-hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🛡️💡 Digital Skills for All</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutus.html">About</a></li>              
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="videotutorials.html">Video Tutorials</a></li>
+                <li><a href="news.html">Latest News</a></li>
+                <li><a href="glossary.html">Glossary</a></li>
+                <li><a href="contactpage.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="section-hero">
+        <h1>Accessibility</h1>
+        <p>Committed to making digital literacy accessible to everyone, regardless of ability or disability.</p>
+    </section>
+
+    <div class="content-section">
+        <div class="accessibility-statement">
+            <h2>Our Accessibility Commitment</h2>
+            <p>
+                At Digital Skills for All, we believe that digital literacy education should be accessible to 
+                everyone, including people with disabilities. We're committed to creating an inclusive learning 
+                environment where all individuals can develop the skills and confidence to navigate the digital world.
+            </p>
+            <p>
+                We continuously work to improve the accessibility of our website, resources, and learning materials 
+                to ensure they can be used by people with diverse abilities. Our goal is to exceed the standards 
+                set by the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA.
+            </p>
+        </div>
+
+        <div class="commitment-section">
+            <h2>Inclusive by Design</h2>
+            <p>
+                Accessibility isn't an afterthought for us—it's built into everything we do. From our website design 
+                to our workshop materials, we consider the needs of learners with visual, auditory, motor, and 
+                cognitive disabilities at every stage of development.
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>👁️ Visual Accessibility</h3>
+                <p>
+                    Our website and materials are designed to be accessible for people with visual impairments:
+                </p>
+                <ul>
+                    <li>High contrast color combinations (minimum 4.5:1 ratio)</li>
+                    <li>Scalable text that works with screen magnifiers</li>
+                    <li>Alternative text for all images and graphics</li>
+                    <li>Clear, readable fonts in appropriate sizes</li>
+                    <li>Keyboard navigation for all interactive elements</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h3>🔊 Audio Accessibility</h3>
+                <p>
+                    We provide multiple ways to access our content for people with hearing impairments:
+                </p>
+                <ul>
+                    <li>Closed captions on all video content</li>
+                    <li>Transcripts for audio materials</li>
+                    <li>Visual indicators for audio alerts</li>
+                    <li>Text-based alternatives to audio-only content</li>
+                    <li>Sign language interpretation available for workshops</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h3>⌨️ Motor Accessibility</h3>
+                <p>
+                    Our digital resources work for people with limited motor control:
+                </p>
+                <ul>
+                    <li>Full keyboard navigation support</li>
+                    <li>Large, well-spaced clickable areas</li>
+                    <li>No time limits on interactive content</li>
+                    <li>Simple, consistent navigation patterns</li>
+                    <li>Voice control compatibility</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h3>🧠 Cognitive Accessibility</h3>
+                <p>
+                    We design our learning materials to be accessible for people with cognitive disabilities:
+                </p>
+                <ul>
+                    <li>Clear, simple language and instructions</li>
+                    <li>Consistent layout and navigation</li>
+                    <li>Multiple ways to access the same information</li>
+                    <li>Breaking complex tasks into smaller steps</li>
+                    <li>Visual aids and examples to support text</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="standards-section">
+            <h2>Accessibility Standards We Follow</h2>
+            <div class="standards-grid">
+                <div class="standard-item">
+                    <div class="icon">🌐</div>
+                    <h4>WCAG 2.1 Level AA</h4>
+                    <p>Web Content Accessibility Guidelines for inclusive web design</p>
+                </div>
+
+                <div class="standard-item">
+                    <div class="icon">📱</div>
+                    <h4>Mobile Accessibility</h4>
+                    <p>Touch-friendly design and mobile screen reader support</p>
+                </div>
+
+                <div class="standard-item">
+                    <div class="icon">🎯</div>
+                    <h4>Plain Language</h4>
+                    <p>Clear, jargon-free communication for all reading levels</p>
+                </div>
+
+                <div class="standard-item">
+                    <div class="icon">🔧</div>
+                    <h4>Assistive Technology</h4>
+                    <p>Compatibility with screen readers, magnifiers, and other tools</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tips-section">
+            <h2>Using Accessibility Features</h2>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <h4>🔍 Screen Magnification</h4>
+                    <p>
+                        Most devices have built-in screen magnifiers. On Windows, press Windows key and + to zoom in. 
+                        On Mac, go to System Preferences > Accessibility > Zoom. On smartphones, use pinch-to-zoom gestures.
+                    </p>
+                </div>
+
+                <div class="tip-item">
+                    <h4>🗣️ Screen Readers</h4>
+                    <p>
+                        Screen readers like JAWS, NVDA (free), or VoiceOver (Mac) can read web content aloud. 
+                        Our website is optimized to work seamlessly with these tools.
+                    </p>
+                </div>
+
+                <div class="tip-item">
+                    <h4>⌨️ Keyboard Navigation</h4>
+                    <p>
+                        Use Tab to move between elements, Enter to click, and arrow keys to navigate. 
+                        Press Escape to close menus or pop-ups. Our site supports full keyboard access.
+                    </p>
+                </div>
+
+                <div class="tip-item">
+                    <h4>🎨 High Contrast</h4>
+                    <p>
+                        Most operating systems offer high contrast modes. Look in your accessibility settings 
+                        to enable this feature for better visibility.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="feedback-section">
+            <h2>Help Us Improve</h2>
+            <p>
+                We're committed to continuous improvement in accessibility. If you encounter any barriers while 
+                using our website or resources, or if you have suggestions for how we can improve accessibility, 
+                we'd love to hear from you. Your feedback helps us serve all learners better.
+            </p>
+            <a href="contactpage.html" class="contact-btn">Share Feedback</a>
+        </div>
+
+        <div class="standards-section">
+            <h2>Ongoing Improvements</h2>
+            <p>
+                Accessibility is a journey, not a destination. We regularly:
+            </p>
+            <ul style="margin: 1rem 0; padding-left: 2rem;">
+                <li>Test our website with assistive technologies</li>
+                <li>Review and update our content for accessibility</li>
+                <li>Train our team on inclusive design practices</li>
+                <li>Consult with accessibility experts and users with disabilities</li>
+                <li>Stay current with evolving accessibility standards</li>
+            </ul>
+            <p>
+                Last updated: November 2025
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="our-mission.html">Our Mission</a></li>
+                    <li><a href="our-partners.html">Our Partners</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="glossary.html">Glossary</a></li>
+                    <li><a href="videotutorials.html">Video Tutorials</a></li>
+                    <li><a href="news.html">Latest News</a></li>                
+                    <li><a href="#guides">Downloadable Guides</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                    <li><a href="contactpage.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-use.html">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Digital Skills for All. Empowering digital confidence for everyone.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Mission - Digital Skills for All</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1A365D;
+            background: #FEFEFE;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1A365D 0%, #2D5A8C 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                transition: opacity 0.3s;
+            }
+
+                .nav-links a:hover {
+                    opacity: 0.8;
+                }
+
+        .section-hero {
+            background: linear-gradient(135deg, #2D5A8C 0%, #1A365D 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+            .section-hero h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-hero p {
+                font-size: 1.3rem;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+        .content-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .mission-statement {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 3rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+            .mission-statement h2 {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .mission-statement p {
+                font-size: 1.3rem;
+                line-height: 1.8;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+        .pillars-section {
+            margin: 3rem 0;
+        }
+
+            .pillars-section h2 {
+                font-size: 2rem;
+                text-align: center;
+                margin-bottom: 3rem;
+                color: #1A365D;
+            }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pillar-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+            border-top: 4px solid #2D5A8C;
+        }
+
+            .pillar-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .pillar-card .icon {
+                font-size: 3rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .pillar-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: #1A365D;
+            }
+
+            .pillar-card p {
+                color: #4A5568;
+                line-height: 1.6;
+            }
+
+        .objectives-section {
+            background: #F7FAFC;
+            padding: 3rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+
+            .objectives-section h2 {
+                font-size: 2rem;
+                text-align: center;
+                margin-bottom: 2rem;
+                color: #1A365D;
+            }
+
+        .objectives-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .objective-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid #2D5A8C;
+        }
+
+            .objective-item h4 {
+                color: #1A365D;
+                margin-bottom: 0.5rem;
+            }
+
+            .objective-item p {
+                color: #4A5568;
+                font-size: 0.95rem;
+            }
+
+        .vision-section {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+            .vision-section h2 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+                color: #1A365D;
+            }
+
+            .vision-section p {
+                font-size: 1.2rem;
+                line-height: 1.8;
+                color: #4A5568;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+        footer {
+            background: #1A365D;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #B8D4E8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+            .footer-section a:hover {
+                color: white;
+            }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #2D5A8C;
+            color: #B8D4E8;
+        }
+
+        @media (max-width: 768px) {
+            .section-hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mission-statement {
+                padding: 2rem;
+            }
+
+                .mission-statement h2 {
+                    font-size: 2rem;
+                }
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <nav>
+        <div class="logo">🛡️💡 Digital Skills for All</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About </a></li>               
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="videotutorials.html">Video Tutorials</a></li>
+            <li><a href="news.html">Latest News</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="contactpage.html">Contact Us</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <section class="section-hero">
+        <h1>Our Mission</h1>
+        <p>Building a digitally confident and connected community where everyone can thrive safely online.</p>
+    </section>
+
+    <div class="content-section">
+        <div class="mission-statement">
+            <h2>Mission Statement</h2>
+            <p>
+                "To empower individuals of all ages and backgrounds with the knowledge, skills, and confidence 
+                to navigate the digital world safely, critically, and effectively, fostering inclusive 
+                communities where technology enhances rather than intimidates."
+            </p>
+        </div>
+
+        <div class="pillars-section">
+            <h2>Our Core Pillars</h2>
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="icon">🛡️</div>
+                    <h3>Digital Safety</h3>
+                    <p>
+                        Equipping learners with essential cybersecurity knowledge, privacy protection strategies, 
+                        and scam awareness to navigate online spaces confidently and securely.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="icon">🧠</div>
+                    <h3>Critical Thinking</h3>
+                    <p>
+                        Developing media literacy and critical evaluation skills to help users identify 
+                        misinformation, understand bias, and make informed decisions about digital content.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="icon">🤝</div>
+                    <h3>Inclusive Access</h3>
+                    <p>
+                        Ensuring digital literacy education is accessible to all communities, with special 
+                        attention to seniors, youth, and underserved populations who face unique challenges online.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="icon">🌱</div>
+                    <h3>Community Building</h3>
+                    <p>
+                        Creating supportive learning environments where individuals can share experiences, 
+                        ask questions, and grow together in their digital journey without fear of judgment.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="objectives-section">
+            <h2>Key Objectives</h2>
+            <div class="objectives-list">
+                <div class="objective-item">
+                    <h4>Reduce Digital Divide</h4>
+                    <p>Bridge the gap between different age groups and communities in digital literacy and online confidence.</p>
+                </div>
+
+                <div class="objective-item">
+                    <h4>Prevent Online Harm</h4>
+                    <p>Protect communities from scams, misinformation, and digital threats through proactive education.</p>
+                </div>
+
+                <div class="objective-item">
+                    <h4>Build Confidence</h4>
+                    <p>Transform digital anxiety into digital confidence through practical, hands-on learning experiences.</p>
+                </div>
+
+                <div class="objective-item">
+                    <h4>Foster Connection</h4>
+                    <p>Use technology to strengthen community bonds and facilitate meaningful connections across generations.</p>
+                </div>
+
+                <div class="objective-item">
+                    <h4>Promote Independence</h4>
+                    <p>Enable seniors and vulnerable populations to maintain independence through digital tools and services.</p>
+                </div>
+
+                <div class="objective-item">
+                    <h4>Cultivate Responsibility</h4>
+                    <p>Develop responsible digital citizens who contribute positively to online communities and discourse.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="vision-section">
+            <h2>Our Vision</h2>
+            <p>
+                We envision a New Zealand where every person, regardless of age or background, can participate 
+                fully and confidently in the digital world. A nation where grandparents video chat with grandchildren 
+                without anxiety, where young people critically evaluate online information, and where communities 
+                use technology to strengthen bonds rather than create barriers. We see a future where digital 
+                literacy is not a source of division, but a bridge connecting generations and empowering all 
+                citizens to thrive in our increasingly connected world.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="our-mission.html">Our Mission</a></li>
+                    <li><a href="our-partners.html">Our Partners</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="glossary.html">Glossary</a></li>
+                    <li><a href="videotutorials.html">Video Tutorials</a></li>
+                    <li><a href="news.html">Latest News</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                    <li><a href="contactpage.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-use.html">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Digital Skills for All. Empowering digital confidence for everyone.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Partners - Digital Skills for All</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1A365D;
+            background: #FEFEFE;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1A365D 0%, #2D5A8C 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                transition: opacity 0.3s;
+            }
+
+                .nav-links a:hover {
+                    opacity: 0.8;
+                }
+
+        .section-hero {
+            background: linear-gradient(135deg, #2D5A8C 0%, #1A365D 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+            .section-hero h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-hero p {
+                font-size: 1.3rem;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .partners-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            padding: 2rem;
+            background: #F7FAFC;
+            border-radius: 12px;
+        }
+
+            .partners-intro h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                color: #1A365D;
+            }
+
+            .partners-intro p {
+                font-size: 1.1rem;
+                line-height: 1.7;
+                color: #4A5568;
+            }
+
+        .partner-category {
+            margin: 4rem 0;
+        }
+
+            .partner-category h2 {
+                font-size: 2rem;
+                text-align: center;
+                margin-bottom: 2rem;
+                color: #1A365D;
+            }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .partner-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border-top: 4px solid #2D5A8C;
+        }
+
+            .partner-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .partner-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: #1A365D;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .partner-card .partner-type {
+                background: #E6FFFA;
+                color: #00A3C4;
+                padding: 0.25rem 0.75rem;
+                border-radius: 20px;
+                font-size: 0.85rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                display: inline-block;
+            }
+
+            .partner-card p {
+                color: #4A5568;
+                line-height: 1.6;
+                margin-bottom: 1rem;
+            }
+
+            .partner-card .collaboration {
+                background: #F0FFF4;
+                padding: 1rem;
+                border-radius: 8px;
+                border-left: 3px solid #48BB78;
+            }
+
+                .partner-card .collaboration h4 {
+                    color: #1A365D;
+                    margin-bottom: 0.5rem;
+                    font-size: 1rem;
+                }
+
+                .partner-card .collaboration p {
+                    font-size: 0.95rem;
+                    margin: 0;
+                }
+
+        .become-partner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+            .become-partner h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .become-partner p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        .partner-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .benefit-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+            .benefit-item .icon {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .benefit-item h4 {
+                margin-bottom: 0.5rem;
+            }
+
+        .contact-cta {
+            background: white;
+            color: #667eea;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .contact-cta:hover {
+                background: #f8f9ff;
+                transform: translateY(-2px);
+            }
+
+        footer {
+            background: #1A365D;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #B8D4E8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+            .footer-section a:hover {
+                color: white;
+            }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #2D5A8C;
+            color: #B8D4E8;
+        }
+
+        @media (max-width: 768px) {
+            .section-hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <nav>
+        <div class="logo">🛡️💡 Digital Skills for All</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About </a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="videotutorials.html">Video Tutorials</a></li>
+            <li><a href="news.html">Latest News</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="contactpage.html">Contact Us</a></li>
+        </ul>
+    </nav>
+    </header>
+
+    <section class="section-hero">
+        <h1>Our Partners</h1>
+        <p>Building stronger communities through collaboration and shared expertise.</p>
+    </section>
+
+    <div class="content-section">
+        <div class="partners-intro">
+            <h2>Together We're Stronger</h2>
+            <p>
+                Our work is made possible through the dedication and collaboration of our community partners.
+                From local libraries and senior centers to educational institutions and technology companies,
+                our partners help us reach diverse communities and provide comprehensive digital literacy education.
+            </p>
+        </div>
+
+        <div class="partner-category">
+            <h2>Community Organizations</h2>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-type">Community Partner</div>
+                    <h3>🏛️ [Local Library System]</h3>
+                    <p>
+                        [Description of the library system and their role in providing accessible learning spaces
+                        and community outreach. Include details about workshop locations, resource sharing, etc.]
+                    </p>
+                    <div class="collaboration">
+                        <h4>Our Collaboration:</h4>
+                        <p>
+                            [Describe specific programs, workshop series, or initiatives you run together.
+                            Include details about frequency, locations, and target audiences.]
+                        </p>
+                    </div>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-type">Senior Services</div>
+                    <h3>👥 [Senior Citizens Association]</h3>
+                    <p>
+                        [Description of the senior organization and their expertise in serving older adults.
+                        Include their reach, services, and community trust they've built.]
+                    </p>
+                    <div class="collaboration">
+                        <h4>Our Collaboration:</h4>
+                        <p>
+                            [Detail the senior-focused programs, one-on-one tutoring, or specialized workshops
+                            you co-develop. Mention any unique approaches or success stories.]
+                        </p>
+                    </div>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-type">Youth Organization</div>
+                    <h3>🌟 [Youth Development Center]</h3>
+                    <p>
+                        [Description of the youth organization, their mission, and their connection with
+                        young people in the community. Include their areas of expertise.]
+                    </p>
+                    <div class="collaboration">
+                        <h4>Our Collaboration:</h4>
+                        <p>
+                            [Explain the youth-focused digital literacy programs, peer mentoring initiatives,
+                            or school holiday workshops you run together.]
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="partner-category">
+            <h2>Educational Institutions</h2>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-type">Educational Partner</div>
+                    <h3>🎓 [Local University/TAFE]</h3>
+                    <p>
+                        [Description of the educational institution, their digital literacy programs,
+                        and their commitment to community engagement.]
+                    </p>
+                    <div class="collaboration">
+                        <h4>Our Collaboration:</h4>
+                        <p>
+                            [Detail student volunteer programs, research partnerships, curriculum development,
+                            or professional development workshops for educators.]
+                        </p>
+                    </div>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-type">School District</div>
+                    <h3>🏫 [Regional School District]</h3>
+                    <p>
+                        [Description of the school district, their student population, and their
+                        digital citizenship initiatives.]
+                    </p>
+                    <div class="collaboration">
+                        <h4>Our Collaboration:</h4>
+                        <p>
+                            [Explain parent education programs, student digital citizenship workshops,
+                            or teacher training sessions you provide together.]
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="partner-category">
+            <h2>Technology & Corporate Partners</h2>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-type">Technology Partner</div>
+                    <h3>💻 [Tech Company/ISP]</h3>
+                    <p>
+                        [Description of the technology company, their local presence, and their
+                        commitment to digital inclusion and community support.]
+                    </p>
+                    <div class="collaboration">
+                        <h4>Our Collaboration:</h4>
+                        <p>
+                            [Detail equipment donations, internet access programs, technical support,
+                            or employee volunteer initiatives.]
+                        </p>
+                    </div>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-type">Corporate Sponsor</div>
+                    <h3>🏢 [Local Business/Corporation]</h3>
+                    <p>
+                        [Description of the corporate partner, their community involvement, and their
+                        interest in promoting digital literacy for workforce development.]
+                    </p>
+                    <div class="collaboration">
+                        <h4>Our Collaboration:</h4>
+                        <p>
+                            [Explain funding support, venue provision, professional mentorship programs,
+                            or job readiness workshops.]
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="partner-category">
+            <h2>Government & Public Sector</h2>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <div class="partner-type">Government Agency</div>
+                    <h3>🏛️ [Local Government Department]</h3>
+                    <p>
+                        [Description of the government agency, their community services, and their
+                        role in promoting digital access and equity.]
+                    </p>
+                    <div class="collaboration">
+                        <h4>Our Collaboration:</h4>
+                        <p>
+                            [Detail public service initiatives, digital access programs, community
+                            outreach campaigns, or policy development work.]
+                        </p>
+                    </div>
+                </div>
+
+                <div class="partner-card">
+                    <div class="partner-type">Public Service</div>
+                    <h3>📞 [Cybersecurity/Government Agency]</h3>
+                    <p>
+                        [Description of the public service organization, their expertise in cybersecurity
+                        or digital safety, and their educational mandate.]
+                    </p>
+                    <div class="collaboration">
+                        <h4>Our Collaboration:</h4>
+                        <p>
+                            [Explain scam awareness campaigns, cybersecurity workshops, resource development,
+                            or public safety initiatives.]
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="become-partner">
+            <h2>Become a Partner</h2>
+            <p>
+                We're always looking to expand our network of partners who share our commitment to digital inclusion.
+                Whether you're a community organization, educational institution, or business, there are many ways
+                we can work together to build digital confidence in our communities.
+            </p>
+
+            <div class="partner-benefits">
+                <div class="benefit-item">
+                    <div class="icon">🤝</div>
+                    <h4>Community Impact</h4>
+                    <p>Make a real difference in digital literacy and inclusion</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="icon">📚</div>
+                    <h4>Resource Sharing</h4>
+                    <p>Access our curriculum, materials, and expertise</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="icon">🌟</div>
+                    <h4>Recognition</h4>
+                    <p>Be recognized as a digital inclusion champion</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="icon">🤲</div>
+                    <h4>Network Building</h4>
+                    <p>Connect with other community-focused organizations</p>
+                </div>
+            </div>
+
+            <a href="contactpage.html" class="contact-cta">Get in Touch</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="our-mission.html">Our Mission</a></li>
+                    <li><a href="our-partners.html">Our Partners</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="glossary.html">Glossary</a></li>
+                    <li><a href="videotutorials.html">Video Tutorials</a></li>
+                    <li><a href="news.html">Latest News</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                    <li><a href="contactpage.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-use.html">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Digital Skills for All. Empowering digital confidence for everyone.</p>
+        </div>
+    </footer>
+</body>
+</html>

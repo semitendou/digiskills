@@ -392,18 +392,19 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="logo">
-                🛡️💡 Digital Skills for All
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="glossary.html">Glossary</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav>
+        <div class="logo">🛡️💡 Digital Skills for All</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About </a></li>               
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="videotutorials.html">Video Tutorials</a></li>
+            <li><a href="news.html">Latest News</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="contactpage.html">Contact Us</a></li>
+        </ul>
+    </nav>
+</header>
 
     <section class="hero">
         <h1>📰 Latest Cyber News</h1>
@@ -435,32 +436,33 @@
             <div class="footer-section">
                 <h3>About</h3>
                 <ul>
-                    <li><a href="#about">Our Mission</a></li>
-                    <li><a href="#team">Our Team</a></li>
-                    <li><a href="#partners">Partners</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="our-mission.html">Our Mission</a></li>
+                    <li><a href="our-partners.html">Our Partners</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Resources</h3>
                 <ul>
-                    <li><a href="resources.html">Resources</a></li>
                     <li><a href="glossary.html">Glossary</a></li>
+                    <li><a href="videotutorials.html">Video Tutorials</a></li>
+                    <li><a href="news.html">Latest News</a></li>
                     <li><a href="#guides">Downloadable Guides</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Support</h3>
                 <ul>
-                    <li><a href="#contact">Contact Us</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#accessibility">Accessibility</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                    <li><a href="contactpage.html">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Legal</h3>
                 <ul>
-                    <li><a href="#privacy">Privacy Policy</a></li>
-                    <li><a href="#terms">Terms of Use</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-use.html">Terms of Use</a></li>
                 </ul>
             </div>
         </div>
@@ -727,10 +729,10 @@
 
             if (displayedNews.length === 0) {
                 document.getElementById('newsContainer').innerHTML = `
-                        <div class="empty-state" style="grid-column: 1/-1;">
-                            <p>No news found. Check back soon!</p>
-                        </div>
-                    `;
+                            <div class="empty-state" style="grid-column: 1/-1;">
+                                <p>No news found. Check back soon!</p>
+                            </div>
+                        `;
                 document.getElementById('loadMoreBtn').style.display = 'none';
                 return;
             }
@@ -753,25 +755,25 @@
         function displayNewsArticles(news) {
             if (news.length === 0) {
                 document.getElementById('newsContainer').innerHTML = `
-                        <div class="empty-state" style="grid-column: 1/-1;">
-                            <p>No news found. Check back soon!</p>
-                        </div>
-                    `;
+                            <div class="empty-state" style="grid-column: 1/-1;">
+                                <p>No news found. Check back soon!</p>
+                            </div>
+                        `;
                 return;
             }
 
             const html = news.map(article => `
-                    <div class="news-card ${article.category}">
-                        <div class="news-image">${article.emoji}</div>
-                        <div class="news-content">
-                            <div class="news-source">${new URL(article.url).hostname.replace('www.', '')}</div>
-                            <h3>${article.title}</h3>
-                            <p>${article.description || 'Read more about this important cybersecurity news.'}</p>
-                            <div class="news-date">${new Date(article.publishedAt).toLocaleDateString('en-NZ', { year: 'numeric', month: 'short', day: 'numeric' })}</div>
-                            <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="news-link">Read Full Story →</a>
+                        <div class="news-card ${article.category}">
+                            <div class="news-image">${article.emoji}</div>
+                            <div class="news-content">
+                                <div class="news-source">${new URL(article.url).hostname.replace('www.', '')}</div>
+                                <h3>${article.title}</h3>
+                                <p>${article.description || 'Read more about this important cybersecurity news.'}</p>
+                                <div class="news-date">${new Date(article.publishedAt).toLocaleDateString('en-NZ', { year: 'numeric', month: 'short', day: 'numeric' })}</div>
+                                <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="news-link">Read Full Story →</a>
+                            </div>
                         </div>
-                    </div>
-                `).join('');
+                    `).join('');
 
             document.getElementById('newsContainer').innerHTML = html;
         }

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Use - Digital Skills for All</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1A365D;
+            background: #FEFEFE;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1A365D 0%, #2D5A8C 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                transition: opacity 0.3s;
+            }
+
+                .nav-links a:hover {
+                    opacity: 0.8;
+                }
+
+        .section-hero {
+            background: linear-gradient(135deg, #2D5A8C 0%, #1A365D 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+            .section-hero h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-hero p {
+                font-size: 1.3rem;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+        .content-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .terms-overview {
+            background: #F7FAFC;
+            padding: 3rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            border-left: 4px solid #2D5A8C;
+        }
+
+            .terms-overview h2 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+                color: #1A365D;
+            }
+
+            .terms-overview p {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                margin-bottom: 1.5rem;
+                color: #4A5568;
+            }
+
+        .terms-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin: 3rem 0;
+        }
+
+            .terms-section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+                color: #1A365D;
+                border-bottom: 2px solid #E2E8F0;
+                padding-bottom: 0.5rem;
+            }
+
+            .terms-section h3 {
+                font-size: 1.3rem;
+                margin: 1.5rem 0 1rem;
+                color: #2D5A8C;
+            }
+
+            .terms-section p {
+                color: #4A5568;
+                line-height: 1.7;
+                margin-bottom: 1rem;
+            }
+
+            .terms-section ul {
+                margin: 1rem 0;
+                padding-left: 2rem;
+            }
+
+            .terms-section li {
+                color: #4A5568;
+                margin-bottom: 0.5rem;
+                line-height: 1.6;
+            }
+
+        .key-points {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+
+            .key-points h2 {
+                font-size: 2rem;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+        .points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .point-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+            .point-item .icon {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .point-item h4 {
+                margin-bottom: 0.5rem;
+            }
+
+            .point-item p {
+                font-size: 0.95rem;
+            }
+
+        .rules-section {
+            background: #F7FAFC;
+            padding: 3rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+
+            .rules-section h2 {
+                font-size: 2rem;
+                text-align: center;
+                margin-bottom: 2rem;
+                color: #1A365D;
+            }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .rule-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #2D5A8C;
+        }
+
+            .rule-item h4 {
+                color: #1A365D;
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .rule-item p {
+                color: #4A5568;
+                line-height: 1.6;
+                margin: 0;
+            }
+
+        .contact-section {
+            background: #F7FAFC;
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+            .contact-section h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                color: #1A365D;
+            }
+
+            .contact-section p {
+                font-size: 1.1rem;
+                line-height: 1.7;
+                color: #4A5568;
+                margin-bottom: 2rem;
+            }
+
+        .contact-btn {
+            background: #2D5A8C;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .contact-btn:hover {
+                background: #1A365D;
+                transform: translateY(-2px);
+            }
+
+        .update-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+            .update-info p {
+                color: #4A5568;
+                font-style: italic;
+            }
+
+        footer {
+            background: #1A365D;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #B8D4E8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+            .footer-section a:hover {
+                color: white;
+            }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #2D5A8C;
+            color: #B8D4E8;
+        }
+
+        @media (max-width: 768px) {
+            .section-hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .rules-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🛡️💡 Digital Skills for All</div>
+            <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About </a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="videotutorials.html">Video Tutorials</a></li>
+            <li><a href="news.html">Latest News</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="contactpage.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="section-hero">
+        <h1>Terms of Use</h1>
+        <p>Welcome to Digital Skills for All. Please read these terms carefully before using our services.</p>
+    </section>
+
+    <div class="content-section">
+        <div class="terms-overview">
+            <h2>Agreement Overview</h2>
+            <p>
+                By accessing and using the Digital Skills for All website, resources, workshops, and services, 
+                you agree to be bound by these Terms of Use. These terms govern your use of our educational 
+                content, community resources, and digital literacy programs.
+            </p>
+            <p>
+                We provide our services to help people of all ages develop digital literacy skills in a safe, 
+                supportive environment. By using our services, you agree to use them responsibly and respectfully 
+                toward other users and our community.
+            </p>
+        </div>
+
+        <div class="key-points">
+            <h2>Key Points</h2>
+            <div class="points-grid">
+                <div class="point-item">
+                    <div class="icon">🆓</div>
+                    <h4>Free Services</h4>
+                    <p>All our educational resources and workshops are provided free of charge</p>
+                </div>
+
+                <div class="point-item">
+                    <div class="icon">🤝</div>
+                    <h4>Community Focus</h4>
+                    <p>Our services are designed to build digital confidence across generations</p>
+                </div>
+
+                <div class="point-item">
+                    <div class="icon">🛡️</div>
+                    <h4>Safety First</h4>
+                    <p>We prioritize user safety and privacy in all our programs</p>
+                </div>
+
+                <div class="point-item">
+                    <div class="icon">📚</div>
+                    <h4>Educational Purpose</h4>
+                    <p>All content is provided for educational and informational purposes</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <h2>Acceptance of Terms</h2>
+            <p>
+                By accessing our website, attending our workshops, or using any of our services, you acknowledge 
+                that you have read, understood, and agree to be bound by these Terms of Use and our Privacy Policy. 
+                If you do not agree to these terms, please do not use our services.
+            </p>
+            <p>
+                These terms apply to all users of our services, including workshop participants, website visitors, 
+                and anyone who interacts with our educational content or community resources.
+            </p>
+        </div>
+
+        <div class="terms-section">
+            <h2>Use of Services</h2>
+            
+            <h3>Eligibility</h3>
+            <p>
+                Our services are available to individuals of all ages. Users under 13 years of age must have 
+                parental consent to participate in our programs and use our website.
+            </p>
+
+            <h3>Permitted Uses</h3>
+            <p>
+                You may use our services for:
+            </p>
+            <ul>
+                <li>Personal educational purposes and skill development</li>
+                <li>Participating in workshops and learning programs</li>
+                <li>Accessing digital literacy resources and materials</li>
+                <li>Connecting with our community for learning support</li>
+                <li>Sharing feedback and suggestions for improvement</li>
+            </ul>
+
+            <h3>Prohibited Uses</h3>
+            <p>
+                You agree NOT to use our services for:
+            </p>
+            <ul>
+                <li>Any commercial or business purposes without our written permission</li>
+                <li>Harassing, threatening, or intimidating other users</li>
+                <li>Sharing inappropriate, offensive, or harmful content</li>
+                <li>Attempting to access unauthorized areas of our systems</li>
+                <li>Violating any applicable laws or regulations</li>
+                <li>Interfering with the operation of our services</li>
+            </ul>
+        </div>
+
+        <div class="rules-section">
+            <h2>Community Guidelines</h2>
+            <div class="rules-grid">
+                <div class="rule-item">
+                    <h4>🤝 Respect Others</h4>
+                    <p>Treat all community members with kindness and respect, regardless of their background, experience level, or age.</p>
+                </div>
+
+                <div class="rule-item">
+                    <h4>📚 Share Knowledge</h4>
+                    <p>Help create a supportive learning environment by sharing what you know and asking questions when you need help.</p>
+                </div>
+
+                <div class="rule-item">
+                    <h4>🔒 Protect Privacy</h4>
+                    <p>Respect the privacy of others and don't share personal information about yourself or others in public forums.</p>
+                </div>
+
+                <div class="rule-item">
+                    <h4>⚖️ Be Honest</h4>
+                    <p>Provide accurate information and be honest in your interactions with our community and staff.</p>
+                </div>
+
+                <div class="rule-item">
+                    <h4>🎯 Stay on Topic</h4>
+                    <p>Keep discussions focused on digital literacy, learning, and supporting others in their digital journey.</p>
+                </div>
+
+                <div class="rule-item">
+                    <h4>🚫 Report Concerns</h4>
+                    <p>If you see inappropriate behavior or content, please report it to our team so we can maintain a safe environment.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="terms-section">
+            <h2>Intellectual Property</h2>
+            <p>
+                All content on our website and in our educational materials, including text, graphics, logos, 
+                images, and course materials, is the property of Digital Skills for All or our content creators 
+                and is protected by copyright laws.
+            </p>
+            <p>
+                <strong>You may:</strong>
+            </p>
+            <ul>
+                <li>View and download materials for personal educational use</li>
+                <li>Share our content with attribution to Digital Skills for All</li>
+                <li>Use our resources for non-commercial educational purposes</li>
+            </ul>
+            <p>
+                <strong>You may NOT:</strong>
+            </p>
+            <ul>
+                <li>Modify, reproduce, or distribute our content for commercial purposes</li>
+                <li>Claim our content as your own</li>
+                <li>Sell or profit from our educational materials</li>
+                <li>Use our content in ways that could damage our reputation</li>
+            </ul>
+        </div>
+
+        <div class="terms-section">
+            <h2>Disclaimer of Warranties</h2>
+            <p>
+                Our services and content are provided "as is" and "as available" without warranties of any kind, 
+                either express or implied. While we strive to provide accurate and up-to-date information, we make 
+                no representations or warranties about:
+            </p>
+            <ul>
+                <li>The accuracy, completeness, or reliability of our content</li>
+                <li>The suitability of our information for your specific needs</li>
+                <li>The uninterrupted or error-free operation of our website</li>
+                <li>The absence of viruses or other harmful components</li>
+            </ul>
+            <p>
+                Digital technology changes rapidly, and while we regularly update our content, some information 
+                may become outdated. Always verify important information with current sources.
+            </p>
+        </div>
+
+        <div class="terms-section">
+            <h2>Limitation of Liability</h2>
+            <p>
+                To the fullest extent permitted by law, Digital Skills for All and its staff, volunteers, and 
+                partners shall not be liable for any indirect, incidental, special, consequential, or punitive 
+                damages arising from your use of our services.
+            </p>
+            <p>
+                This includes, but is not limited to, damages for:
+            </p>
+            <ul>
+                <li>Loss of data, income, or profits</li>
+                <li>Business interruption or loss of business opportunity</li>
+                <li>Computer damage or system failure</li>
+                <li>Unauthorized access to your data</li>
+                <li>Any other commercial damages or losses</li>
+            </ul>
+        </div>
+
+        <div class="terms-section">
+            <h2>Changes to Terms</h2>
+            <p>
+                We may update these Terms of Use from time to time to reflect changes in our services, legal 
+                requirements, or community standards. When we make changes, we will:
+            </p>
+            <ul>
+                <li>Update the "Last Updated" date at the bottom of this page</li>
+                <li>Post the updated terms on this page</li>
+                <li>Notify users of significant changes through our website or email</li>
+            </ul>
+            <p>
+                Continued use of our services after changes are posted constitutes your acceptance of the updated terms.
+            </p>
+        </div>
+
+        <div class="contact-section">
+            <h2>Contact Us</h2>
+            <p>
+                If you have questions about these Terms of Use, need clarification about any of our policies, 
+                or want to report a violation of these terms, please contact us. We're here to help ensure 
+                everyone has a positive experience with our services.
+            </p>
+            <a href="contactpage.html" class="contact-btn">Get in Touch</a>
+        </div>
+
+        <div class="update-info">
+            <p>
+                <strong>Last Updated:</strong> November 2025<br>
+                <strong>Effective Date:</strong> November 2025
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="our-mission.html">Our Mission</a></li>
+                    <li><a href="our-partners.html">Our Partners</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="glossary.html">Glossary</a></li>
+                    <li><a href="videotutorials.html">Video Tutorials</a></li>
+                    <li><a href="news.html">Latest News</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                    <li><a href="contactpage.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-use.html">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Digital Skills for All. Empowering digital confidence for everyone.</p>
+        </div>
+    </footer>
+</body>
+</html>

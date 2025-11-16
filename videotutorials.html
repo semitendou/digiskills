@@ -290,18 +290,19 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="logo">
-                🛡️💡 Digital Skills for All
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="glossary.html">Glossary</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav>
+        <div class="logo">🛡️💡 Digital Skills for All</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About </a></li>               
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="videotutorials.html">Video Tutorials</a></li>
+            <li><a href="news.html">Latest News</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="contactpage.html">Contact Us</a></li>
+        </ul>
+    </nav>
+</header>
 
     <section class="hero">
         <h1>Video Tutorials</h1>
@@ -399,37 +400,39 @@
         </div>
     </div>
 
+
     <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <h3>About</h3>
                 <ul>
-                    <li><a href="#about">Our Mission</a></li>
-                    <li><a href="#team">Our Team</a></li>
-                    <li><a href="#partners">Partners</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="our-mission.html">Our Mission</a></li>
+                    <li><a href="our-partners.html">Our Partners</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Resources</h3>
                 <ul>
-                    <li><a href="resources.html">Resources</a></li>
                     <li><a href="glossary.html">Glossary</a></li>
+                    <li><a href="videotutorials.html">Video Tutorials</a></li>
+                    <li><a href="news.html">Latest News</a></li>
                     <li><a href="#guides">Downloadable Guides</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Support</h3>
                 <ul>
-                    <li><a href="#contact">Contact Us</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#accessibility">Accessibility</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                    <li><a href="contactpage.html">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Legal</h3>
                 <ul>
-                    <li><a href="#privacy">Privacy Policy</a></li>
-                    <li><a href="#terms">Terms of Use</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-use.html">Terms of Use</a></li>
                 </ul>
             </div>
         </div>
@@ -459,18 +462,18 @@
                 return;
             }
             container.innerHTML = ourVideos.map(video => `
-                    <div class="video-card">
-                        <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/${video.youtubeId}" allowfullscreen="" loading="lazy"></iframe>
+                        <div class="video-card">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/${video.youtubeId}" allowfullscreen="" loading="lazy"></iframe>
+                            </div>
+                            <div class="video-content">
+                                <h3>${video.title}</h3>
+                                <p>${video.description}</p>
+                                <div class="video-source">Digital Skills for All</div>
+                                <a href="${video.url}" target="_blank" class="video-link">Watch on YouTube</a>
+                            </div>
                         </div>
-                        <div class="video-content">
-                            <h3>${video.title}</h3>
-                            <p>${video.description}</p>
-                            <div class="video-source">Digital Skills for All</div>
-                            <a href="${video.url}" target="_blank" class="video-link">Watch on YouTube</a>
-                        </div>
-                    </div>
-                `).join('');
+                    `).join('');
         }
 
         renderOurVideos();

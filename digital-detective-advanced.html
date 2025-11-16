@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Detective: Advanced Investigation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1A365D 0%, #2D5A8C 100%);
+            min-height: 100vh;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .game-container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .game-header {
+            margin-bottom: 30px;
+        }
+
+        .game-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #1A365D, #2D5A8C);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .game-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .stage-indicator {
+            background: linear-gradient(45deg, #FF6B6B, #E85A5A);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .scenario-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .scenario-title {
+            font-size: 1.5rem;
+            color: #1A365D;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .scenario-content {
+            color: #4A5568;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .evidence-section {
+            background: #F7FAFC;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .evidence-title {
+            font-weight: bold;
+            color: #1A365D;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .evidence-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 3px solid #4ECDC4;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+            .evidence-item:hover {
+                transform: translateX(5px);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+
+        .question-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .answer-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .answer-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+            .answer-btn:hover {
+                background: rgba(255, 255, 255, 0.3);
+                border-color: rgba(255, 255, 255, 0.5);
+            }
+
+            .answer-btn.correct {
+                background: #48BB78;
+                border-color: #48BB78;
+            }
+
+            .answer-btn.incorrect {
+                background: #E53E3E;
+                border-color: #E53E3E;
+            }
+
+        .tools-section {
+            background: #F0FFF4;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .tools-title {
+            font-weight: bold;
+            color: #1A365D;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tool-btn {
+            background: #4ECDC4;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+            .tool-btn:hover {
+                background: #3DB8B0;
+                transform: translateY(-2px);
+            }
+
+        .progress-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            background: #E2E8F0;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(45deg, #4ECDC4, #3DB8B0);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .score-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .next-btn, .restart-btn {
+            background: linear-gradient(45deg, #4ECDC4, #3DB8B0);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+
+            .next-btn:hover, .restart-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            }
+
+        .game-over {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .final-score {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .performance-message {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .game-title {
+                font-size: 2rem;
+            }
+
+            .scenario-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1 class="game-title">🔍 Digital Detective</h1>
+            <p class="game-subtitle">Advanced Investigation: Test Your Media Literacy Skills</p>
+            <div class="stage-indicator" id="stageIndicator">Stage 1 of 6</div>
+        </div>
+
+        <div class="progress-section">
+            <div class="score-display">
+                <span><strong>Score:</strong> <span id="currentScore">0</span>/6</span>
+                <span><strong>Stage:</strong> <span id="currentStage">1</span>/6</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 16.67%"></div>
+            </div>
+        </div>
+
+        <!-- Stage 1: Deepfake Political Video -->
+        <div id="stage1" class="scenario-card">
+            <h2 class="scenario-title">🎭 Stage 1: The Political Deepfake</h2>
+            <div class="scenario-content">
+                <p>A viral video shows a prominent political candidate making shocking statements at what appears to be a private fundraising event. The video has been shared thousands of times across social media platforms, with many users expressing outrage.</p>
+                
+                <p>The video caption reads: "BREAKING: Leaked footage shows [Candidate] revealing their TRUE agenda! This was recorded last night at the Grand Hotel. RT to expose them! #Election2025 #CorruptionExposed"</p>
+            </div>
+
+            <div class="evidence-section">
+                <h3 class="evidence-title">🔍 Available Evidence:</h3>
+                <div class="evidence-item" onclick="showEvidence('videoAnalysis')">
+                    <strong>Video Analysis:</strong> The video quality is slightly blurry, and the candidate's mouth movements seem slightly out of sync with the audio in some parts.
+                </div>
+                <div class="evidence-item" onclick="showEvidence('sourceCheck')">
+                    <strong>Source Investigation:</strong> The original post came from an account created just 2 weeks ago with no previous posts and a generic profile picture.
+                </div>
+                <div class="evidence-item" onclick="showEvidence('contextCheck')">
+                    <strong>Context Check:</strong> The candidate's campaign schedule shows they were at a public rally in another city at the time the video claims to be recorded.
+                </div>
+            </div>
+
+            <div class="tools-section">
+                <h3 class="tools-title">🛠️ Investigation Tools:</h3>
+                <button class="tool-btn" onclick="useTool('reverseImage')">Reverse Image Search</button>
+                <button class="tool-btn" onclick="useTool('metadata')">Metadata Analysis</button>
+                <button class="tool-btn" onclick="useTool('factCheck')">Fact-Check Database</button>
+            </div>
+
+            <div class="question-section">
+                <div class="question">Based on the evidence, what should you do with this video?</div>
+                <div class="answer-options">
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Share it immediately - this is explosive evidence of corruption!</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Save it to your phone in case it gets deleted by "them"</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, true)">Report it as potentially manipulated and warn others not to share</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Send it to all your friends to get their opinion</button>
+                </div>
+            </div>
+
+            <div id="explanation1" class="hidden" style="margin-top: 20px; padding: 20px; background: #F7FAFC; border-radius: 8px;">
+                <h4 style="color: #1A365D; margin-bottom: 10px;">🎯 Investigation Complete!</h4>
+                <p style="color: #4A5568; line-height: 1.6;">
+                    <strong>Correct!</strong> This video shows multiple red flags of manipulation: the source is suspicious (new account), 
+                    the timing doesn't match the candidate's schedule, and there are technical issues with the video quality. 
+                    The responsible action is to report it and prevent the spread of potentially harmful misinformation.
+                </p>
+            </div>
+
+            <button id="nextBtn1" class="next-btn hidden" onclick="nextStage()">Next Investigation →</button>
+        </div>
+
+        <!-- Stage 2: Health Product Scam -->
+        <div id="stage2" class="scenario-card hidden">
+            <h2 class="scenario-title">💊 Stage 2: The Miracle Cure</h2>
+            <div class="scenario-content">
+                <p>An Instagram influencer with 2.3 million followers posts about a "revolutionary natural supplement" that helped them lose 30 pounds in 30 days without diet or exercise. The post includes dramatic before-and-after photos.</p>
+                
+                <p>The caption claims: "Doctors HATE this one weird trick! Ancient Amazonian tribes have used this secret plant for centuries. Now available for the first time in the US! Limited time offer - 70% off if you order in the next 24 hours!"</p>
+            </div>
+
+            <div class="evidence-section">
+                <h3 class="evidence-title">🔍 Available Evidence:</h3>
+                <div class="evidence-item" onclick="showEvidence('ingredientCheck')">
+                    <strong>Ingredient Investigation:</strong> The "proprietary blend" contains common herbs available at any health food store for a fraction of the price.
+                </div>
+                <div class="evidence-item" onclick="showEvidence('testimonialCheck')">
+                    <strong>Testimonial Verification:</strong> The before-and-after photos appear to be stock images that show up on multiple websites with different names.
+                </div>
+                <div class="evidence-item" onclick="showEvidence('medicalReview')">
+                    <strong>Medical Review:</strong> No clinical trials or FDA approval mentioned. The claims violate FDA regulations about supplement marketing.
+                </div>
+            </div>
+
+            <div class="tools-section">
+                <h3 class="tools-title">🛠️ Investigation Tools:</h3>
+                <button class="tool-btn" onclick="useTool('reverseImage')">Reverse Image Search</button>
+                <button class="tool-btn" onclick="useTool('medicalDatabase')">Medical Database</button>
+                <button class="tool-btn" onclick="useTool('scamDatabase')">Scam Database</button>
+            </div>
+
+            <div class="question-section">
+                <div class="question">What red flags indicate this might be a scam?</div>
+                <div class="answer-options">
+                    <button class="answer-btn" onclick="checkAnswer(this, true)">All of the above - multiple warning signs present</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">The time pressure (24-hour discount) is the only concern</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Natural supplements are always safe and effective</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Influencers wouldn't promote harmful products</button>
+                </div>
+            </div>
+
+            <div id="explanation2" class="hidden" style="margin-top: 20px; padding: 20px; background: #F7FAFC; border-radius: 8px;">
+                <h4 style="color: #1A365D; margin-bottom: 10px;">🎯 Investigation Complete!</h4>
+                <p style="color: #4A5568; line-height: 1.6;">
+                    <strong>Excellent detective work!</strong> This shows multiple scam indicators: unrealistic claims (30 pounds in 30 days), 
+                    time pressure tactics, fake testimonials using stock photos, overpriced common ingredients, and medical claims 
+                    that violate regulations. Always be skeptical of "miracle" health claims.
+                </p>
+            </div>
+
+            <button id="nextBtn2" class="next-btn hidden" onclick="nextStage()">Next Investigation →</button>
+        </div>
+
+        <!-- Stage 3: Viral Challenge Hoax -->
+        <div id="stage3" class="scenario-card hidden">
+            <h2 class="scenario-title">🎮 Stage 3: The Dangerous Challenge</h2>
+            <div class="scenario-content">
+                <p>A TikTok video with 4.7 million views shows teenagers participating in the "Blackout Challenge" where they hold their breath until they pass out. The video includes dramatic music and captions like "OMG I can't believe they actually did this!" and "Who's brave enough to try?"</p>
+                
+                <p>The comments are filled with users tagging friends and saying they want to try it. Some commenters mention that "everyone at school is doing it" and that it's "totally safe if you know what you're doing."</p>
+            </div>
+
+            <div class="evidence-section">
+                <h3 class="evidence-title">🔍 Available Evidence:</h3>
+                <div class="evidence-item" onclick="showEvidence('safetyCheck')">
+                    <strong>Safety Investigation:</strong> Medical experts warn that oxygen deprivation can cause brain damage, seizures, and even death.
+                </div>
+                <div class="evidence-item" onclick="showEvidence('originCheck')">
+                    <strong>Origin Analysis:</strong> This "challenge" has circulated under different names for years and has been linked to multiple hospitalizations.
+                </div>
+                <div class="evidence-item" onclick="showEvidence('expertCheck')">
+                    <strong>Expert Opinion:</strong> Pediatricians and child safety organizations have issued warnings about this specific challenge.
+                </div>
+            </div>
+
+            <div class="tools-section">
+                <h3 class="tools-title">🛠️ Investigation Tools:</h3>
+                <button class="tool-btn" onclick="useTool('safetyDatabase')">Safety Database</button>
+                <button class="tool-btn" onclick="useTool('medicalResearch')">Medical Research</button>
+                <button class="tool-btn" onclick="useTool('expertConsultation')">Expert Consultation</button>
+            </div>
+
+            <div class="question-section">
+                <div class="question">What's the responsible response to this viral challenge?</div>
+                <div class="answer-options">
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Try it yourself to see if it's really dangerous</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Share it with friends to warn them</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, true)">Report the content and warn others about the dangers</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Ignore it - natural selection will sort it out</button>
+                </div>
+            </div>
+
+            <div id="explanation3" class="hidden" style="margin-top: 20px; padding: 20px; background: #F7FAFC; border-radius: 8px;">
+                <h4 style="color: #1A365D; margin-bottom: 10px;">🎯 Investigation Complete!</h4>
+                <p style="color: #4A5568; line-height: 1.6;">
+                    <strong>Right choice!</strong> This is a dangerous challenge that has caused real harm. Sharing it, even to "warn" others, 
+                    actually spreads it further. The responsible action is to report dangerous content and educate others about the risks 
+                    without amplifying the harmful content itself.
+                </p>
+            </div>
+
+            <button id="nextBtn3" class="next-btn hidden" onclick="nextStage()">Next Investigation →</button>
+        </div>
+
+        <!-- Stage 4: Financial Scam -->
+        <div id="stage4" class="scenario-card hidden">
+            <h2 class="scenario-title">💰 Stage 4: The Investment Opportunity</h2>
+            <div class="scenario-content">
+                <p>You receive a Facebook message from someone claiming to be a cryptocurrency expert. They say they've developed an AI trading bot that guarantees 300% returns in 30 days. They show you screenshots of other investors who've supposedly made thousands.</p>
+                
+                <p>The message says: "I'm only accepting 50 more people into this exclusive program. Normally it costs $5000, but for you, it's only $500 because I like your profile. This is a once-in-a-lifetime opportunity!"</p>
+            </div>
+
+            <div class="evidence-section">
+                <h3 class="evidence-title">🔍 Available Evidence:</h3>
+                <div class="evidence-item" onclick="showEvidence('guaranteeCheck')">
+                    <strong>Guarantee Analysis:</strong> No legitimate investment can guarantee 300% returns in 30 days - this is mathematically impossible to sustain.
+                </div>
+                <div class="evidence-item" onclick="showEvidence('pressureCheck')">
+                    <strong>Pressure Tactics:</strong> Creating urgency with "only 50 spots" and "once-in-a-lifetime" language is a classic scam technique.
+                </div>
+                <div class="evidence-item" onclick="showEvidence('profileCheck')">
+                    <strong>Profile Investigation:</strong> The person's profile was created recently and has very few real friends or posts.
+                </div>
+            </div>
+
+            <div class="tools-section">
+                <h3 class="tools-title">🛠️ Investigation Tools:</h3>
+                <button class="tool-btn" onclick="useTool('financialRegulator')">Financial Regulator Check</button>
+                <button class="tool-btn" onclick="useTool('scamDatabase')">Scam Database</button>
+                <button class="tool-btn" onclick="useTool('investmentCalculator')">Investment Calculator</button>
+            </div>
+
+            <div class="question-section">
+                <div class="question">How should you respond to this investment opportunity?</div>
+                <div class="answer-options">
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Ask for more details about how the AI works</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Start with a small amount to test if it's real</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, true)">Block and report the account - it's clearly a scam</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Forward it to friends who might be interested</button>
+                </div>
+            </div>
+
+            <div id="explanation4" class="hidden" style="margin-top: 20px; padding: 20px; background: #F7FAFC; border-radius: 8px;">
+                <h4 style="color: #1A365D; margin-bottom: 10px;">🎯 Investigation Complete!</h4>
+                <p style="color: #4A5568; line-height: 1.6;">
+                    <strong>Perfect detective work!</strong> This shows classic investment scam signs: impossible returns, pressure tactics, 
+                    and suspicious profiles. Legitimate investments never guarantee returns, and real financial advisors are registered 
+                    with regulatory bodies. Never send money to people who contact you unsolicited online.
+                </p>
+            </div>
+
+            <button id="nextBtn4" class="next-btn hidden" onclick="nextStage()">Next Investigation →</button>
+        </div>
+
+        <!-- Stage 5: News Manipulation -->
+        <div id="stage5" class="scenario-card hidden">
+            <h2 class="scenario-title">📰 Stage 5: The Twisted Headline</h2>
+            <div class="scenario-content">
+                <p>A news article is being shared on Twitter with the headline: "BREAKING: Local School Bans American Flag, Forces Students to Learn Foreign Languages EXCLUSIVELY." The article has thousands of angry comments and shares.</p>
+                
+                <p>However, when you click through to read the actual article, it describes a school that added Spanish and Mandarin classes to their curriculum and moved their flag to a different location on campus for safety reasons during construction.</p>
+            </div>
+
+            <div class="evidence-section">
+                <h3 class="evidence-title">🔍 Available Evidence:</h3>
+                <div class="evidence-item" onclick="showEvidence('headlineCheck')">
+                    <strong>Headline Analysis:</strong> The headline is sensationalized and doesn't match the actual content of the article.
+                </div>
+                <div class="evidence-item" onclick="showEvidence('contextCheck')">
+                    <strong>Context Check:</strong> The article explains the flag was temporarily moved during construction, not banned.
+                </div>
+                <div class="evidence-item" onclick="showEvidence('curriculumCheck')">
+                    <strong>Curriculum Review:</strong> The school added language options, they didn't replace English or "force" anything.
+                </div>
+            </div>
+
+            <div class="tools-section">
+                <h3 class="tools-title">🛠️ Investigation Tools:</h3>
+                <button class="tool-btn" onclick="useTool('articleAnalysis')">Article Analysis</button>
+                <button class="tool-btn" onclick="useTool('sourceVerification')">Source Verification</button>
+                <button class="tool-btn" onclick="useTool('contextResearch')">Context Research</button>
+            </div>
+
+            <div class="question-section">
+                <div class="question">What's the best way to address this misleading headline?</div>
+                <div class="answer-options">
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Share it with your own angry comment</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, true)">Quote-tweet with the actual facts from the article</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Ignore it - headlines are always exaggerated</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Report the original article as fake news</button>
+                </div>
+            </div>
+
+            <div id="explanation5" class="hidden" style="margin-top: 20px; padding: 20px; background: #F7FAFC; border-radius: 8px;">
+                <h4 style="color: #1A365D; margin-bottom: 10px;">🎯 Investigation Complete!</h4>
+                <p style="color: #4A5568; line-height: 1.6;">
+                    <strong>Excellent critical thinking!</strong> This is a perfect example of how headlines can be manipulated to create outrage 
+                    and drive engagement. The responsible response is to share the actual facts without amplifying the misleading content. 
+                    This helps others understand the truth without rewarding the sensationalism.
+                </p>
+            </div>
+
+            <button id="nextBtn5" class="next-btn hidden" onclick="nextStage()">Next Investigation →</button>
+        </div>
+
+        <!-- Stage 6: Social Engineering -->
+        <div id="stage6" class="scenario-card hidden">
+            <h2 class="scenario-title">👥 Stage 6: The Impersonation</h2>
+            <div class="scenario-content">
+                <p>You receive a text message from someone claiming to be your best friend Sarah. The message says: "Hey! I'm in trouble and need your help. My phone died and I'm using a friend's phone. Can you send me $200 via Venmo? I'll pay you back tomorrow. Please don't call my mom, she'll just worry. This is so embarrassing! 😅"</p>
+                
+                <p>The message uses Sarah's usual texting style with emojis and casual language. You're about to send the money when you remember something from your Digital Detective training...</p>
+            </div>
+
+            <div class="evidence-section">
+                <h3 class="evidence-title">🔍 Available Evidence:</h3>
+                <div class="evidence-item" onclick="showEvidence('contactCheck')">
+                    <strong>Contact Verification:</strong> The phone number is different from Sarah's usual number, even though the contact name says "Sarah."
+                </div>
+                <div class="evidence-item" onclick="showEvidence('behaviorCheck')">
+                    <strong>Behavior Analysis:</strong> Sarah has never asked you for money before and usually calls for important things.
+                </div>
+                <div class="evidence-item" onclick="showEvidence('urgencyCheck')">
+                    <strong>Urgency Check:</strong> The message creates urgency and tries to prevent you from verifying through other means.
+                </div>
+            </div>
+
+            <div class="tools-section">
+                <h3 class="tools-title">🛠️ Investigation Tools:</h3>
+                <button class="tool-btn" onclick="useTool('contactVerification')">Contact Verification</button>
+                <button class="tool-btn" onclick="useTool('socialMediaCheck')">Social Media Check</button>
+                <button class="tool-btn" onclick="useTool('mutualFriend')">Mutual Friend Check</button>
+            </div>
+
+            <div class="question-section">
+                <div class="question">What's the safest way to verify if this is really Sarah?</div>
+                <div class="answer-options">
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Send the money - it sounds just like her</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Reply asking for proof it's really her</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, true)">Call her actual phone number or contact her through another method</button>
+                    <button class="answer-btn" onclick="checkAnswer(this, false)">Send half the money to be safe</button>
+                </div>
+            </div>
+
+            <div id="explanation6" class="hidden" style="margin-top: 20px; padding: 20px; background: #F7FAFC; border-radius: 8px;">
+                <h4 style="color: #1A365D; margin-bottom: 10px;">🎯 Investigation Complete!</h4>
+                <p style="color: #4A5568; line-height: 1.6;">
+                    <strong>Perfect detective instincts!</strong> This is a classic social engineering scam. The scammers research their targets 
+                    and mimic communication styles to seem convincing. Always verify through a separate, trusted communication channel 
+                    before sending money or personal information. This is exactly how real digital forensics experts handle suspicious communications.
+                </p>
+            </div>
+
+            <button id="nextBtn6" class="next-btn hidden" onclick="showResults()">Complete Investigation →</button>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results" class="game-over hidden">
+            <h2 class="final-score">🎉 Investigation Complete!</h2>
+            <div class="performance-message" id="performanceMessage"></div>
+            <div class="performance-message">
+                <h3>🕵️ What You've Learned:</h3>
+                <ul style="text-align: left; margin-top: 20px;">
+                    <li>How to identify deepfake and manipulated media</li>
+                    <li>Recognizing health and financial scams</li>
+                    <li>Dangerous viral challenge awareness</li>
+                    <li>News headline manipulation detection</li>
+                    <li>Social engineering attack prevention</li>
+                    <li>Using verification tools and critical thinking</li>
+                </ul>
+            </div>
+            <button class="restart-btn" onclick="restartGame()">🔍 Start New Investigation</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStage = 1;
+        let score = 0;
+        let answered = false;
+
+        function showEvidence(type) {
+            // Visual feedback for evidence selection
+            event.target.style.background = '#E6FFFA';
+            event.target.style.borderLeftColor = '#00A3C4';
+        }
+
+        function useTool(tool) {
+            // Visual feedback for tool usage
+            event.target.style.background = '#C6F6D5';
+            event.target.style.transform = 'translateY(-2px)';
+            
+            // Show tool results
+            setTimeout(() => {
+                alert(`🔍 ${tool.charAt(0).toUpperCase() + tool.slice(1)} Results:\n\nThis tool helps gather more evidence. Combine multiple tools and critical thinking to make your final assessment!`);
+            }, 300);
+        }
+
+        function checkAnswer(button, isCorrect) {
+            if (answered) return;
+            
+            answered = true;
+            const allButtons = button.parentElement.querySelectorAll('.answer-btn');
+            
+            allButtons.forEach(btn => {
+                btn.style.pointerEvents = 'none';
+                btn.style.opacity = '0.7';
+            });
+            
+            if (isCorrect) {
+                button.classList.add('correct');
+                score++;
+                document.getElementById('currentScore').textContent = score;
+            } else {
+                button.classList.add('incorrect');
+                // Also highlight the correct answer
+                allButtons.forEach(btn => {
+                    if (btn.onclick.toString().includes('true')) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+            
+            // Show explanation
+            document.getElementById(`explanation${currentStage}`).classList.remove('hidden');
+            document.getElementById(`nextBtn${currentStage}`).classList.remove('hidden');
+        }
+
+        function nextStage() {
+            // Hide current stage
+            document.getElementById(`stage${currentStage}`).classList.add('hidden');
+            
+            currentStage++;
+            answered = false;
+            
+            // Update progress
+            document.getElementById('currentStage').textContent = currentStage;
+            document.getElementById('stageIndicator').textContent = `Stage ${currentStage} of 6`;
+            document.getElementById('progressFill').style.width = `${(currentStage / 6) * 100}%`;
+            
+            // Show next stage
+            document.getElementById(`stage${currentStage}`).classList.remove('hidden');
+        }
+
+        function showResults() {
+            // Hide final stage
+            document.getElementById('stage6').classList.add('hidden');
+            
+            // Show results
+            document.getElementById('results').classList.remove('hidden');
+            
+            // Generate performance message
+            let message = '';
+            if (score === 6) {
+                message = '🌟 Outstanding! You\'re a master digital detective! You correctly identified all the misinformation and made responsible choices. Your critical thinking skills are excellent!';
+            } else if (score >= 4) {
+                message = '🎯 Great work! You have strong digital literacy skills and made mostly correct decisions. With a bit more practice, you\'ll be an expert detective!';
+            } else if (score >= 2) {
+                message = '👍 Good effort! You\'re developing important digital literacy skills. Keep practicing your critical thinking and fact-checking abilities.';
+            } else {
+                message = '📚 Keep learning! Digital literacy is a skill that improves with practice. Review the explanations and try the investigation again!';
+            }
+            
+            document.getElementById('performanceMessage').innerHTML = `
+                <div style="font-size: 1.5rem; margin-bottom: 15px;">Your Score: ${score}/6</div>
+                <div style="font-size: 1.1rem; line-height: 1.6;">${message}</div>
+            `;
+        }
+
+        function restartGame() {
+            // Reset all variables
+            currentStage = 1;
+            score = 0;
+            answered = false;
+            
+            // Reset UI
+            document.getElementById('currentScore').textContent = '0';
+            document.getElementById('currentStage').textContent = '1';
+            document.getElementById('stageIndicator').textContent = 'Stage 1 of 6';
+            document.getElementById('progressFill').style.width = '16.67%';
+            
+            // Hide results and show first stage
+            document.getElementById('results').classList.add('hidden');
+            document.getElementById('stage1').classList.remove('hidden');
+            
+            // Reset all buttons and explanations
+            for (let i = 1; i <= 6; i++) {
+                const stage = document.getElementById(`stage${i}`);
+                if (stage) {
+                    const buttons = stage.querySelectorAll('.answer-btn');
+                    buttons.forEach(btn => {
+                        btn.classList.remove('correct', 'incorrect');
+                        btn.style.pointerEvents = 'auto';
+                        btn.style.opacity = '1';
+                    });
+                    
+                    const explanation = document.getElementById(`explanation${i}`);
+                    if (explanation) explanation.classList.add('hidden');
+                    
+                    const nextBtn = document.getElementById(`nextBtn${i}`);
+                    if (nextBtn) nextBtn.classList.add('hidden');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

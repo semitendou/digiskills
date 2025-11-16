@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Digital Skills for All</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1A365D;
+            background: #FEFEFE;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1A365D 0%, #2D5A8C 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                transition: opacity 0.3s;
+            }
+
+                .nav-links a:hover {
+                    opacity: 0.8;
+                }
+
+        .section-hero {
+            background: linear-gradient(135deg, #2D5A8C 0%, #1A365D 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+            .section-hero h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-hero p {
+                font-size: 1.3rem;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+        .content-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: #F7FAFC;
+            color: #1A365D;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #E2E8F0;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+            .category-btn:hover,
+            .category-btn.active {
+                background: #2D5A8C;
+                color: white;
+                border-color: #2D5A8C;
+            }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+            .faq-item:hover {
+                box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #F7FAFC;
+            transition: background 0.3s;
+        }
+
+            .faq-question:hover {
+                background: #EDF2F7;
+            }
+
+            .faq-question h3 {
+                font-size: 1.1rem;
+                color: #1A365D;
+                margin: 0;
+                flex: 1;
+            }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: #2D5A8C;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: #4A5568;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .faq-answer li {
+            color: #4A5568;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer a {
+            color: #2D5A8C;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+            .faq-answer a:hover {
+                text-decoration: underline;
+            }
+
+        .search-section {
+            background: #F7FAFC;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+            .search-section h2 {
+                margin-bottom: 1rem;
+                color: #1A365D;
+            }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 0.75rem 1rem;
+            border: 2px solid #E2E8F0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+            .search-box:focus {
+                outline: none;
+                border-color: #2D5A8C;
+            }
+
+        .still-have-questions {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+            .still-have-questions h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .still-have-questions p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        .contact-btn {
+            background: white;
+            color: #667eea;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .contact-btn:hover {
+                background: #f8f9ff;
+                transform: translateY(-2px);
+            }
+
+        footer {
+            background: #1A365D;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #B8D4E8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+            .footer-section a:hover {
+                color: white;
+            }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #2D5A8C;
+            color: #B8D4E8;
+        }
+
+        @media (max-width: 768px) {
+            .section-hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .faq-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .category-btn {
+                width: 200px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🛡️💡 Digital Skills for All</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutus.html">About </a></li>               
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="videotutorials.html">Video Tutorials</a></li>
+                <li><a href="news.html">Latest News</a></li>
+                <li><a href="glossary.html">Glossary</a></li>
+                <li><a href="contactpage.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="section-hero">
+        <h1>Frequently Asked Questions</h1>
+        <p>Find answers to common questions about digital literacy, our programs, and online safety.</p>
+    </section>
+
+    <div class="content-section">
+        <div class="search-section">
+            <h2>Search Our FAQ</h2>
+            <input type="text" class="search-box" placeholder="Type your question here..." id="faqSearch">
+        </div>
+
+        <div class="faq-categories">
+            <button class="category-btn active" data-category="all">All Questions</button>
+            <button class="category-btn" data-category="programs">Our Programs</button>
+            <button class="category-btn" data-category="safety">Online Safety</button>
+            <button class="category-btn" data-category="seniors">For Seniors</button>
+            <button class="category-btn" data-category="youth">For Youth</button>
+            <button class="category-btn" data-category="technical">Technical Help</button>
+        </div>
+
+        <div class="faq-container" id="faqContainer">
+            <!-- General Questions -->
+            <div class="faq-item" data-category="programs">
+                <div class="faq-question">
+                    <h3>What is Digital Skills for All?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        Digital Skills for All is a community organization dedicated to empowering people of all ages 
+                        with the knowledge and confidence to navigate the digital world safely and effectively. We 
+                        provide free resources, workshops, and support to help bridge the digital divide in our communities.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="programs">
+                <div class="faq-question">
+                    <h3>Who can participate in your programs?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        Our programs are designed for everyone! We offer specialized content for:
+                    </p>
+                    <ul>
+                        <li>Seniors looking to build digital confidence</li>
+                        <li>Young people learning to navigate social media safely</li>
+                        <li>Parents wanting to understand digital parenting</li>
+                        <li>Anyone interested in improving their digital literacy</li>
+                    </ul>
+                    <p>
+                        All our programs are free and open to the community.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="programs">
+                <div class="faq-question">
+                    <h3>How much do your workshops cost?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        All our workshops, resources, and programs are completely free! We believe that digital 
+                        literacy should be accessible to everyone, regardless of their financial situation. Our 
+                        funding comes from community grants, donations, and partnerships with local organizations.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="programs">
+                <div class="faq-question">
+                    <h3>Where are your workshops held?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        We hold workshops at various community locations including:
+                    </p>
+                    <ul>
+                        <li>Local libraries</li>
+                        <li>Community centers</li>
+                        <li>Senior centers</li>
+                        <li>Schools and educational institutions</li>
+                        <li>Online via video conferencing</li>
+                    </ul>
+                    <p>
+                        Check our <a href="news.html">Latest News</a> section or <a href="contactpage.html">contact us</a> 
+                        for upcoming workshop locations and schedules.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Online Safety Questions -->
+            <div class="faq-item" data-category="safety">
+                <div class="faq-question">
+                    <h3>How can I spot an online scam?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        Here are key red flags to watch for:
+                    </p>
+                    <ul>
+                        <li><strong>Urgency:</strong> Messages that pressure you to act quickly</li>
+                        <li><strong>Too good to be true:</strong> Unrealistic offers or prizes</li>
+                        <li><strong>Requests for personal information:</strong> Legitimate organizations rarely ask for sensitive data via email</li>
+                        <li><strong>Poor grammar:</strong> Many scams contain spelling or grammatical errors</li>
+                        <li><strong>Suspicious links:</strong> Hover over links to see where they really lead</li>
+                    </ul>
+                    <p>
+                        When in doubt, STOP and verify through official channels. Our <a href="reportscam.html">Report a Scam</a> 
+                        page has more detailed guidance and resources.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="safety">
+                <div class="faq-question">
+                    <h3>What should I do if I think I've been scammed?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        If you suspect you've been scammed, take these immediate steps:
+                    </p>
+                    <ul>
+                        <li><strong>Stop all communication</strong> with the suspected scammer</li>
+                        <li><strong>Contact your bank</strong> immediately if you shared financial information</li>
+                        <li><strong>Change your passwords</strong> for any compromised accounts</li>
+                        <li><strong>Report the incident</strong> to <a href="reportscam.html">our scam reporting service</a></li>
+                        <li><strong>Document everything</strong> - save messages, emails, and screenshots</li>
+                    </ul>
+                    <p>
+                        Remember, you're not alone. Many people experience scams, and there are resources available 
+                        to help you recover and protect yourself in the future.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="safety">
+                <div class="faq-question">
+                    <h3>How do I create strong passwords?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        Strong passwords are your first line of defense. Follow these guidelines:
+                    </p>
+                    <ul>
+                        <li>Use at least 12 characters</li>
+                        <li>Include uppercase and lowercase letters, numbers, and symbols</li>
+                        <li>Avoid common words, names, or dates</li>
+                        <li>Use a unique password for each account</li>
+                        <li>Consider using a passphrase like "Coffee@Morning7Rain!"</li>
+                    </ul>
+                    <p>
+                        <strong>Pro tip:</strong> Consider using a password manager to securely store and generate 
+                        strong passwords. This way you only need to remember one master password.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Senior-Specific Questions -->
+            <div class="faq-item" data-category="seniors">
+                <div class="faq-question">
+                    <h3>I'm a senior and feel overwhelmed by technology. Where should I start?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        It's completely normal to feel overwhelmed! We recommend starting with these basics:
+                    </p>
+                    <ul>
+                        <li><strong>Start small:</strong> Focus on one device or app at a time</li>
+                        <li><strong>Practice regularly:</strong> Even 10-15 minutes daily builds confidence</li>
+                        <li><strong>Learn with others:</strong> Join our senior-friendly workshops</li>
+                        <li><strong>Ask for help:</strong> Don't hesitate to ask questions - we love helping!</li>
+                    </ul>
+                    <p>
+                        Our <a href="seniorspage.html">Seniors page</a> has specially designed courses that start 
+                        with the absolute basics and build up gradually. Remember, every expert was once a beginner!
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="seniors">
+                <div class="faq-question">
+                    <h3>How can I video call my grandchildren?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        Video calling is a wonderful way to stay connected! Here are the most popular options:
+                    </p>
+                    <ul>
+                        <li><strong>WhatsApp:</strong> Free, works on smartphones, very popular</li>
+                        <li><strong>FaceTime:</strong> For Apple devices (iPhone, iPad, Mac)</li>
+                        <li><strong>Zoom:</strong> Works on any device, great for group calls</li>
+                        <li><strong>Facebook Messenger:</strong> If you use Facebook, this is built-in</li>
+                        <li><strong>Skype:</strong> Long-standing option, works on all devices</li>
+                    </ul>
+                    <p>
+                        Our "Connecting with Family" course covers video calling step-by-step. We also offer 
+                        one-on-one support to help you set up and practice with your specific device.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="seniors">
+                <div class="faq-question">
+                    <h3>Is online banking safe for seniors?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        Yes, online banking is generally very safe when you follow security best practices:
+                    </p>
+                    <ul>
+                        <li><strong>Official apps only:</strong> Download banking apps directly from official app stores</li>
+                        <li><strong>Secure networks:</strong> Only bank on trusted Wi-Fi networks (avoid public Wi-Fi)</li>
+                        <li><strong>Never share details:</strong> Banks never ask for passwords or PINs via email/phone</li>
+                        <li><strong>Check statements:</strong> Regularly review your accounts for unauthorized activity</li>
+                        <li><strong>Log out properly:</strong> Always log out when finished, especially on shared devices</li>
+                    </ul>
+                    <p>
+                        Our "Digital Banking for Seniors" course teaches online banking safety step-by-step. 
+                        Many seniors find online banking actually helps them monitor their finances more easily!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Youth-Specific Questions -->
+            <div class="faq-item" data-category="youth">
+                <div class="faq-question">
+                    <h3>How can I help my teenager stay safe on social media?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        Open communication is key! Here are some strategies:
+                    </p>
+                    <ul>
+                        <li><strong>Have regular conversations</strong> about online experiences</li>
+                        <li><strong>Set privacy settings together</strong> - make it a collaborative process</li>
+                        <li><strong>Teach them to think before posting</strong> - would they be comfortable with grandma seeing it?</li>
+                        <li><strong>Establish screen-free times</strong> for family connection</li>
+                        <li><strong>Model good behavior</strong> - they're watching how you use technology</li>
+                    </ul>
+                    <p>
+                        Our <a href="youthpage.html">Youth programs</a> include resources for both teens and parents. 
+                        We also offer family workshops where you can learn together!
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="youth">
+                <div class="faq-question">
+                    <h3>What should young people know about online privacy?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        Young people should understand that what they share online can have long-term consequences:
+                    </p>
+                    <ul>
+                        <li><strong>Digital footprint:</strong> Everything posted online leaves a permanent record</li>
+                        <li><strong>Privacy settings:</strong> Learn to control who sees what on each platform</li>
+                        <li><strong>Personal information:</strong> Never share addresses, phone numbers, or school details publicly</li>
+                        <li><strong>Photos:</strong> Be thoughtful about what images you share and where</li>
+                        <li><strong>Location sharing:</strong> Turn off location services for most apps</li>
+                    </ul>
+                    <p>
+                        Our "Digital Citizenship for Youth" course covers these topics in detail, helping young 
+                        people build healthy digital habits that will serve them throughout their lives.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Technical Questions -->
+            <div class="faq-item" data-category="technical">
+                <div class="faq-question">
+                    <h3>How do I update my device's software?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        Keeping your devices updated is crucial for security. Here's how:
+                    </p>
+                    <ul>
+                        <li><strong>Smartphones/Tablets:</strong> Settings → System → Software Update (or similar)</li>
+                        <li><strong>Computers:</strong> Look for system updates in your settings menu</li>
+                        <li><strong>Apps:</strong> App Store/Play Store → Updates → Update All</li>
+                    </ul>
+                    <p>
+                        <strong>Tip:</strong> Enable automatic updates when possible, so you don't have to remember. 
+                        Our "Device Maintenance" course provides step-by-step guides for all major device types.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="technical">
+                <div class="faq-question">
+                    <h3>What's the difference between Wi-Fi and mobile data?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>
+                        Understanding the difference helps you stay connected and manage costs:
+                    </p>
+                    <ul>
+                        <li><strong>Wi-Fi:</strong> Internet from your home router or public hotspots - usually free/unlimited</li>
+                        <li><strong>Mobile Data:</strong> Internet through your phone plan - may have usage limits and costs</li>
+                    </ul>
+                    <p>
+                        <strong>Best practice:</strong> Use Wi-Fi when available to save your mobile data. Most devices 
+                        automatically connect to known Wi-Fi networks. Our "Understanding Internet Connections" 
+                        course explains this in more detail.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="still-have-questions">
+            <h2>Still Have Questions?</h2>
+            <p>
+                Can't find the answer you're looking for? We're here to help! Our team is always happy to 
+                answer questions and provide personalized support.
+            </p>
+            <a href="contactpage.html" class="contact-btn">Contact Us</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="our-mission.html">Our Mission</a></li>
+                    <li><a href="our-partners.html">Our Partners</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="glossary.html">Glossary</a></li>
+                    <li><a href="videotutorials.html">Video Tutorials</a></li>
+                    <li><a href="news.html">Latest News</a></li>
+                    <li><a href="#guides">Downloadable Guides</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                    <li><a href="contactpage.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-use.html">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Digital Skills for All. Empowering digital confidence for everyone.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Category filtering
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.dataset.category;
+                
+                // Update active button
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Filter FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Search functionality
+        document.getElementById('faqSearch').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

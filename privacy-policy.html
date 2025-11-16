@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Digital Skills for All</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1A365D;
+            background: #FEFEFE;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1A365D 0%, #2D5A8C 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                transition: opacity 0.3s;
+            }
+
+                .nav-links a:hover {
+                    opacity: 0.8;
+                }
+
+        .section-hero {
+            background: linear-gradient(135deg, #2D5A8C 0%, #1A365D 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+            .section-hero h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-hero p {
+                font-size: 1.3rem;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+        .content-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .policy-overview {
+            background: #F7FAFC;
+            padding: 3rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            border-left: 4px solid #2D5A8C;
+        }
+
+            .policy-overview h2 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+                color: #1A365D;
+            }
+
+            .policy-overview p {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                margin-bottom: 1.5rem;
+                color: #4A5568;
+            }
+
+        .policy-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin: 3rem 0;
+        }
+
+            .policy-section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+                color: #1A365D;
+                border-bottom: 2px solid #E2E8F0;
+                padding-bottom: 0.5rem;
+            }
+
+            .policy-section h3 {
+                font-size: 1.3rem;
+                margin: 1.5rem 0 1rem;
+                color: #2D5A8C;
+            }
+
+            .policy-section p {
+                color: #4A5568;
+                line-height: 1.7;
+                margin-bottom: 1rem;
+            }
+
+            .policy-section ul {
+                margin: 1rem 0;
+                padding-left: 2rem;
+            }
+
+            .policy-section li {
+                color: #4A5568;
+                margin-bottom: 0.5rem;
+                line-height: 1.6;
+            }
+
+        .data-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .data-card {
+            background: #F7FAFC;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid #2D5A8C;
+        }
+
+            .data-card h4 {
+                color: #1A365D;
+                margin-bottom: 0.5rem;
+            }
+
+            .data-card p {
+                font-size: 0.95rem;
+                margin: 0;
+            }
+
+        .rights-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+
+            .rights-section h2 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+                text-align: center;
+            }
+
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .right-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+            .right-item .icon {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .right-item h4 {
+                margin-bottom: 0.5rem;
+            }
+
+            .right-item p {
+                font-size: 0.95rem;
+            }
+
+        .contact-section {
+            background: #F7FAFC;
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+            .contact-section h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                color: #1A365D;
+            }
+
+            .contact-section p {
+                font-size: 1.1rem;
+                line-height: 1.7;
+                color: #4A5568;
+                margin-bottom: 2rem;
+            }
+
+        .contact-btn {
+            background: #2D5A8C;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .contact-btn:hover {
+                background: #1A365D;
+                transform: translateY(-2px);
+            }
+
+        .update-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+            .update-info p {
+                color: #4A5568;
+                font-style: italic;
+            }
+
+        footer {
+            background: #1A365D;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #B8D4E8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+            .footer-section a:hover {
+                color: white;
+            }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #2D5A8C;
+            color: #B8D4E8;
+        }
+
+        @media (max-width: 768px) {
+            .section-hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .data-types {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🛡️💡 Digital Skills for All</div>
+            <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About </a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="videotutorials.html">Video Tutorials</a></li>
+            <li><a href="news.html">Latest News</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="contactpage.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="section-hero">
+        <h1>Privacy Policy</h1>
+        <p>Protecting your privacy and personal information is our top priority.</p>
+    </section>
+
+    <div class="content-section">
+        <div class="policy-overview">
+            <h2>Our Privacy Commitment</h2>
+            <p>
+                At Digital Skills for All, we are committed to protecting your privacy and ensuring the security of 
+                your personal information. This privacy policy explains how we collect, use, store, and protect your 
+                data when you use our website, attend our workshops, or interact with our services.
+            </p>
+            <p>
+                We believe that privacy is a fundamental right, and we handle your personal information with the 
+                utmost care and respect. We only collect information that is necessary to provide our services, 
+                and we never sell or share your personal data with third parties for marketing purposes.
+            </p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Information We Collect</h2>
+            <p>
+                We collect different types of information to provide and improve our services:
+            </p>
+
+            <div class="data-types">
+                <div class="data-card">
+                    <h4>Contact Information</h4>
+                    <p>Name, email address, phone number when you contact us or register for workshops</p>
+                </div>
+
+                <div class="data-card">
+                    <h4>Workshop Participation</h4>
+                    <p>Attendance records, feedback forms, and learning progress (anonymized for reporting)</p>
+                </div>
+
+                <div class="data-card">
+                    <h4>Website Usage</h4>
+                    <p>Cookies, IP address, browser type, and pages visited (for improving our website)</p>
+                </div>
+
+                <div class="data-card">
+                    <h4>Communication Records</h4>
+                    <p>Emails, messages, and feedback you send to us</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="policy-section">
+            <h2>How We Use Your Information</h2>
+            <p>
+                We use your information only for legitimate purposes related to our educational mission:
+            </p>
+            <ul>
+                <li><strong>Service Delivery:</strong> To provide workshops, resources, and support services</li>
+                <li><strong>Communication:</strong> To respond to your inquiries and send important updates</li>
+                <li><strong>Improvement:</strong> To analyze and improve our programs and website</li>
+                <li><strong>Safety:</strong> To protect against fraud and ensure the security of our services</li>
+                <li><strong>Compliance:</strong> To meet legal and regulatory requirements</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>Information Sharing and Disclosure</h2>
+            <p>
+                We respect your privacy and only share information in limited circumstances:
+            </p>
+            
+            <h3>We DO NOT:</h3>
+            <ul>
+                <li>Sell your personal information to anyone</li>
+                <li>Share your information for marketing purposes</li>
+                <li>Provide your data to advertisers</li>
+            </ul>
+
+            <h3>We MAY share information when:</h3>
+            <ul>
+                <li>Required by law or to comply with legal processes</li>
+                <li>Protecting the safety and rights of our users</li>
+                <li>With your explicit consent</li>
+                <li>With trusted service providers who help us operate our website (under strict confidentiality agreements)</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>Data Security</h2>
+            <p>
+                We take the security of your personal information seriously and implement appropriate technical 
+                and organizational measures to protect it:
+            </p>
+            <ul>
+                <li><strong>Encryption:</strong> All data transmission uses HTTPS encryption</li>
+                <li><strong>Secure Storage:</strong> Personal information is stored on secure servers</li>
+                <li><strong>Access Control:</strong> Only authorized personnel can access personal data</li>
+                <li><strong>Regular Updates:</strong> We keep our security measures up to date</li>
+                <li><strong>Staff Training:</strong> Our team is trained in data protection best practices</li>
+            </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>Data Retention</h2>
+            <p>
+                We only keep your personal information for as long as necessary to provide our services and 
+                fulfill the purposes outlined in this policy. When we no longer need your information, we 
+                securely delete or anonymize it.
+            </p>
+            <ul>
+                <li><strong>Contact Information:</strong> Retained while you're actively using our services</li>
+                <li><strong>Workshop Records:</strong> Kept for program evaluation and improvement</li>
+                <li><strong>Website Analytics:</strong> Aggregated data kept for statistical purposes</li>
+            </ul>
+        </div>
+
+        <div class="rights-section">
+            <h2>Your Privacy Rights</h2>
+            <div class="rights-grid">
+                <div class="right-item">
+                    <div class="icon">👁️</div>
+                    <h4>Right to Access</h4>
+                    <p>You can request a copy of the personal information we hold about you</p>
+                </div>
+
+                <div class="right-item">
+                    <div class="icon">✏️</div>
+                    <h4>Right to Correction</h4>
+                    <p>You can request that we correct any inaccurate or incomplete information</p>
+                </div>
+
+                <div class="right-item">
+                    <div class="icon">🗑️</div>
+                    <h4>Right to Deletion</h4>
+                    <p>You can request that we delete your personal information (subject to legal requirements)</p>
+                </div>
+
+                <div class="right-item">
+                    <div class="icon">🚫</div>
+                    <h4>Right to Object</h4>
+                    <p>You can object to how we use your information in certain circumstances</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="policy-section">
+            <h2>Cookies and Tracking</h2>
+            <p>
+                We use cookies and similar technologies to improve your experience on our website:
+            </p>
+            <ul>
+                <li><strong>Essential Cookies:</strong> Required for basic website functionality</li>
+                <li><strong>Analytics Cookies:</strong> Help us understand how people use our site</li>
+                <li><strong>Preference Cookies:</strong> Remember your settings and preferences</li>
+            </ul>
+            <p>
+                You can control cookie settings through your browser preferences. However, disabling cookies 
+                may affect some website functionality.
+            </p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Children's Privacy</h2>
+            <p>
+                Our services are designed for learners of all ages, including children under 13. We take 
+                additional precautions to protect children's privacy:
+            </p>
+            <ul>
+                <li>We obtain parental consent before collecting information from children under 13</li>
+                <li>We limit the personal information we collect from children</li>
+                <li>Parents can review, correct, or delete their child's information at any time</li>
+                <li>We don't share children's information with third parties</li>
+            </ul>
+        </div>
+
+        <div class="contact-section">
+            <h2>Contact Us About Privacy</h2>
+            <p>
+                If you have questions about this privacy policy, want to exercise your privacy rights, 
+                or have concerns about how we handle your personal information, please contact us. 
+                We're here to help and take all privacy concerns seriously.
+            </p>
+            <a href="contactpage.html" class="contact-btn">Contact Privacy Team</a>
+        </div>
+
+        <div class="update-info">
+            <p>
+                <strong>Last Updated:</strong> November 2025<br>
+                <strong>Next Review:</strong> November 2026
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="our-mission.html">Our Mission</a></li>
+                    <li><a href="our-partners.html">Our Partners</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="glossary.html">Glossary</a></li>
+                    <li><a href="videotutorials.html">Video Tutorials</a></li>
+                    <li><a href="news.html">Latest News</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                    <li><a href="contactpage.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-use.html">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Digital Skills for All. Empowering digital confidence for everyone.</p>
+        </div>
+    </footer>
+</body>
+</html>
