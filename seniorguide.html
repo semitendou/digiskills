@@ -1,0 +1,659 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Downloadable Guides - Digital Skills for All</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1A365D;
+            background: #FEFEFE;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1A365D 0%, #2D5A8C 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                transition: opacity 0.3s;
+            }
+
+                .nav-links a:hover {
+                    opacity: 0.8;
+                }
+
+        .section-hero {
+            background: linear-gradient(135deg, #FF6B6B 0%, #E85A5A 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+            .section-hero h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-hero p {
+                font-size: 1.3rem;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .guides-intro {
+            background: #F7FAFC;
+            padding: 3rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+            .guides-intro h2 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+                color: #1A365D;
+            }
+
+            .guides-intro p {
+                font-size: 1.2rem;
+                line-height: 1.8;
+                color: #4A5568;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .guide-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+            border-top: 4px solid #FF6B6B;
+        }
+
+            .guide-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .guide-header {
+            background: linear-gradient(135deg, #FF6B6B 0%, #E85A5A 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+            .guide-header h3 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .guide-header .guide-icon {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+        .guide-content {
+            padding: 2rem;
+        }
+
+            .guide-content h4 {
+                color: #1A365D;
+                margin-bottom: 1rem;
+                font-size: 1.2rem;
+            }
+
+            .guide-content p {
+                color: #4A5568;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+            }
+
+        .guide-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+            .guide-features li {
+                color: #4A5568;
+                margin-bottom: 0.5rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+                .guide-features li::before {
+                    content: "✓";
+                    color: #48BB78;
+                    font-weight: bold;
+                }
+
+        .pdf-viewer {
+            background: #F7FAFC;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            border: 2px dashed #CBD5E0;
+        }
+
+            .pdf-viewer .pdf-icon {
+                font-size: 4rem;
+                color: #E53E3E;
+                margin-bottom: 1rem;
+            }
+
+            .pdf-viewer p {
+                color: #4A5568;
+                margin-bottom: 1rem;
+            }
+
+        .download-btn {
+            background: #FF6B6B;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem;
+        }
+
+            .download-btn:hover {
+                background: #E85A5A;
+                transform: translateY(-2px);
+            }
+
+        .preview-btn {
+            background: #4ECDC4;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem;
+        }
+
+            .preview-btn:hover {
+                background: #3DB8B0;
+                transform: translateY(-2px);
+            }
+
+        .guide-info {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+            .guide-info h2 {
+                font-size: 2rem;
+                text-align: center;
+                margin-bottom: 2rem;
+                color: #1A365D;
+            }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: #F7FAFC;
+            border-radius: 8px;
+        }
+
+            .info-item .icon {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                color: #FF6B6B;
+            }
+
+            .info-item h4 {
+                color: #1A365D;
+                margin-bottom: 0.5rem;
+            }
+
+            .info-item p {
+                color: #4A5568;
+                font-size: 0.95rem;
+                margin: 0;
+            }
+
+        .tips-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+            .tips-section h2 {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .tips-section p {
+                font-size: 1.2rem;
+                line-height: 1.8;
+                max-width: 800px;
+                margin: 0 auto 2rem;
+            }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tip-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+            .tip-item .icon {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .tip-item h4 {
+                margin-bottom: 0.5rem;
+            }
+
+        footer {
+            background: #1A365D;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #B8D4E8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+            .footer-section a:hover {
+                color: white;
+            }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #2D5A8C;
+            color: #B8D4E8;
+        }
+
+        @media (max-width: 768px) {
+            .section-hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .guides-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🛡️💡 Digital Skills for All</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutus.html">About</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="videotutorials.html">Tutorials</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contactpage.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="section-hero">
+        <h1>Senior Downloadable Guides</h1>
+        <p>Take your learning home with these comprehensive, easy-to-follow guides.</p>
+    </section>
+
+    <div class="content-section">
+        <div class="guides-intro">
+            <h2>Learning Resources You Can Keep</h2>
+            <p>
+                These downloadable guides are designed specifically for senior learners. Each guide includes
+                step-by-step instructions, helpful illustrations, and practice exercises that you can refer
+                to anytime, even when you're not connected to the internet.
+            </p>
+        </div>
+
+        <div class="guides-grid">
+            <!-- Guide 1: Smartphone Basics -->
+            <div class="guide-card">
+                <div class="guide-header">
+                    <div class="guide-icon">📱</div>
+                    <h3>Smartphone Mastery Guide</h3>
+                </div>
+                <div class="guide-content">
+                    <h4>Your Complete Smartphone Companion</h4>
+                    <p>
+                        Master your smartphone with this comprehensive 45-page guide. From basic setup to
+                        advanced features, everything you need to know in one easy-to-follow resource.
+                    </p>
+
+                    <ul class="guide-features">
+                        <li>Step-by-step setup instructions</li>
+                        <li>Making calls and sending texts</li>
+                        <li>Using apps and the app store</li>
+                        <li>Taking and sharing photos</li>
+                        <li>Staying safe online</li>
+                        <li>Troubleshooting common issues</li>
+                        <li>Large print and clear illustrations</li>
+                    </ul>
+
+                    <div class="pdf-viewer">
+                        <div class="pdf-icon">📄</div>
+                        <p><strong>Smartphone_Mastery_Guide.pdf</strong></p>
+                        <p>45 pages • 8.2 MB • Updated November 2025</p>
+                        <a href="#" class="preview-btn" onclick="previewPDF('smartphone-guide')">
+                            👁️ Preview Guide
+                        </a>
+                        <a href="#" class="download-btn" onclick="downloadPDF('smartphone-guide')">
+                            ⬇️ Download PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guide 2: Online Banking Safety -->
+            <div class="guide-card">
+                <div class="guide-header">
+                    <div class="guide-icon">🏦</div>
+                    <h3>Safe Online Banking Guide</h3>
+                </div>
+                <div class="guide-content">
+                    <h4>Bank Online with Confidence</h4>
+                    <p>
+                        Learn to use online banking safely with this essential security guide. Protect your
+                        money while enjoying the convenience of digital banking.
+                    </p>
+
+                    <ul class="guide-features">
+                        <li>Setting up online banking securely</li>
+                        <li>Recognizing banking scams</li>
+                        <li>Creating strong passwords</li>
+                        <li>Two-factor authentication made simple</li>
+                        <li>Safe mobile banking practices</li>
+                        <li>What to do if something goes wrong</li>
+                        <li>Security checklist included</li>
+                    </ul>
+
+                    <div class="pdf-viewer">
+                        <div class="pdf-icon">📄</div>
+                        <p><strong>Safe_Online_Banking_Guide.pdf</strong></p>
+                        <p>32 pages • 5.7 MB • Updated November 2025</p>
+                        <a href="#" class="preview-btn" onclick="previewPDF('banking-guide')">
+                            👁️ Preview Guide
+                        </a>
+                        <a href="#" class="download-btn" onclick="downloadPDF('banking-guide')">
+                            ⬇️ Download PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guide 3: Video Calling Made Easy -->
+            <div class="guide-card">
+                <div class="guide-header">
+                    <div class="guide-icon">📹</div>
+                    <h3>Video Calling Made Easy</h3>
+                </div>
+                <div class="guide-content">
+                    <h4>Stay Connected with Family & Friends</h4>
+                    <p>
+                        Never miss a family moment again! This guide teaches you everything about video calling,
+                        from basic setup to advanced features.
+                    </p>
+
+                    <ul class="guide-features">
+                        <li>Setting up Zoom, FaceTime, and Skype</li>
+                        <li>Making your first video call</li>
+                        <li>Adding multiple people to calls</li>
+                        <li>Sharing photos during calls</li>
+                        <li>Using fun filters and effects</li>
+                        <li>Troubleshooting common problems</li>
+                        <li>Practice exercises included</li>
+                    </ul>
+
+                    <div class="pdf-viewer">
+                        <div class="pdf-icon">📄</div>
+                        <p><strong>Video_Calling_Made_Easy.pdf</strong></p>
+                        <p>28 pages • 6.1 MB • Updated November 2025</p>
+                        <a href="#" class="preview-btn" onclick="previewPDF('video-guide')">
+                            👁️ Preview Guide
+                        </a>
+                        <a href="#" class="download-btn" onclick="downloadPDF('video-guide')">
+                            ⬇️ Download PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="guide-info">
+            <h2>Why Choose Our Guides?</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="icon">👁️</div>
+                    <h4>Large Print</h4>
+                    <p>Easy-to-read fonts and clear layouts designed for senior eyes</p>
+                </div>
+
+                <div class="info-item">
+                    <div class="icon">📝</div>
+                    <h4>Step-by-Step</h4>
+                    <p>Detailed instructions with screenshots and illustrations</p>
+                </div>
+
+                <div class="info-item">
+                    <div class="icon">🏠</div>
+                    <h4>Take Home</h4>
+                    <p>Reference materials you can use anytime, anywhere</p>
+                </div>
+
+                <div class="info-item">
+                    <div class="icon">🔄</div>
+                    <h4>Regular Updates</h4>
+                    <p>Guides updated regularly to reflect latest technology changes</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tips-section">
+            <h2>Getting the Most from Your Guides</h2>
+            <p>
+                Here are some tips to help you use these guides effectively and build your digital confidence.
+            </p>
+
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <div class="icon">📖</div>
+                    <h4>Read First</h4>
+                    <p>Skim through the guide before starting to get an overview</p>
+                </div>
+
+                <div class="tip-item">
+                    <div class="icon">✏️</div>
+                    <h4>Take Notes</h4>
+                    <p>Write down important steps in your own words</p>
+                </div>
+
+                <div class="tip-item">
+                    <div class="icon">🎯</div>
+                    <h4>Practice Regularly</h4>
+                    <p>Try one new skill each day to build confidence</p>
+                </div>
+
+                <div class="tip-item">
+                    <div class="icon">📞</div>
+                    <h4>Ask for Help</h4>
+                    <p>Call us if you get stuck - we're here to support you</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="our-mission.html">Our Mission</a></li>
+                    <li><a href="our-partners.html">Our Partners</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="glossary.html">Glossary</a></li>
+                    <li><a href="videotutorials.html">Video Tutorials</a></li>
+                    <li><a href="news.html">Latest News</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                    <li><a href="contactpage.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-use.html">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Digital Skills for All. Empowering digital confidence for everyone.</p>
+        </div>
+    </footer>
+
+    <script>
+        function previewPDF(guideType) {
+            // In a real implementation, this would open a PDF preview
+            alert(`📄 Previewing ${guideType.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}...\n\nIn a live website, this would open a PDF preview in a new window. The guide contains step-by-step instructions with large print and clear illustrations perfect for senior learners.`);
+        }
+
+        function downloadPDF(guideType) {
+            // In a real implementation, this would trigger a PDF download
+            alert(`⬇️ Downloading ${guideType.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}...\n\nIn a live website, this would download the PDF file to your computer. The guide will be saved as a PDF that you can open anytime, even without internet connection.`);
+        }
+
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
