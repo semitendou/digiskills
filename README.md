@@ -72,11 +72,4 @@ We’d love to hear from you!
 
 ---
 
-## 🪴 Acknowledgements
-
-This project was started as part of Summer Chen’s ongoing work in **digital literacy and online safety**, supported by guidance from **HYP Academy**.  
-Special thanks to all mentors, testers, and early supporters who helped bring this initiative to life.
-
----
-
-© 2025 Digital Skills for All. All rights reserved.
+© 2026 Digital Skills for All. All rights reserved.
